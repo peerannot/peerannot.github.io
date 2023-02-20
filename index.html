@@ -1,0 +1,194 @@
+---
+layout: default
+title: "Home"
+pagination:
+  enabled: false
+---
+
+<main>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+<!-- Home Jumbotron
+    ================================================== -->
+  <section class="intro full-width">
+      <div class="wrapintro">
+          <h1>Peerannot library</h1>
+          <h2 class="lead">Handling your crowdsourced datasets</h2>
+          <a class="btn" href="https://github.com/peerannot/peerannot/" rel="noopener noreferrer" target="_blank">View on GitHub <i class='fab fa-github'></i></a>
+      </div>
+  </section>
+
+<!-- Featured
+  ================================================== -->
+  <section class="featured-posts">
+
+    <div class="row listfeaturedtag">
+
+      {% for post in site.posts %}
+
+        {% if post.featured == true %}
+
+            {% include blocks/featured-box.html %}
+
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+  <section class="recent-posts row">
+
+    <div class="section-title">
+      <h2><span>Quickstart</span></h2>
+      <p></p><a href="https://github.com/peerannot/peerannot/actions/workflows/python-publish.yml"><img
+              src="https://github.com/peerannot/peerannot/actions/workflows/python-publish.yml/badge.svg?branch=main"
+              alt="Pypi"></a></p>
+    </div>
+
+    <div>
+    <p>The <code>peerannot</code> library was created to handle crowdsourced labels in classification problems.</p>
+
+  <p><h3 id="installation">Installation</h3></p>
+  <p>To install the <code>peerannot</code> library and reproduce results, use <code>cd</code> to be located in the
+    directory of the <code>setup.py</code> file and then</p>
+  <pre><code class="lang-bash">$ pip <span class="hljs-keyword">install</span> peerannot
+  </code></pre>
+  <p>Installing the library gives access to the Command Line Interface using the keyword <code>peerannot</code> in a bash
+    terminal.</p>
+  <h3 id="quick-start">Example</h3>
+  <p>We demonstrate how <code>peerannot</code> works with the <code>cifar10H</code> dataset.
+    We assume that the current working directory is the <code>cifar10H</code> directory containing the
+    <code>cifar10H.py</code> file.</p>
+  <p>First, install the dataset with</p>
+  <pre><code class="lang-bash">$ peerannot <span class="hljs-keyword">install</span> ./cifar10h.py
+  </code></pre>
+  <p>Then, we can try classical label aggregation strategies as follows:</p>
+  <pre><code class="lang-bash"><span class="hljs-keyword">for</span> strat <span class="hljs-keyword">in</span> MV NaiveSoft DS GLAD WDS
+  <span class="hljs-keyword">do</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Strategy: <span class="hljs-variable">${strat}</span>"</span>
+  peerannot aggregate . <span class="hljs-_">-s</span> <span class="hljs-variable">$strat</span>
+  <span class="hljs-keyword">done</span>
+  </code></pre>
+  <p>This will create a new folder names <code>labels</code> containing the labels in the
+    <code>labels_cifar10H_${strat}.npy</code> file.
+    Once the labels are available, we can train a neural network with <code>PyTorch</code> as follows. In a terminal:</p>
+  <pre><code class="lang-bash">for strat in MV NaiveSoft DS GLAD WDS
+  do
+  echo "Strategy: ${strat}"
+  declare -l strat
+  strat=$strat
+  peerannot train . -o cifar10H_${strat} \
+                    -<span class="ruby">K <span class="hljs-number">10</span> \
+  </span>                  -<span class="ruby">-labels=./labels/labels_cifar-<span class="hljs-number">10</span>h<span class="hljs-number">_</span>${strat}.npy
+  </span>                  -<span class="ruby">-model resnet18 \
+  </span>                  -<span class="ruby">-img-size=<span class="hljs-number">32</span> \
+  </span>                  -<span class="ruby">-n-epochs=<span class="hljs-number">1000</span> \
+  </span>                  -<span class="ruby">-lr=<span class="hljs-number">0</span>.<span class="hljs-number">1</span> --scheduler -m <span class="hljs-number">100</span> -m <span class="hljs-number">250</span> \
+  </span>                  -<span class="ruby">-num-workers=<span class="hljs-number">8</span>
+  </span>done
+  </code></pre>
+  <p>As the <code>WAUM</code> purpose is to identify ambiguous tasks, the command to run the identification is:</p>
+  <pre><code class="lang-bash">$ peerannot identify . -K <span class="hljs-number">10</span> --<span class="hljs-function"><span class="hljs-keyword">method</span> <span class="hljs-title">WAUM</span> \
+                       --<span class="hljs-title">labels</span> ./<span class="hljs-title">answers</span>.<span class="hljs-title">json</span> \
+                       --<span class="hljs-title">model</span> <span class="hljs-title">resnet18</span> --<span class="hljs-title">n</span>-<span class="hljs-title">epochs</span> 50 \
+                       --<span class="hljs-title">lr</span>=0.1 --<span class="hljs-title">img</span>-<span class="hljs-title">size</span>=32 \
+                       --<span class="hljs-title">maxiter</span>-<span class="hljs-title">DS</span>=50 \
+                       --<span class="hljs-title">alpha</span>=0.01</span>
+  </code></pre>
+  <p>Then, one can train on the pruned dataset with any aggregation strategy as follows:</p>
+  <pre><code class="lang-bash"># run WAUM + DS strategy
+  $ peerannot train . -o cifar10H_waum_0.01_DS \
+                  -<span class="ruby">K <span class="hljs-number">10</span> \
+  </span>                -<span class="ruby">-labels= ./labels/labels_cifar-<span class="hljs-number">10</span>h_ds.npy \
+  </span>                -<span class="ruby">-model resnet18 --img-size=<span class="hljs-number">32</span> \
+  </span>                -<span class="ruby">-n-epochs=<span class="hljs-number">150</span> --lr=<span class="hljs-number">0</span>.<span class="hljs-number">1</span> -m <span class="hljs-number">50</span> -m <span class="hljs-number">100</span> --scheduler \
+  </span>                -<span class="ruby">-num-workers=<span class="hljs-number">8</span> \
+  </span>                -<span class="ruby">-path-remove ./identification/waum_<span class="hljs-number">0</span>.<span class="hljs-number">01_</span>yang/too_hard_<span class="hljs-number">0</span>.<span class="hljs-number">01</span>.txt</span>
+  </code></pre>
+  <p>Finally, for the end-to-end strategies using deep learning (as CoNAL or CrowdLayer), the command line is:</p>
+  <pre><code class="lang-bash">$ peerannot aggregate-deep . -o cifar10h_crowdlayer \
+                           -<span class="ruby">-answers ./answers.json \
+  </span>                         -<span class="ruby">-model resnet18 -K=<span class="hljs-number">10</span> \
+  </span>                         -<span class="ruby">-n-epochs <span class="hljs-number">150</span> --lr <span class="hljs-number">0</span>.<span class="hljs-number">1</span> --optimizer sgd \
+  </span>                         -<span class="ruby">-batch-size <span class="hljs-number">64</span> --num-workers <span class="hljs-number">8</span> \
+  </span>                         -<span class="ruby">-img-size=<span class="hljs-number">32</span> \
+  </span>                         -<span class="ruby">s crowdlayer</span>
+  </code></pre>
+  <p>For CoNAL, the hyperparameter scaling can be provided as <code>-s CoNAL[scale=1e-4]</code>.</p>
+  <h3 id="peerannot-and-crowdsourcing-formatting">Peerannot and crowdsourcing formatting</h3>
+  <p>In <code>peerannot</code>, one of our goals is to make crowdsourced datasets under the same format so that it is easy
+    to switch from one learning or aggregation strategy without having to code once again the algorithms for each dataset.
+  </p>
+  <p>So, what is a crowdsourced dataset? We define each dataset as:</p>
+  <pre><code class="lang-bash">dataset
+      ├── train
+      │     ├── class0
+      │     │     ├─ task0-&lt;vote_index_0&gt;<span class="hljs-selector-class">.png</span>
+      │     │     ├─ task1-&lt;vote_index_1&gt;<span class="hljs-selector-class">.png</span>
+      │     │     ├─ ...
+      │     │     └─ taskn0-&lt;vote_index_n0&gt;<span class="hljs-selector-class">.png</span>
+      │     ├── class1
+      │     ├── ...
+      │     └── classK
+      ├── val
+      ├── test
+      ├── dataset<span class="hljs-selector-class">.py</span>
+      ├── metadata<span class="hljs-selector-class">.json</span>
+      └── answers.json
+  </code></pre>
+  <p>The crowdsourced labels for each training task are contained in the <code>anwers.json</code> file. They are formatted
+    as follows:</p>
+  <pre><code class="lang-json">{
+      0: {<span class="hljs-tag">&lt;<span class="hljs-name">worker_id</span>&gt;</span>: <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">another_worker_id</span>&gt;</span>: <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>},
+      1: {<span class="hljs-tag">&lt;<span class="hljs-name">yet_another_worker_id</span>&gt;</span>: <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>,}
+  }
+  </code></pre>
+  <p>Note that the task index in the <code>answers.json</code> file might not match the order of tasks in the
+    <code>train</code> folder... Thence, each task&#39;s name contains the associated votes file index.
+    The number of tasks in the <code>train</code> folder <strong>must</strong> match the number of entry keys in the
+    <code>answers.json</code> file.</p>
+  <p>The <code>metadata.json</code> file contains general information about the dataset. A minimal example would be:</p>
+  <pre><code class="lang-json">{
+      <span class="hljs-attr">"name"</span>: &lt;dataset&gt;,
+      <span class="hljs-attr">"n_classes"</span>: K,
+      <span class="hljs-attr">"n_workers"</span>: &lt;n_workers&gt;,
+  }
+  </code></pre>
+  <p>The <code>dataset.py</code> is not mandatory but is here to facilitate the dataset&#39;s installation procedure. A
+    minimal example:</p>
+  <pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mydataset</span>:</span>
+      <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+          <span class="hljs-keyword">self</span>.DIR = Path(__file_<span class="hljs-number">_</span>).parent.resolve()
+          <span class="hljs-comment"># download the data needed</span>
+          <span class="hljs-comment"># ...</span>
+
+      <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setfolders</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+          print(f<span class="hljs-string">"Loading data folders at {self.DIR}"</span>)
+          train_path = <span class="hljs-keyword">self</span>.DIR / <span class="hljs-string">"train"</span>
+          test_path = <span class="hljs-keyword">self</span>.DIR / <span class="hljs-string">"test"</span>
+          valid_path = <span class="hljs-keyword">self</span>.DIR / <span class="hljs-string">"val"</span>
+
+          <span class="hljs-comment"># Create train/val/test tasks with matching index</span>
+          <span class="hljs-comment"># ...</span>
+
+          print(<span class="hljs-string">"Created:"</span>)
+          <span class="hljs-keyword">for</span> set, path <span class="hljs-keyword">in</span> zip(
+              (<span class="hljs-string">"train"</span>, <span class="hljs-string">"val"</span>, <span class="hljs-string">"test"</span>), [train_path, valid_path, test_path]
+          ):
+              print(f<span class="hljs-string">"- {set}: {path}"</span>)
+          <span class="hljs-keyword">self</span>.get_crowd_labels()
+          print(f<span class="hljs-string">"Train crowd labels are in {self.DIR / 'answers.json'}"</span>)
+
+      <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_crowd_labels</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span>:
+          <span class="hljs-comment"># create answers.json dictionnary in presented format</span>
+          <span class="hljs-comment"># ...</span>
+          with open(<span class="hljs-keyword">self</span>.DIR / <span class="hljs-string">"answers.json"</span>, <span class="hljs-string">"w"</span>) as <span class="hljs-symbol">answ:</span>
+              json.dump(dictionnary, answ, ensure_ascii=False, indent=<span class="hljs-number">3</span>)
+  </code></pre>
+</div>
+</section>
+
+</main>
