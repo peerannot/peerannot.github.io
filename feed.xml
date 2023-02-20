@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-02-20T08:31:09+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/">&lt;h2 id=&quot;model&quot;&gt;Model&lt;/h2&gt;
+
+&lt;p&gt;The Dawid and Skene’s model estimates one confusion matrix \(\pi\in\mathbb{R}^{K\times K}\) per worker.
+The model assumes that the probability for a task \(x_i\) to have true label \(y_i^\star=\ell\) follows a multinomial distribution with probabilities \(\smash{\pi^{(j)}_{\ell,\bullet}}\) for each worker.&lt;/p&gt;
+
+&lt;p&gt;The likelihood to maximize is:&lt;/p&gt;
+
+\[\begin{aligned}    \prod_{i\in [n_{\texttt{task}}]}\prod_{\ell \in [K]}\bigg[\rho_\ell\prod_{j\in [n_{\texttt{worker}}]}
+    \prod_{k\in [K]}\big(\pi^{(j)}_{\ell, k}\big)^{\mathbf{1}_{\{y_i^{(j)}=k\}}}
+    \bigg]^{T_{i\ell} \phantom{\mathbf{1}_{\{y_i^\star=\ell\}}}} \enspace,
+ \end{aligned}\]
+
+&lt;p&gt;with \(\rho_\ell=\mathbb{P}(y_i^\star=\ell)\) and \(T_{i\ell}=\mathbf{1}_{y_i^\star=\ell}\).&lt;/p&gt;
+&lt;h2 id=&quot;cli&quot;&gt;CLI&lt;/h2&gt;
+&lt;p&gt;With &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;peerannot&lt;/code&gt; in a terminal located in the directory of answers, the DS model can be used as follows.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;peerannnot aggregate &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--strategy&lt;/span&gt; DS &lt;span class=&quot;nt&quot;&gt;--answers-file&lt;/span&gt; answers.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that by default, if the answers are in a file names &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;answers.json&lt;/code&gt; the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--answers-file&lt;/code&gt; argument can be ommitted.&lt;/p&gt;
+
+&lt;h2 id=&quot;api&quot;&gt;API&lt;/h2&gt;
+
+&lt;p&gt;Import the aggregation model in the current session&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;peerannot.models&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dawid_Skene&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Assuming the answers are in a dictionnary names &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;answers&lt;/code&gt; then run:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_workers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_classes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;yhat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_probas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;estimated-abilities&quot;&gt;Estimated abilities&lt;/h3&gt;
+
+&lt;p&gt;To access the estimated confusion matrices in a variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pi&lt;/code&gt;, run:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# (n_worker, n_classes, n_classes)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;aggregate-into-hard-labels&quot;&gt;Aggregate into hard labels&lt;/h3&gt;
+
+&lt;p&gt;After running the aggregation strategy, instead of soft labels one can recover hard labels by running:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;yhat_hard&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that this is an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;argmax&lt;/code&gt; on the first dimension with a random split in case of equalities.&lt;/p&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="_models" /><category term="_aggregation" /><category term="_DS" /><summary type="html">Models available in peerannot</summary></entry><entry><title type="html">Datasets</title><link href="https://github.com/pages/peerannot/peerannot/datasets/" rel="alternate" type="text/html" title="Datasets" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/">&lt;h2 id=&quot;access-datasets&quot;&gt;Access datasets&lt;/h2&gt;
+
+&lt;h2 id=&quot;datasets-structure&quot;&gt;Datasets structure&lt;/h2&gt;
+
+&lt;h2 id=&quot;automatically-generate-datasets&quot;&gt;Automatically generate datasets&lt;/h2&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="_datasets" /><summary type="html">Models available in peerannot</summary></entry><entry><title type="html">Models</title><link href="https://github.com/pages/peerannot/peerannot/models/" rel="alternate" type="text/html" title="Models" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/">&lt;h2 id=&quot;access-models&quot;&gt;Access models&lt;/h2&gt;
+
+&lt;p&gt;All crowdsourcing models are accessible from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;models&lt;/code&gt; module.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;peerannot.models&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pmod&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;They are divided into three classes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Aggregation strategy: from collected labels create a new label (&lt;em&gt;hard label&lt;/em&gt;) or probability distribution (&lt;em&gt;soft label&lt;/em&gt;) to learn from.&lt;/li&gt;
+  &lt;li&gt;End-to-end strategy: Directly learn from the crowdsourced labels&lt;/li&gt;
+  &lt;li&gt;Identification strategy:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;aggregation-based-strategy&quot;&gt;Aggregation based strategy&lt;a class=&quot;anchor-link&quot; href=&quot;#aggregation-based-strategy&quot;&gt;&lt;i class=&quot;fas fa-link&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Majority vote&lt;/a&gt; (MV)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Naive soft&lt;/a&gt; (NS)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/models/DS&quot;&gt;Dawid and Skene&lt;/a&gt; (DS)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Clustered Dawid and Skene&lt;/a&gt; (DSWC)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Generative model of Labels, Abilities, and Difficulties&lt;/a&gt; (GLAD)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;end-to-end-strategy&quot;&gt;End-to-end strategy&lt;a class=&quot;anchor-link&quot; href=&quot;#end-to-end-strategy&quot;&gt;&lt;i class=&quot;fas fa-link&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;CrowdLayer&lt;/a&gt; (CL)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Common Noise Adaptation Layers&lt;/a&gt; (CoNAL)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;identification-strategy&quot;&gt;Identification strategy&lt;a class=&quot;anchor-link&quot; href=&quot;#identification-strategy&quot;&gt;&lt;i class=&quot;fas fa-link&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Area Under the Margin&lt;/a&gt; (AUM)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Weighted AUM&lt;/a&gt; (WAUM)&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="_models" /><summary type="html">Models available in peerannot</summary></entry></feed>
