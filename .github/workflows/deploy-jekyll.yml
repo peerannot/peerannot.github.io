@@ -24,12 +24,6 @@ jobs:
           node-version: 18.12.1
           cache: 'npm'
 
-      - name: Install node dependencies
-        run: npm install
-
-      - name: builm npm
-        run: npm run build
-
       - name: Build Jekyll 🏗
         uses:  helaili/jekyll-action@v2
         with:
@@ -39,11 +33,13 @@ jobs:
           jekyll_build_options: '--destination ./_site'
           build_only: true
 
+      - name: Install node dependencies
+        run: npm install
 
-      # - name: Optimize AMP ⚡ and Minify HTML 🗜
-      #   run: |
-      #     sudo chmod -R 777 ./_site
-      #     npx gulp build
+      - name: Optimize AMP ⚡ and Minify HTML 🗜
+        run: |
+          sudo chmod -R 777 ./_site
+          npx gulp build
 
       - name: Deploy to gh-page 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
