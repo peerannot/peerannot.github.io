@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-02-20T08:31:09+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/">&lt;h2 id=&quot;model&quot;&gt;Model&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-02-21T13:23:41+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/">&lt;h2 id=&quot;model&quot;&gt;Model&lt;/h2&gt;
 
-&lt;p&gt;The Dawid and Skene’s model estimates one confusion matrix \(\pi\in\mathbb{R}^{K\times K}\) per worker.
-The model assumes that the probability for a task \(x_i\) to have true label \(y_i^\star=\ell\) follows a multinomial distribution with probabilities \(\smash{\pi^{(j)}_{\ell,\bullet}}\) for each worker.&lt;/p&gt;
+&lt;p&gt;The Dawid and Skene’s model estimates one confusion matrix \(\pi\in\mathbb{R}^{K\times K}\)
+per worker.
+The model assumes that the probability for a task \(x_i\) to have true label \(y_i^\star=\ell\) follows a multinomial distribution with probabilities \(\pi^{(j)}_{\ell,\bullet}\) for each worker.&lt;/p&gt;
 
 &lt;p&gt;The likelihood to maximize is:&lt;/p&gt;
 
 \[\begin{aligned}    \prod_{i\in [n_{\texttt{task}}]}\prod_{\ell \in [K]}\bigg[\rho_\ell\prod_{j\in [n_{\texttt{worker}}]}
     \prod_{k\in [K]}\big(\pi^{(j)}_{\ell, k}\big)^{\mathbf{1}_{\{y_i^{(j)}=k\}}}
-    \bigg]^{T_{i\ell} \phantom{\mathbf{1}_{\{y_i^\star=\ell\}}}} \enspace,
+    \bigg]^{T_{i\ell}{\mathbf{1}_{\{y_i^\star=\ell\}}}},
  \end{aligned}\]
 
-&lt;p&gt;with \(\rho_\ell=\mathbb{P}(y_i^\star=\ell)\) and \(T_{i\ell}=\mathbf{1}_{y_i^\star=\ell}\).&lt;/p&gt;
+&lt;p&gt;with \(\rho_\ell=\mathbb{P}(y_i^\star=\ell)\) and \(T_{i\ell}=\mathbf{1}_{y_i^\star=\ell}.\)&lt;/p&gt;
 &lt;h2 id=&quot;cli&quot;&gt;CLI&lt;/h2&gt;
 &lt;p&gt;With &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;peerannot&lt;/code&gt; in a terminal located in the directory of answers, the DS model can be used as follows.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;peerannnot aggregate &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--strategy&lt;/span&gt; DS &lt;span class=&quot;nt&quot;&gt;--answers-file&lt;/span&gt; answers.json
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note that by default, if the answers are in a file names &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;answers.json&lt;/code&gt; the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--answers-file&lt;/code&gt; argument can be ommitted.&lt;/p&gt;
+&lt;p&gt;Note that by default, if the answers are in a file names &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;answers.json&lt;/code&gt; the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--answers-file&lt;/code&gt; argument can be omitted.&lt;/p&gt;
 
 &lt;h2 id=&quot;api&quot;&gt;API&lt;/h2&gt;
 
@@ -49,11 +50,86 @@ The model assumes that the probability for a task \(x_i\) to have true label \(y
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;yhat_hard&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note that this is an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;argmax&lt;/code&gt; on the first dimension with a random split in case of equalities.&lt;/p&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="_models" /><category term="_aggregation" /><category term="_DS" /><summary type="html">Models available in peerannot</summary></entry><entry><title type="html">Datasets</title><link href="https://github.com/pages/peerannot/peerannot/datasets/" rel="alternate" type="text/html" title="Datasets" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/">&lt;h2 id=&quot;access-datasets&quot;&gt;Access datasets&lt;/h2&gt;
+&lt;p&gt;Note that this is an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;argmax&lt;/code&gt; on the first dimension with a random split in case of equalities.&lt;/p&gt;
+
+&lt;h2 id=&quot;api-details-class-modelsdawid_skene&quot;&gt;API details: class models.Dawid_Skene&lt;/h2&gt;
+&lt;p&gt;Dawid and Skene model class that herits from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CrowdModel&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__init__(answers, n_classes,**kwargs)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Parameters:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;answers&lt;/code&gt;:&lt;em&gt;(dict)&lt;/em&gt;
+Dictionnary of workers answers with format
+    &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+              &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;worker&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;worker&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+              &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;worker&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n_classes&lt;/code&gt;: &lt;em&gt;(int)&lt;/em&gt;
+Number of possible classes&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kwargs&lt;/code&gt;: &lt;em&gt;(dict)&lt;/em&gt;
+Dictionnary that should contain at least &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n_workers&lt;/code&gt; the number of workers.
+Other arguments are &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;path_remove&lt;/code&gt; to remove tasks identified from the &lt;a href=&quot;&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAUM&lt;/code&gt;&lt;/a&gt; or another method.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get_crowd_matrix()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;From the dictionnary of answers generates a tensor of size \((n_{task},n_{worker},n_{classes})\) with \(0\) where there is no collected annotation.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init_T()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Empirical distribution initialization for the variables \(T_{i,\ell}\)&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;m_step()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Maximizing log likelihood (see eq. 2.3 and 2.4 Dawid and Skene 1979)&lt;/p&gt;
+
+&lt;p&gt;Returns (as attributes):&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;p: (p_j)_j probabilities that instance has true response j if drawn
+      at random (class marginals)&lt;/li&gt;
+  &lt;li&gt;pi: number of times worker k records l when j is correct&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;e_step()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Estimate indicator variables (see eq. 2.5 Dawid and Skene 1979)&lt;/p&gt;
+
+&lt;p&gt;Returns (as attributes):&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;T: New estimate for indicator variables (n_task, n_worker)&lt;/li&gt;
+  &lt;li&gt;denom: value used to compute likelihood easily&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log_likelihood()&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Computes the logarithm of the likelihood.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;run(epsilon=1e-6, maxiter=50, verbose=False)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Run the EM algorithm&lt;/p&gt;
+
+&lt;p&gt;Parameters:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;epsilon&lt;/code&gt;:&lt;em&gt;(float)&lt;/em&gt; stopping value for the absolute difference between the log likelihood of two consecutive steps&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maxiter&lt;/code&gt;:&lt;em&gt;(int)&lt;/em&gt; Total number of steps in the EM algorithm&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;verbose&lt;/code&gt;:&lt;em&gt;(bool)&lt;/em&gt; Print if the EM algorithm did not converge.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="DS" /><summary type="html">Models available in peerannot</summary></entry><entry><title type="html">Datasets</title><link href="https://github.com/pages/peerannot/peerannot/datasets/" rel="alternate" type="text/html" title="Datasets" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/">&lt;h2 id=&quot;access-datasets&quot;&gt;Access datasets&lt;/h2&gt;
 
 &lt;h2 id=&quot;datasets-structure&quot;&gt;Datasets structure&lt;/h2&gt;
 
-&lt;h2 id=&quot;automatically-generate-datasets&quot;&gt;Automatically generate datasets&lt;/h2&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="_datasets" /><summary type="html">Models available in peerannot</summary></entry><entry><title type="html">Models</title><link href="https://github.com/pages/peerannot/peerannot/models/" rel="alternate" type="text/html" title="Models" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/">&lt;h2 id=&quot;access-models&quot;&gt;Access models&lt;/h2&gt;
+&lt;h2 id=&quot;automatically-generate-datasets&quot;&gt;Automatically generate datasets&lt;/h2&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><summary type="html">Models available in peerannot</summary></entry><entry><title type="html">Models</title><link href="https://github.com/pages/peerannot/peerannot/models/" rel="alternate" type="text/html" title="Models" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/">&lt;h2 id=&quot;access-models&quot;&gt;Access models&lt;/h2&gt;
 
 &lt;p&gt;All crowdsourcing models are accessible from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;models&lt;/code&gt; module.&lt;/p&gt;
 
@@ -89,4 +165,4 @@ The model assumes that the probability for a task \(x_i\) to have true label \(y
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;&quot;&gt;Area Under the Margin&lt;/a&gt; (AUM)&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;&quot;&gt;Weighted AUM&lt;/a&gt; (WAUM)&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="_models" /><summary type="html">Models available in peerannot</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html">Models available in peerannot</summary></entry></feed>
