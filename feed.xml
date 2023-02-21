@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-02-21T13:23:41+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/">&lt;h2 id=&quot;model&quot;&gt;Model&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-02-21T13:43:57+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/">&lt;h2 id=&quot;model&quot;&gt;Model&lt;/h2&gt;
 
 &lt;p&gt;The Dawid and Skene’s model estimates one confusion matrix \(\pi\in\mathbb{R}^{K\times K}\)
 per worker.
@@ -8,7 +8,7 @@ The model assumes that the probability for a task \(x_i\) to have true label \(y
 
 \[\begin{aligned}    \prod_{i\in [n_{\texttt{task}}]}\prod_{\ell \in [K]}\bigg[\rho_\ell\prod_{j\in [n_{\texttt{worker}}]}
     \prod_{k\in [K]}\big(\pi^{(j)}_{\ell, k}\big)^{\mathbf{1}_{\{y_i^{(j)}=k\}}}
-    \bigg]^{T_{i\ell}{\mathbf{1}_{\{y_i^\star=\ell\}}}},
+    \bigg]^{T_{i\ell}},
  \end{aligned}\]
 
 &lt;p&gt;with \(\rho_\ell=\mathbb{P}(y_i^\star=\ell)\) and \(T_{i\ell}=\mathbf{1}_{y_i^\star=\ell}.\)&lt;/p&gt;
