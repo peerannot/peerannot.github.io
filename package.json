@@ -71,5 +71,8 @@
   },
   "resolutions": {
     "node-sass": "https://registry.npmjs.org/node-sass/-/node-sass-7.0.0.tgz"
+  },
+  "dependencies": {
+    "mathjax": "^3.2.2"
   }
 }

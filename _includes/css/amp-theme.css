@@ -281,12 +281,12 @@ span.post-read-more a:hover {
   margin-right: 3px
 }
 .mainheading h1.sitetitle {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "Gill Sans Extrabold", sans-serif;
   font-display: swap;
 }
 .mainheading h1.posttitle {
   font-weight: 700;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: "Gill Sans Extrabold", sans-serif;
 }
 .intro {
   /* background-image:;
@@ -332,7 +332,7 @@ span.post-read-more a:hover {
   color: rgba(0, 0, 0, .8)
 }
 .article-post {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: "Gill Sans Extrabold", sans-serif;
   font-size: 1.1rem;
   line-height: 1.8
 }
