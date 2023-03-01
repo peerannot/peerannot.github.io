@@ -1,0 +1,200 @@
+This is an example of simulation using the `peerannot` library that considers tasks' difficulty.
+
+```{python}
+!pip list | grep peerannot
+```
+
+The `discrete-difficulty` strategy simulates the following setting (here presented with $3$ classes for simplicity):
+
+## The `discrete-difficulty` simulation
+
+- each task is assigned a true label $y_i^\star$ and a difficulty level $d_i$ in $\{\texttt{easy}, \texttt{hard}, \texttt{random}\}$. Each worker is either $\texttt{good}$ of $\texttt{bad}$
+- If the task is `easy`, every worker answers correctly: $y_i^{(j)}=y_i^\star$
+- If the task is `random`, every worker answers randomly: $\mathbb{P}(y_i^{(j)}=\ell|y_i^\star=k) = \frac{1}{K}$.
+- If the task is `hard`, each worker $w_j$ is assigned a confusion matrix $\pi^{(j)}$ where $\pi^{(j)}_{k\ell} = \mathbb{P}(y_i^{(j)}=\ell|y_i^\star=k)$:
+  - if the worker is `good`, each row of the confusion matrix is simulated using a Dirichlet($\alpha=[0.2, 0.2, 0.2]$) with maximum located at $y_i^\star$
+  - if the worker is `bad` each row of the confusion matrix is simulated using a Dirichlet($\alpha=[1, 1, 1]$), *i.e.* the uniform distribution over the simplex.
+  The final answer is then drawn from the Multinomial $\big(\pi^{(j)}_{y_i^\star, \bullet}\big)$
+
+
+::: {.callout-note}
+If you have a worker of profile fixed that does not rely on Dirichlet distributions, `peerannot` works too!
+Simply store your confusion matrices in an `.npy` file containing an `np.ndarray` of shape `(n_worker, K, K)` and then use the `--matrix-file <path to matrix_file.npy>` argument to use your own confusion matrices.
+:::
+
+```{python}
+#| code-fold: true
+#| eval: true
+#| label: fig-dirichlet-densities
+#| fig-cap: "3000 draws of the Dirichlet distributions for good (left) and bad (right) workers"
+# original Author: Thomas Boggs
+
+from __future__ import division, print_function
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.tri as tri
+
+_corners = np.array([[0, 0], [1, 0], [0.5, 0.75**0.5]])
+_AREA = 0.5 * 1 * 0.75**0.5
+_triangle = tri.Triangulation(_corners[:, 0], _corners[:, 1])
+
+# For each corner of the triangle, the pair of other corners
+_pairs = [_corners[np.roll(range(3), -i)[1:]] for i in range(3)]
+# The area of the triangle formed by point xy and another pair or points
+tri_area = lambda xy, pair: 0.5 * np.linalg.norm(np.cross(*(pair - xy)))
+
+def xy2bc(xy, tol=1.e-4):
+    '''Converts 2D Cartesian coordinates to barycentric.
+    Arguments:
+        `xy`: A length-2 sequence containing the x and y value.
+    '''
+    coords = np.array([tri_area(xy, p) for p in _pairs]) / _AREA
+    return np.clip(coords, tol, 1.0 - tol)
+
+class Dirichlet(object):
+    def __init__(self, alpha):
+        '''Creates Dirichlet distribution with parameter `alpha`.'''
+        from math import gamma
+        from operator import mul
+        self._alpha = np.array(alpha)
+        self._coef = gamma(np.sum(self._alpha)) / \
+                     np.multiply.reduce([gamma(a) for a in self._alpha])
+    def pdf(self, x):
+        '''Returns pdf value for `x`.'''
+        from operator import mul
+        return self._coef * np.multiply.reduce([xx ** (aa - 1)
+                                                for (xx, aa)in zip(x, self._alpha)])
+    def sample(self, N):
+        '''Generates a random sample of size `N`.'''
+        return np.random.dirichlet(self._alpha, N)
+
+def plot_points(X, barycentric=True, border=True, **kwargs):
+    '''Plots a set of points in the simplex.
+    Arguments:
+        `X` (ndarray): A 2xN array (if in Cartesian coords) or 3xN array
+                       (if in barycentric coords) of points to plot.
+        `barycentric` (bool): Indicates if `X` is in barycentric coords.
+        `border` (bool): If True, the simplex border is drawn.
+        kwargs: Keyword args passed on to `plt.plot`.
+    '''
+    if barycentric is True:
+        X = X.dot(_corners)
+    plt.plot(X[:, 0], X[:, 1], 'b.', ms=1, **kwargs)
+    plt.axis('equal')
+    plt.xlim(0, 1)
+    plt.ylim(0, 0.75**0.5)
+    plt.axis('off')
+    if border is True:
+        plt.triplot(_triangle, linewidth=1, color="k")
+
+if __name__ == '__main__':
+    f = plt.figure(figsize=(8, 6))
+    alphas = [[0.2] * 3,
+              [1] * 3]
+    for (i, alpha) in enumerate(alphas):
+        dist = Dirichlet(alpha)
+        title = r'$\alpha$ = (%.3f, %.3f, %.3f)' % tuple(alpha)
+        plt.subplot(2, len(alphas), i + 1 + len(alphas))
+        plt.title(title, fontdict={'fontsize': 8})
+        plot_points(dist.sample(3000))
+```
+
+### Run the simulation
+
+Let us run a simulation with $n_{\texttt{worker}}=30$ workers, $n_{\texttt{task}}=100$ tasks with $K=3$ classes.
+Each task receives a random number of votes between $1$ and $n_{\texttt{worker}}$ using the key `imbalance-votes`
+
+
+::: {.callout-note}
+The maximum number of tasks per worker / label per task can be modified using `workerload`/`feedback` parameters.
+:::
+
+Results are stored in the folder `./temp/test_discrete_difficulty`.
+There are $0.7\cdot n_{\texttt{worker}}$ `good` workers.
+The probability for a task to be `random` is set to $p_{\text{random}}=0.3$, and the ratio of `good` over `hard` tasks is set to $r=0.4$ *i.e.*
+
+$$
+d_i \sim \mathcal{M}\text{ultinomial}\bigg(
+  1- p_{\text{random}} -  \frac{1-p_{\text{random}}}{r+1}, \frac{1-0.3}{r+1}, p_{\text{random}}
+  \bigg) \enspace.
+$$
+We set the `seed` to $3$ for reproducibility.
+
+```{python}
+!peerannot simulate --n-worker 30 --n-task 100  -K 3 \
+                    -s discrete-difficulty \
+                    --folder ./temp/test_discrete_difficulty/ \
+                    -r 0.7 --ratio-diff 0.4 --random 0.3 \
+                    --imbalance-votes \
+                    --seed 5;
+```
+
+## Explore results
+
+### Workers answers
+
+The simulation created the dictionnary of answers for each task and worker in `answers.json`:
+
+```{python}
+#| code-fold: true
+#| eval: true
+#| label: fig-repartition
+#| fig-cap: "Number of labels per task"
+
+import numpy as np
+import json
+import seaborn as sns
+from pathlib import Path
+
+dir_ = Path.cwd() / "temp" / "test_discrete_difficulty"
+
+with open(dir_ / "answers.json", "r") as all_ans:
+    answers = json.load(all_ans)  # warning: keys are string
+true_labels = np.load(dir_ / "ground_truth.npy")
+
+sns.countplot(data={
+  "votes_repartition": [len(t) for t in answers.values()]
+  }, x="votes_repartition")
+plt.xticks([0] + list(range(4, 30, 5)), [1] + list(range(5, 31, 5)))
+plt.xlabel("Feedback")
+plt.show()
+```
+
+### Task difficulty
+
+The difficulty of each task is accessible in `difficulties.npy`:
+
+```{python}
+#| code-fold: true
+#| eval: true
+#| label: fig-difficulties
+#| fig-cap: "Repartition of difficulties in the simulated tasks"
+
+sns.set_style("whitegrid")
+diff = np.load(dir_ / "difficulties.npy")
+sns.countplot(data={"difficulty": diff}, x="difficulty")
+plt.show()
+```
+
+### Confusion matrices
+
+Finally confusion matrices $\pi^{(j)}$ are stored in `matrices.npy`. For example in  @fig-confusion is the confusion matrix of a good / bad worker.
+
+
+::: {.callout-note}
+The confusion matrix of a good worker is always diagonally dominant.
+:::
+
+```{python}
+#| code-fold: true
+#| eval: true
+#| label: fig-confusion
+#| fig-cap: "Confusion matrix of a good worker (left) and a bac worker (right)"
+pi = np.load(dir_ / "matrices.npy")
+fig, axs = plt.subplots(1, 2, sharey=True)
+sns.heatmap(pi[1], ax=axs[0], annot=True, fmt=".2f", square=True, vmin=0, vmax=1, cbar=False)
+sns.heatmap(pi[28], ax=axs[1], annot=True, fmt=".2f", square=True, vmin=0, vmax=1, cbar=False)
+axs[0].set_xlabel("Good worker $w_1$")
+axs[1].set_xlabel("Bad worker $w_{28}$")
+plt.show()
+```

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-02-24T10:25:10+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Majority voting</title><link href="https://github.com/pages/peerannot/peerannot/models/MV/" rel="alternate" type="text/html" title="Majority voting" /><published>2023-02-23T00:00:00+00:00</published><updated>2023-02-23T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/MV</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/MV/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-03-01T17:03:40+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Majority voting</title><link href="https://github.com/pages/peerannot/peerannot/models/MV/" rel="alternate" type="text/html" title="Majority voting" /><published>2023-02-23T00:00:00+00:00</published><updated>2023-02-23T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/MV</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/MV/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
 
 <h2 id="model">Model</h2>
 
@@ -174,7 +174,22 @@ Other arguments are <code class="language-plaintext highlighter-rouge">path_remo
 
 <h2 id="datasets-structure">Datasets structure</h2>
 
-<h2 id="automatically-generate-datasets">Automatically generate datasets</h2>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/"><![CDATA[<h2 id="model">Model</h2>
+<h2 id="download-and-install-real-datasets-easily">Download and install real datasets easily</h2>
+
+<h2 id="simulate-datasets">Simulate datasets</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">simulate</code> module of <code class="language-plaintext highlighter-rouge">peerannot</code> allows creating simulated labels given a strategy.</p>
+
+<h3 id="notations">Notations</h3>
+
+<p>We remind that $y_i^{(j)}\in[K]$ is the label answered by the worker $w_j$ given the task $x_i$.
+The answered label is coded as a number representing the $K$ possible classes.</p>
+<h3 id="examples">Examples</h3>
+
+<p>Examples of simulation strategies can be found in the following:</p>
+<ul>
+  <li><a href="../quarto_files/build_/simulate_discrete_difficulty.html">Discrete levels of difficulty</a></li>
+</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/"><![CDATA[<h2 id="model">Model</h2>
 
 <p>The Dawid and Skene’s model estimates one confusion matrix $\pi\in\mathbb{R}^{K\times K}$
 per worker.
