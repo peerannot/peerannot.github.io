@@ -1,0 +1,25 @@
+project:
+  type: website
+  output-dir: build_
+toc: true
+lang: en
+reference-location: margin
+citation-location: margin
+fig-cap-location: margin
+format:
+  html:
+    mainfont: Atkinson Hyperlegible
+    html-math-method: katex
+    toc-location: left
+    toc-depth: 6
+    code-fold: false
+    code-tools:
+      toggle: false
+      source: false
+    self-contained: true
+    page-layout: full
+    code-overflow: wrap
+    fig-responsive: true
+execute:
+  warning: false
+  error: true

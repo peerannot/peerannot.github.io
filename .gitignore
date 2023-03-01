@@ -176,3 +176,9 @@ $RECYCLE.BIN/
 # Gulp Cache
 cache/
 
+
+quarto_files/_freeze/
+
+quarto_files/build_/site_libs/
+
+quarto_files/build_/
