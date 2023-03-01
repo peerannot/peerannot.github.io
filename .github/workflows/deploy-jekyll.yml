@@ -33,6 +33,11 @@ jobs:
         with:
           path: ./quarto_files/
           to: html
+      - name: check quarto content
+        run: |
+          ls .
+          ls ./quarto_files/
+          ls ./quarto_files/build_/
 
   jekyll:
     runs-on: ubuntu-latest
