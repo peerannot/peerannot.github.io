@@ -115,6 +115,7 @@ exclude:
   - package.json
   - README.md
 
+
 ############################################################
 # Site configuration for the WebP Generator Plugin
 # The values here represent the defaults if nothing is set

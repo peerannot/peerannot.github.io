@@ -7,7 +7,7 @@ body {
   padding: 0 0 1rem
 }
 a {
-  color: #6fd350
+  color: #071725
 }
 a,
 a:hover {
@@ -17,6 +17,11 @@ a:hover {
   padding: 20px;
   background-color: #3c8aff;
   color: white;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 pre {
   -moz-box-sizing: border-box;
@@ -117,7 +122,7 @@ section.recent-posts {
   border-right: 1px solid #eee
 }
 .navbar-toggleable-md .navbar-nav .nav-link.highlight {
-  background: #6FD350;
+  background: #3c8aff;
   color: #fff;
   border-radius: 4px;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .1);
@@ -292,6 +297,7 @@ span.post-read-more a:hover {
 .mainheading h1.posttitle {
   font-weight: 700;
   font-family: "Gill Sans Extrabold", sans-serif;
+  color: dodgerblue;
 }
 .intro {
   /* background-image:;
@@ -351,7 +357,7 @@ span.post-read-more a:hover {
   text-decoration: none
 }
 blockquote {
-  border-left: 4px solid #6FD350;
+  border-left: 4px solid #3c8aff;
   padding: 0 20px;
   font-style: italic;
   color: rgba(0, 0, 0, .5)
@@ -467,8 +473,8 @@ a.btn {
   border-color: #372cd8
 }
 .btn.follow {
-  border-color: #6fd350;
-  color: #6fd350;
+  border-color: #3c8aff;
+  color: #3c8aff;
   padding: 3px 10px;
   text-align: center;
   border-radius: 999em;
@@ -624,6 +630,7 @@ h6 {
 .article-post h6 {
   margin-top: 2rem;
   margin-bottom: 1rem;
+  color: dodgerblue;
 }
 .article-post img.shadow {
   -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
@@ -632,7 +639,9 @@ h6 {
 }
 img {
   max-width: 100%;
-  height: auto
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 .bottompagination span.navigation a {
   background: #8de8f8;

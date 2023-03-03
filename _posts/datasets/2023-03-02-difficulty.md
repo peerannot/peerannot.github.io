@@ -4,6 +4,7 @@ category: [doc]
 title: Simulate labels with difficulty
 tags: [datasets,simulate]
 permalink: /datasets/simulate_discrete_difficulty/
+
 css:
   badge: true
   syntax: true
@@ -22,7 +23,7 @@ The `discrete-difficulty` strategy simulates the following setting (here present
 
 ## Discrete-difficulty simulation
 
-Each task is assigned a true label $y_i^\star$ and a difficulty level $d_i$ in $\{$ `easy`, `hard`, `random` $\}$. Each worker is either `good` of `bad`$
+Each task is assigned a true label $y_i^\star$ and a difficulty level $d_i$ in $\\{$ `easy`, `hard`, `random` $\\}$. Each worker is either `good` of `bad`
 - If the task is `easy`, every worker answers correctly: $y_i^{(j)}=y_i^\star$
 - If the task is `random`, every worker answers randomly: $\mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k) = \frac{1}{K}$.
 - If the task is `hard`, each worker $w_j$ is assigned a confusion matrix $\pi^{(j)}$ where $\pi^{(j)}_{k,m} = \mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k)$:

@@ -32,16 +32,20 @@ h2 {
   font-size: 2rem
 }
 h3 {
-  font-size: 1.7rem
+  font-size: 1.7rem;
+  color: dodgerblue;
 }
 h4 {
-  font-size: 1.48rem
+  font-size: 1.48rem;
+  color: dodgerblue;
 }
 h5 {
-  font-size: 1.3rem
+  font-size: 1.3rem;
+  color: dodgerblue;
 }
 h6 {
-  font-size: 1.25rem
+  font-size: 1.25rem;
+  color: dodgerblue;
 }
 kbd {
   background-color: #eee;

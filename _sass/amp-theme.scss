@@ -7,8 +7,8 @@ $gainsboro_ddd: #dddddd;
 $gold_ffe51f: #ffe51f;
 $gray_888: #888888;
 $lightgray_d0d0d0: #d0d0d0;
-$limegreen_6FD350: #6fd350;
-$limegreen_6fd350: #6fd350;
+$limegreen_3c8aff: #3c8aff;
+$limegreen_3c8aff: #3c8aff;
 $mediumblue_372cd8: #372cd8;
 $mediumblue_483aff: #483aff;
 $mediumslateblue_675bff: #675bff;
@@ -46,7 +46,7 @@ body {
 }
 
 a {
-  color: $limegreen_6fd350;
+  color: $limegreen_3c8aff;
   transition: all .2s;
 
   &:hover {
@@ -268,7 +268,7 @@ section {
   .navbar-nav {
     .nav-link {
       &.highlight {
-        background: $limegreen_6FD350;
+        background: $limegreen_3c8aff;
         border-radius: 4px;
         box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .1);
         color: $white_fff;
@@ -593,7 +593,7 @@ span {
 }
 
 blockquote {
-  border-left: 4px solid $limegreen_6FD350;
+  border-left: 4px solid $limegreen_3c8aff;
   color: rgba(0, 0, 0, .5);
   font-style: italic;
   padding: 0 20px;
@@ -696,10 +696,10 @@ blockquote {
   color: $white_fff;
 
   &.follow {
-    border-color: $limegreen_6fd350;
+    border-color: $limegreen_3c8aff;
     border-radius: 999em;
     box-shadow: none;
-    color: $limegreen_6fd350;
+    color: $limegreen_3c8aff;
     display: inline-block;
     font-size: .85rem;
     font-weight: 400;
