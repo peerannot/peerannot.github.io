@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-03-03T14:01:39+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Simulate labels with difficulty</title><link href="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/" rel="alternate" type="text/html" title="Simulate labels with difficulty" /><published>2023-03-02T00:00:00+00:00</published><updated>2023-03-02T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets/difficulty</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/"><![CDATA[<p>This is an example of simulation using the <code class="language-plaintext highlighter-rouge">peerannot</code> library that considers tasks’ difficulty.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-03-03T16:17:01+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Simulate labels with difficulty</title><link href="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/" rel="alternate" type="text/html" title="Simulate labels with difficulty" /><published>2023-03-02T00:00:00+00:00</published><updated>2023-03-02T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets/difficulty</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/"><![CDATA[<p>This is an example of simulation using the <code class="language-plaintext highlighter-rouge">peerannot</code> library that considers tasks’ difficulty.
 The <code class="language-plaintext highlighter-rouge">discrete-difficulty</code> strategy simulates the following setting (here presented with $3$ classes for simplicity):</p>
 
 <h2 id="discrete-difficulty-simulation">Discrete-difficulty simulation</h2>
 
-<p>Each task is assigned a true label $y_i^\star$ and a difficulty level $d_i$ in ${$ <code class="language-plaintext highlighter-rouge">easy</code>, <code class="language-plaintext highlighter-rouge">hard</code>, <code class="language-plaintext highlighter-rouge">random</code> $}$. Each worker is either <code class="language-plaintext highlighter-rouge">good</code> of <code class="language-plaintext highlighter-rouge">bad</code>$</p>
+<p>Each task is assigned a true label $y_i^\star$ and a difficulty level $d_i$ in $\{$ <code class="language-plaintext highlighter-rouge">easy</code>, <code class="language-plaintext highlighter-rouge">hard</code>, <code class="language-plaintext highlighter-rouge">random</code> $\}$. Each worker is either <code class="language-plaintext highlighter-rouge">good</code> of <code class="language-plaintext highlighter-rouge">bad</code></p>
 <ul>
   <li>If the task is <code class="language-plaintext highlighter-rouge">easy</code>, every worker answers correctly: $y_i^{(j)}=y_i^\star$</li>
   <li>If the task is <code class="language-plaintext highlighter-rouge">random</code>, every worker answers randomly: $\mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k) = \frac{1}{K}$.</li>
@@ -450,20 +450,100 @@ Other arguments are <code class="language-plaintext highlighter-rouge">path_remo
 <ul>
   <li><a href="">Area Under the Margin</a> (AUM)</li>
   <li><a href="">Weighted AUM</a> (WAUM)</li>
-</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Datasets</title><link href="https://github.com/pages/peerannot/peerannot/datasets/" rel="alternate" type="text/html" title="Datasets" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/"><![CDATA[<h2 id="access-datasets">Access datasets</h2>
+</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Datasets</title><link href="https://github.com/pages/peerannot/peerannot/datasets/" rel="alternate" type="text/html" title="Datasets" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/"><![CDATA[<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> one of our goal is to standardize crowdsourcing datasets formats. In order to do so, we need to remind users some notations.</p>
+
+<h3 id="notations">Notations</h3>
+
+<p>We remind that $y_i^{(j)}\in[K]$ is the label answered by the worker $w_j$ given the task $x_i$ (<em>e.g</em> an image).
+The answered label is coded as a number representing the $K$ possible classes.</p>
 
 <h2 id="datasets-structure">Datasets structure</h2>
 
+<p>Each dataset is defined as:</p>
+
+<pre><code class="lang-bash">dataset
+      ├── train
+      │     ├── class0
+      │     │     ├─ task0-&lt;vote_index_0&gt;<span class="hljs-selector-class">.png</span>
+      │     │     ├─ task1-&lt;vote_index_1&gt;<span class="hljs-selector-class">.png</span>
+      │     │     ├─ ...
+      │     │     └─ taskn0-&lt;vote_index_n0&gt;<span class="hljs-selector-class">.png</span>
+      │     ├── class1
+      │     ├── ...
+      │     └── classK
+      ├── val
+      ├── test
+      ├── dataset<span class="hljs-selector-class">.py</span>
+      ├── metadata<span class="hljs-selector-class">.json</span>
+      └── answers.json
+  </code></pre>
+
+<p>The crowdsourced labels for each training task are contained in the <code>anwers.json</code> file. They are formatted
+    as follows:</p>
+
+<pre><code class="lang-json">{
+      0: {<span class="hljs-tag">&lt;<span class="hljs-name">worker_id</span>&gt;</span>: <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>, <span class="hljs-tag">&lt;<span class="hljs-name">another_worker_id</span>&gt;</span>: <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>},
+      1: {<span class="hljs-tag">&lt;<span class="hljs-name">yet_another_worker_id</span>&gt;</span>: <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>,}
+  }
+  </code></pre>
+
+<p>Note that the task index in the <code>answers.json</code> file might not match the order of tasks in the
+    <code>train</code> folder... Thence, each task&#39;s name contains the associated votes file index.
+    The number of tasks in the <code>train</code> folder <strong>must</strong> match the number of entry keys in the
+    <code>answers.json</code> file.</p>
+<p>The <code>metadata.json</code> file contains general information about the dataset. A minimal example would be:</p>
+
+<pre><code class="lang-json">{
+      <span class="hljs-attr">"name"</span>: &lt;dataset&gt;,
+      <span class="hljs-attr">"n_classes"</span>: K,
+      <span class="hljs-attr">"n_workers"</span>: &lt;n_workers&gt;,
+  }
+  </code></pre>
+
+<p>In a dataset without tasks (for example when we only receive the crowdsourced labels), the <code class="language-plaintext highlighter-rouge">train</code>, <code class="language-plaintext highlighter-rouge">val</code> and <code class="language-plaintext highlighter-rouge">test</code> folders are omitted.
+However, by doing so many learning strategies are not available.</p>
+
 <h2 id="download-and-install-real-datasets-easily">Download and install real datasets easily</h2>
+
+<p>The <code>dataset.py</code> is not mandatory but is here to facilitate the dataset&#39;s installation procedure. A
+    minimal example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">mydataset</span><span class="p">:</span>
+      <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="bp">self</span><span class="p">.</span><span class="n">DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">__file__</span><span class="p">).</span><span class="n">parent</span><span class="p">.</span><span class="n">resolve</span><span class="p">()</span>
+          <span class="c1"># download the data needed
+</span>          <span class="c1"># ...
+</span>
+      <span class="k">def</span> <span class="nf">setfolders</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Loading data folders at </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">DIR</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+          <span class="n">train_path</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">DIR</span> <span class="o">/</span> <span class="s">"train"</span>
+          <span class="n">test_path</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">DIR</span> <span class="o">/</span> <span class="s">"test"</span>
+          <span class="n">valid_path</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">DIR</span> <span class="o">/</span> <span class="s">"val"</span>
+
+          <span class="c1"># Create train/val/test tasks with matching index
+</span>          <span class="c1"># ...
+</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">"Created:"</span><span class="p">)</span>
+          <span class="k">for</span> <span class="nb">set</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+              <span class="p">(</span><span class="s">"train"</span><span class="p">,</span> <span class="s">"val"</span><span class="p">,</span> <span class="s">"test"</span><span class="p">),</span> <span class="p">[</span><span class="n">train_path</span><span class="p">,</span> <span class="n">valid_path</span><span class="p">,</span> <span class="n">test_path</span><span class="p">]</span>
+          <span class="p">):</span>
+              <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"- </span><span class="si">{</span><span class="nb">set</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+          <span class="bp">self</span><span class="p">.</span><span class="n">get_crowd_labels</span><span class="p">()</span>
+          <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Train crowd labels are in </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">DIR</span> <span class="o">/</span> <span class="s">'answers.json'</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="nf">get_crowd_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+          <span class="c1"># create answers.json dictionnary in presented format
+</span>          <span class="c1"># ...
+</span>          <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">DIR</span> <span class="o">/</span> <span class="s">"answers.json"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">answ</span><span class="p">:</span>
+              <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dictionnary</span><span class="p">,</span> <span class="n">answ</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>One can also instantiate in this installation file any necessary access or restrictions needed.</p>
 
 <h2 id="simulate-datasets">Simulate datasets</h2>
 
 <p>The <code class="language-plaintext highlighter-rouge">simulate</code> module of <code class="language-plaintext highlighter-rouge">peerannot</code> allows creating simulated labels given a strategy.</p>
 
-<h3 id="notations">Notations</h3>
-
-<p>We remind that $y_i^{(j)}\in[K]$ is the label answered by the worker $w_j$ given the task $x_i$.
-The answered label is coded as a number representing the $K$ possible classes.</p>
 <h3 id="examples">Examples</h3>
 
 <p>Examples of simulation strategies can be found in the following:</p>
