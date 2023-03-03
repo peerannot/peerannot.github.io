@@ -1,12 +1,16 @@
 project:
   type: website
-  output-dir: build_
+  output-dir: build
 toc: true
 lang: en
 reference-location: margin
 citation-location: margin
 fig-cap-location: margin
 format:
+  gfm:
+    keep-yaml: true
+    toc: true
+    toc-depth: 3
   html:
     mainfont: Atkinson Hyperlegible
     html-math-method: katex
@@ -16,10 +20,11 @@ format:
     code-tools:
       toggle: false
       source: false
-    self-contained: true
+    self-contained: false
     page-layout: full
     code-overflow: wrap
     fig-responsive: true
+    embed-resources: true
 execute:
   warning: false
   error: true

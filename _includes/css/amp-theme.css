@@ -13,6 +13,11 @@ a,
 a:hover {
   transition: all 0.2s
 }
+.infobox {
+  padding: 20px;
+  background-color: #3c8aff;
+  color: white;
+}
 pre {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
