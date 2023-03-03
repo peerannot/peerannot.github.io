@@ -1,4 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-03-01T17:09:28+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Majority voting</title><link href="https://github.com/pages/peerannot/peerannot/models/MV/" rel="alternate" type="text/html" title="Majority voting" /><published>2023-02-23T00:00:00+00:00</published><updated>2023-02-23T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/MV</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/MV/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-03-03T13:57:58+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Simulate labels with difficulty</title><link href="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/" rel="alternate" type="text/html" title="Simulate labels with difficulty" /><published>2023-03-02T00:00:00+00:00</published><updated>2023-03-02T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets/difficulty</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/"><![CDATA[<p>This is an example of simulation using the <code class="language-plaintext highlighter-rouge">peerannot</code> library that considers tasks’ difficulty.
+The <code class="language-plaintext highlighter-rouge">discrete-difficulty</code> strategy simulates the following setting (here presented with $3$ classes for simplicity):</p>
+
+<h2 id="discrete-difficulty-simulation">Discrete-difficulty simulation</h2>
+
+<ul>
+  <li>Each task is assigned a true label $y_i^\star$ and a difficulty level $d_i$ in ${$<code class="language-plaintext highlighter-rouge">easy</code>, <code class="language-plaintext highlighter-rouge">hard</code>, <code class="language-plaintext highlighter-rouge">random</code>
+}$. Each worker is either <code class="language-plaintext highlighter-rouge">good</code> of <code class="language-plaintext highlighter-rouge">bad</code>$</li>
+  <li>If the task is <code class="language-plaintext highlighter-rouge">easy</code>, every worker answers correctly: $y_i^{(j)}=y_i^\star$</li>
+  <li>If the task is <code class="language-plaintext highlighter-rouge">random</code>, every worker answers randomly: $\mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k) = \frac{1}{K}$.</li>
+  <li>If the task is <code class="language-plaintext highlighter-rouge">hard</code>, each worker $w_j$ is assigned a confusion matrix $\pi^{(j)}$ where $\pi^{(j)}_{k,m} = \mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k)$:
+    <ul>
+      <li>if the worker is <code class="language-plaintext highlighter-rouge">good</code>, each row of the confusion matrix is simulated using a Dirichlet($\alpha=[0.2, 0.2, 0.2]$) with maximum located at $y_i^\star$</li>
+      <li>if the worker is <code class="language-plaintext highlighter-rouge">bad</code> each row of the confusion matrix is simulated using a Dirichlet($\alpha=[1, 1, 1]$), <em>i.e.</em> the uniform distribution over the simplex.
+The final answer is then drawn from the Multinomial $\big(\pi^{(j)}_{y_i^\star, \bullet}\big)$</li>
+    </ul>
+  </li>
+</ul>
+
+<p>If you have a worker of profile fixed that does not rely on Dirichlet distributions, <code class="language-plaintext highlighter-rouge">peerannot</code> works too!
+Simply store your confusion matrices in an <code class="language-plaintext highlighter-rouge">.npy</code> file containing an <code class="language-plaintext highlighter-rouge">np.ndarray</code> of shape <code class="language-plaintext highlighter-rouge">(n_worker, K, K)</code> and then use the <code class="language-plaintext highlighter-rouge">--matrix-file_path_to_matrix_file.npy</code> argument to use your own confusion matrices.</p>
+
+<figure>
+<img src="https://github.com/assets/quarto_files/build/simulate_discrete_difficulty_files/figure-commonmark/fig-dirichlet-densities-output-1.png" id="fig-dirichlet-densities" class="margin-caption" alt="Figure 1: 3000 draws of the Dirichlet distributions for good (left) and bad (right) workers" />
+<figcaption aria-hidden="true">Figure 1: 3000 draws of the Dirichlet
+distributions for good (left) and bad (right) workers</figcaption>
+</figure>
+
+<h3 id="run-the-simulation">Run the simulation</h3>
+
+<p>Let us run a simulation with $n_{\texttt{worker}}=30$ workers, $n_{\texttt{task}}=100$ tasks with $K=3$ classes.
+Each task receives a random number of votes between $1$ and $n_{\texttt{worker}}$ using the key <code class="language-plaintext highlighter-rouge">imbalance-votes</code></p>
+
+<p>The maximum number of tasks per worker / label per task can be modified using <code class="language-plaintext highlighter-rouge">workerload</code>/<code class="language-plaintext highlighter-rouge">feedback</code> parameters.</p>
+
+<p>Results are stored in the folder <code class="language-plaintext highlighter-rouge">./temp/test_discrete_difficulty</code>.
+There are $0.7\cdot n_{\texttt{worker}}$ <code class="language-plaintext highlighter-rouge">good</code> workers.
+The probability for a task to be <code class="language-plaintext highlighter-rouge">random</code> is set to $p_{\text{random}}=0.3$, and the ratio of <code class="language-plaintext highlighter-rouge">good</code> over <code class="language-plaintext highlighter-rouge">hard</code> tasks is set to $r=0.4$ <em>i.e.</em></p>
+
+\[d_i \sim \mathcal{M}\text{ultinomial}\bigg(
+  1- p_{\text{random}} -  \frac{1-p_{\text{random}}}{r+1}, \frac{1-0.3}{r+1}, p_{\text{random}}
+  \bigg) \enspace.\]
+
+<p>We set the <code class="language-plaintext highlighter-rouge">seed</code> to $3$ for reproducibility.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span>peerannot simulate <span class="nt">--n-worker</span> 30 <span class="nt">--n-task</span> 100  <span class="nt">-K</span> 3 <span class="se">\</span>
+                    <span class="nt">-s</span> discrete-difficulty <span class="se">\</span>
+                    <span class="nt">--folder</span> ./temp/test_discrete_difficulty/ <span class="se">\</span>
+                    <span class="nt">-r</span> 0.7 <span class="nt">--ratio-diff</span> 0.4 <span class="nt">--random</span> 0.3 <span class="se">\</span>
+                    <span class="nt">--imbalance-votes</span> <span class="se">\</span>
+                    <span class="nt">--seed</span> 5<span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="explore-results">Explore results</h2>
+
+<h3 id="workers-answers">Workers’ answers</h3>
+
+<p>The simulation created the dictionary of answers for each task and worker in <code class="language-plaintext highlighter-rouge">answers.json</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">dir_</span> <span class="o">=</span> <span class="n">Path</span><span class="p">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s">"temp"</span> <span class="o">/</span> <span class="s">"test_discrete_difficulty"</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dir_</span> <span class="o">/</span> <span class="s">"answers.json"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">all_ans</span><span class="p">:</span>
+    <span class="n">answers</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">all_ans</span><span class="p">)</span>  <span class="c1"># warning: keys are string
+</span><span class="n">true_labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">dir_</span> <span class="o">/</span> <span class="s">"ground_truth.npy"</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="p">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span>
+  <span class="s">"votes_repartition"</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">answers</span><span class="p">.</span><span class="n">values</span><span class="p">()]</span>
+  <span class="p">},</span> <span class="n">x</span><span class="o">=</span><span class="s">"votes_repartition"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Feedback"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<figure>
+<img src="https://github.com/assets/quarto_files/build/simulate_discrete_difficulty_files/figure-commonmark/fig-repartition-output-1.png" id="fig-repartition" class="margin-caption" alt="Figure 2: Number of labels per task" />
+<figcaption aria-hidden="true">Figure 2: Number of labels per
+task</figcaption>
+</figure>
+
+<h3 id="task-difficulty">Task difficulty</h3>
+
+<p>The difficulty of each task is accessible in <code class="language-plaintext highlighter-rouge">difficulties.npy</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="p">.</span><span class="n">set_style</span><span class="p">(</span><span class="s">"whitegrid"</span><span class="p">)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">dir_</span> <span class="o">/</span> <span class="s">"difficulties.npy"</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s">"difficulty"</span><span class="p">:</span> <span class="n">diff</span><span class="p">},</span> <span class="n">x</span><span class="o">=</span><span class="s">"difficulty"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<figure>
+<img src="https://github.com/assets/quarto_files/build/simulate_discrete_difficulty_files/figure-commonmark/fig-difficulties-output-1.png" id="fig-difficulties" class="margin-caption" alt="Figure 3: Repartition of difficulties in the simulated tasks" />
+<figcaption aria-hidden="true">Figure 3: Repartition of difficulties in
+the simulated tasks</figcaption>
+</figure>
+
+<h3 id="confusion-matrices">Confusion matrices</h3>
+
+<p>Finally, confusion matrices $\pi^{(j)}$ are stored in <code class="language-plaintext highlighter-rouge">matrices.npy</code>.</p>
+
+<p>The confusion matrix of a good worker is always diagonally dominant.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">dir_</span> <span class="o">/</span> <span class="s">"matrices.npy"</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">pi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">".2f"</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">pi</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">".2f"</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Good worker $w_1$"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Bad worker $w_{28}$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<figure>
+<img src="https://github.com/assets/quarto_files/build/simulate_discrete_difficulty_files/figure-commonmark/fig-confusion-output-1.png" id="fig-confusion" class="margin-caption" alt="Figure 4: Confusion matrix of a good worker (left) and a bac worker (right)" />
+<figcaption aria-hidden="true">Figure 4: Confusion matrix of a good
+worker (left) and a bac worker (right)</figcaption>
+</figure>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><category term="simulate" /><summary type="html"><![CDATA[Simulate with difficulty in peerannot]]></summary></entry><entry><title type="html">Majority voting</title><link href="https://github.com/pages/peerannot/peerannot/models/MV/" rel="alternate" type="text/html" title="Majority voting" /><published>2023-02-23T00:00:00+00:00</published><updated>2023-02-23T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/MV</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/MV/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
 
 <h2 id="model">Model</h2>
 
@@ -170,26 +289,7 @@ Other arguments are <code class="language-plaintext highlighter-rouge">path_remo
 <p>Parameters:</p>
 <ul>
   <li>path: <em>(str)</em> file path in which coefficients are saved using the <code class="language-plaintext highlighter-rouge">np.save</code> function.</li>
-</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="GLAD" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Datasets</title><link href="https://github.com/pages/peerannot/peerannot/datasets/" rel="alternate" type="text/html" title="Datasets" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/"><![CDATA[<h2 id="access-datasets">Access datasets</h2>
-
-<h2 id="datasets-structure">Datasets structure</h2>
-
-<h2 id="download-and-install-real-datasets-easily">Download and install real datasets easily</h2>
-
-<h2 id="simulate-datasets">Simulate datasets</h2>
-
-<p>The <code class="language-plaintext highlighter-rouge">simulate</code> module of <code class="language-plaintext highlighter-rouge">peerannot</code> allows creating simulated labels given a strategy.</p>
-
-<h3 id="notations">Notations</h3>
-
-<p>We remind that $y_i^{(j)}\in[K]$ is the label answered by the worker $w_j$ given the task $x_i$.
-The answered label is coded as a number representing the $K$ possible classes.</p>
-<h3 id="examples">Examples</h3>
-
-<p>Examples of simulation strategies can be found in the following:</p>
-<ul>
-  <li><a href="../quarto_files/build_/simulate_discrete_difficulty.html">Discrete levels of difficulty</a></li>
-</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/"><![CDATA[<h2 id="model">Model</h2>
+</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="GLAD" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/"><![CDATA[<h2 id="model">Model</h2>
 
 <p>The Dawid and Skene’s model estimates one confusion matrix $\pi\in\mathbb{R}^{K\times K}$
 per worker.
@@ -351,4 +451,24 @@ Other arguments are <code class="language-plaintext highlighter-rouge">path_remo
 <ul>
   <li><a href="">Area Under the Margin</a> (AUM)</li>
   <li><a href="">Weighted AUM</a> (WAUM)</li>
-</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Datasets</title><link href="https://github.com/pages/peerannot/peerannot/datasets/" rel="alternate" type="text/html" title="Datasets" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/"><![CDATA[<h2 id="access-datasets">Access datasets</h2>
+
+<h2 id="datasets-structure">Datasets structure</h2>
+
+<h2 id="download-and-install-real-datasets-easily">Download and install real datasets easily</h2>
+
+<h2 id="simulate-datasets">Simulate datasets</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">simulate</code> module of <code class="language-plaintext highlighter-rouge">peerannot</code> allows creating simulated labels given a strategy.</p>
+
+<h3 id="notations">Notations</h3>
+
+<p>We remind that $y_i^{(j)}\in[K]$ is the label answered by the worker $w_j$ given the task $x_i$.
+The answered label is coded as a number representing the $K$ possible classes.</p>
+<h3 id="examples">Examples</h3>
+
+<p>Examples of simulation strategies can be found in the following:</p>
+<ul>
+  <li><a href="/datasets/simulate_confusions">Pairwise confusion with confusion matrices</a></li>
+  <li><a href="/datasets/simulate_discrete_difficulty">Discrete levels of difficulty</a></li>
+</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry></feed>

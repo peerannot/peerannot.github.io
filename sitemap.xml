@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://github.com/pages/peerannot/peerannot/models/DS/</loc>
-<lastmod>2023-02-19T00:00:00+00:00</lastmod>
-</url>
-<url>
 <loc>https://github.com/pages/peerannot/peerannot/datasets/</loc>
 <lastmod>2023-02-19T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://github.com/pages/peerannot/peerannot/models/</loc>
+<lastmod>2023-02-19T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://github.com/pages/peerannot/peerannot/models/DS/</loc>
 <lastmod>2023-02-19T00:00:00+00:00</lastmod>
 </url>
 <url>
@@ -19,6 +19,10 @@
 <url>
 <loc>https://github.com/pages/peerannot/peerannot/models/MV/</loc>
 <lastmod>2023-02-23T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/</loc>
+<lastmod>2023-03-02T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://github.com/pages/peerannot/peerannot/category/doc/</loc>
@@ -39,6 +43,9 @@
 <loc>https://github.com/pages/peerannot/peerannot/search</loc>
 </url>
 <url>
+<loc>https://github.com/pages/peerannot/peerannot/tag/datasets/</loc>
+</url>
+<url>
 <loc>https://github.com/pages/peerannot/peerannot/tag/models/</loc>
 </url>
 <url>
@@ -48,13 +55,13 @@
 <loc>https://github.com/pages/peerannot/peerannot/tag/ds/</loc>
 </url>
 <url>
-<loc>https://github.com/pages/peerannot/peerannot/tag/datasets/</loc>
-</url>
-<url>
 <loc>https://github.com/pages/peerannot/peerannot/tag/glad/</loc>
 </url>
 <url>
 <loc>https://github.com/pages/peerannot/peerannot/tag/mv/</loc>
+</url>
+<url>
+<loc>https://github.com/pages/peerannot/peerannot/tag/simulate/</loc>
 </url>
 <url>
 <loc>https://github.com/pages/peerannot/peerannot/category/doc/</loc>

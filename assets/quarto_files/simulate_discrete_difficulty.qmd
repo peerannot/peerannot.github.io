@@ -6,7 +6,7 @@ This is an example of simulation using the `peerannot` library that considers ta
 
 The `discrete-difficulty` strategy simulates the following setting (here presented with $3$ classes for simplicity):
 
-## The `discrete-difficulty` simulation
+## Discrete-difficulty simulation
 
 - each task is assigned a true label $y_i^\star$ and a difficulty level $d_i$ in $\{\texttt{easy}, \texttt{hard}, \texttt{random}\}$. Each worker is either $\texttt{good}$ of $\texttt{bad}$
 - If the task is `easy`, every worker answers correctly: $y_i^{(j)}=y_i^\star$
@@ -17,13 +17,13 @@ The `discrete-difficulty` strategy simulates the following setting (here present
   The final answer is then drawn from the Multinomial $\big(\pi^{(j)}_{y_i^\star, \bullet}\big)$
 
 
-::: {.callout-note}
+<!-- ::: {.callout-note} -->
 If you have a worker of profile fixed that does not rely on Dirichlet distributions, `peerannot` works too!
 Simply store your confusion matrices in an `.npy` file containing an `np.ndarray` of shape `(n_worker, K, K)` and then use the `--matrix-file <path to matrix_file.npy>` argument to use your own confusion matrices.
-:::
+<!-- ::: -->
 
 ```{python}
-#| code-fold: true
+#| echo: false
 #| eval: true
 #| label: fig-dirichlet-densities
 #| fig-cap: "3000 draws of the Dirichlet distributions for good (left) and bad (right) workers"
@@ -105,9 +105,9 @@ Let us run a simulation with $n_{\texttt{worker}}=30$ workers, $n_{\texttt{task}
 Each task receives a random number of votes between $1$ and $n_{\texttt{worker}}$ using the key `imbalance-votes`
 
 
-::: {.callout-note}
+<!-- ::: {.callout-note} -->
 The maximum number of tasks per worker / label per task can be modified using `workerload`/`feedback` parameters.
-:::
+<!-- ::: -->
 
 Results are stored in the folder `./temp/test_discrete_difficulty`.
 There are $0.7\cdot n_{\texttt{worker}}$ `good` workers.
@@ -136,7 +136,6 @@ We set the `seed` to $3$ for reproducibility.
 The simulation created the dictionnary of answers for each task and worker in `answers.json`:
 
 ```{python}
-#| code-fold: true
 #| eval: true
 #| label: fig-repartition
 #| fig-cap: "Number of labels per task"
@@ -165,7 +164,6 @@ plt.show()
 The difficulty of each task is accessible in `difficulties.npy`:
 
 ```{python}
-#| code-fold: true
 #| eval: true
 #| label: fig-difficulties
 #| fig-cap: "Repartition of difficulties in the simulated tasks"
@@ -181,12 +179,11 @@ plt.show()
 Finally confusion matrices $\pi^{(j)}$ are stored in `matrices.npy`. For example in  @fig-confusion is the confusion matrix of a good / bad worker.
 
 
-::: {.callout-note}
+<!-- ::: {.callout-note} -->
 The confusion matrix of a good worker is always diagonally dominant.
-:::
+<!-- ::: -->
 
 ```{python}
-#| code-fold: true
 #| eval: true
 #| label: fig-confusion
 #| fig-cap: "Confusion matrix of a good worker (left) and a bac worker (right)"

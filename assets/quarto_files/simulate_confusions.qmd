@@ -1,0 +1,7 @@
+This is an example of simulation using the `peerannot` library that considers labels pairwise confusion.
+
+```{python}
+!pip list | grep peerannot
+```
+
+## Pairwise confusion
