@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-03-06T09:03:53+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Simulate labels with difficulty</title><link href="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/" rel="alternate" type="text/html" title="Simulate labels with difficulty" /><published>2023-03-02T00:00:00+00:00</published><updated>2023-03-02T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets/difficulty</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/"><![CDATA[<p>This is an example of simulation using the <code class="language-plaintext highlighter-rouge">peerannot</code> library that considers tasks’ difficulty.
-The <code class="language-plaintext highlighter-rouge">discrete-difficulty</code> strategy simulates the following setting (here presented with $3$ classes for simplicity):</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-03-06T10:33:40+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Simulate labels with difficulty</title><link href="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/" rel="alternate" type="text/html" title="Simulate labels with difficulty" /><published>2023-03-02T00:00:00+00:00</published><updated>2023-03-02T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets/difficulty</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/"><![CDATA[<p>This is an example of simulation using the <code class="language-plaintext highlighter-rouge">peerannot</code> library that considers tasks’ difficulty.
+The <code class="language-plaintext highlighter-rouge">discrete-difficulty</code> strategy simulates the following setting (here presented with $K=3$ classes for simplicity):</p>
 
 <h2 id="discrete-difficulty-simulation">Discrete-difficulty simulation</h2>
 
@@ -9,8 +9,8 @@ The <code class="language-plaintext highlighter-rouge">discrete-difficulty</code
   <li>If the task is <code class="language-plaintext highlighter-rouge">random</code>, every worker answers randomly: $\mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k) = \frac{1}{K}$.</li>
   <li>If the task is <code class="language-plaintext highlighter-rouge">hard</code>, each worker $w_j$ is assigned a confusion matrix $\pi^{(j)}$ where $\pi^{(j)}_{k,m} = \mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k)$:
     <ul>
-      <li>if the worker is <code class="language-plaintext highlighter-rouge">good</code>, each row of the confusion matrix is simulated using a Dirichlet($\alpha=[0.2, 0.2, 0.2]$) with maximum located at $y_i^\star$</li>
-      <li>if the worker is <code class="language-plaintext highlighter-rouge">bad</code> each row of the confusion matrix is simulated using a Dirichlet($\alpha=[1, 1, 1]$), <em>i.e.</em> the uniform distribution over the simplex.
+      <li>if the worker is <code class="language-plaintext highlighter-rouge">good</code>, each row of the confusion matrix is simulated using a $\mathcal{D}\text{irichlet}(\alpha=[0.2, 0.2, 0.2])$ with maximum located at $y_i^\star$</li>
+      <li>if the worker is <code class="language-plaintext highlighter-rouge">bad</code> each row of the confusion matrix is simulated using a $\mathcal{D}\text{irichlet}(\alpha=[1, 1, 1])$, <em>i.e.</em> the uniform distribution over the simplex.
 The final answer is then drawn from the Multinomial $\big(\pi^{(j)}_{y_i^\star, \bullet}\big)$</li>
     </ul>
   </li>
@@ -34,10 +34,10 @@ Each task receives a random number of votes between $1$ and $n_{\texttt{worker}}
 
 <p>Results are stored in the folder <code class="language-plaintext highlighter-rouge">./temp/test_discrete_difficulty</code>.
 There are $0.7\cdot n_{\texttt{worker}}$ <code class="language-plaintext highlighter-rouge">good</code> workers.
-The probability for a task to be <code class="language-plaintext highlighter-rouge">random</code> is set to $p_{\text{random}}=0.3$, and the ratio of <code class="language-plaintext highlighter-rouge">good</code> over <code class="language-plaintext highlighter-rouge">hard</code> tasks is set to $r=0.4$ <em>i.e.</em></p>
+The probability for a task to be <code class="language-plaintext highlighter-rouge">random</code> is set to $p_{\text{random}}=0.3$, and the ratio of <code class="language-plaintext highlighter-rouge">good</code> over <code class="language-plaintext highlighter-rouge">hard</code> tasks is set to $r=0.4$ <em>i.e.</em> the choice between <code class="language-plaintext highlighter-rouge">easy</code>, <code class="language-plaintext highlighter-rouge">hard</code> and <code class="language-plaintext highlighter-rouge">random</code> difficulty $d_i$ follows:</p>
 
 \[d_i \sim \mathcal{M}\text{ultinomial}\bigg(
-  1- p_{\text{random}} -  \frac{1-p_{\text{random}}}{r+1}, \frac{1-0.3}{r+1}, p_{\text{random}}
+  1- p_{\text{random}} -  \frac{1-p_{\text{random}}}{r+1}, \frac{1- p_{\text{random}}}{r+1}, p_{\text{random}}
   \bigg) \enspace.\]
 
 <p>We set the <code class="language-plaintext highlighter-rouge">seed</code> to $3$ for reproducibility.</p>
@@ -115,7 +115,7 @@ the simulated tasks</figcaption>
 <figure>
 <img src="https://github.com/assets/quarto_files/build/simulate_discrete_difficulty_files/figure-commonmark/fig-confusion-output-1.png" id="fig-confusion" class="margin-caption" alt="Figure 4: Confusion matrix of a good worker (left) and a bac worker (right)" />
 <figcaption aria-hidden="true">Figure 4: Confusion matrix of a good
-worker (left) and a bac worker (right)</figcaption>
+worker (left) and a bad worker (right)</figcaption>
 </figure>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><category term="simulate" /><summary type="html"><![CDATA[Simulate with difficulty in peerannot]]></summary></entry><entry><title type="html">Majority voting</title><link href="https://github.com/pages/peerannot/peerannot/models/MV/" rel="alternate" type="text/html" title="Majority voting" /><published>2023-02-23T00:00:00+00:00</published><updated>2023-02-23T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/MV</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/MV/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
 
 <h2 id="model">Model</h2>
