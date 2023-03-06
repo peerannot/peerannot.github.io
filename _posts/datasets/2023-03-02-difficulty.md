@@ -19,7 +19,7 @@ featured: false
 ---
 
 This is an example of simulation using the `peerannot` library that considers tasks' difficulty.
-The `discrete-difficulty` strategy simulates the following setting (here presented with $3$ classes for simplicity):
+The `discrete-difficulty` strategy simulates the following setting (here presented with $K=3$ classes for simplicity):
 
 ## Discrete-difficulty simulation
 
@@ -27,8 +27,8 @@ Each task is assigned a true label $y_i^\star$ and a difficulty level $d_i$ in $
 - If the task is `easy`, every worker answers correctly: $y_i^{(j)}=y_i^\star$
 - If the task is `random`, every worker answers randomly: $\mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k) = \frac{1}{K}$.
 - If the task is `hard`, each worker $w_j$ is assigned a confusion matrix $\pi^{(j)}$ where $\pi^{(j)}_{k,m} = \mathbb{P}(y_i^{(j)}=m\vert y_i^\star=k)$:
-  - if the worker is `good`, each row of the confusion matrix is simulated using a Dirichlet($\alpha=[0.2, 0.2, 0.2]$) with maximum located at $y_i^\star$
-  - if the worker is `bad` each row of the confusion matrix is simulated using a Dirichlet($\alpha=[1, 1, 1]$), *i.e.* the uniform distribution over the simplex.
+  - if the worker is `good`, each row of the confusion matrix is simulated using a $\mathcal{D}\text{irichlet}(\alpha=[0.2, 0.2, 0.2])$ with maximum located at $y_i^\star$
+  - if the worker is `bad` each row of the confusion matrix is simulated using a $\mathcal{D}\text{irichlet}(\alpha=[1, 1, 1])$, *i.e.* the uniform distribution over the simplex.
   The final answer is then drawn from the Multinomial $\big(\pi^{(j)}_{y_i^\star, \bullet}\big)$
 
 If you have a worker of profile fixed that does not rely on Dirichlet distributions, `peerannot` works too!
@@ -53,11 +53,11 @@ The maximum number of tasks per worker / label per task can be modified using `w
 
 Results are stored in the folder `./temp/test_discrete_difficulty`.
 There are $0.7\cdot n_{\texttt{worker}}$ `good` workers.
-The probability for a task to be `random` is set to $p_{\text{random}}=0.3$, and the ratio of `good` over `hard` tasks is set to $r=0.4$ *i.e.*
+The probability for a task to be `random` is set to $p_{\text{random}}=0.3$, and the ratio of `good` over `hard` tasks is set to $r=0.4$ *i.e.* the choice between `easy`, `hard` and `random` difficulty $d_i$ follows:
 
 $$
 d_i \sim \mathcal{M}\text{ultinomial}\bigg(
-  1- p_{\text{random}} -  \frac{1-p_{\text{random}}}{r+1}, \frac{1-0.3}{r+1}, p_{\text{random}}
+  1- p_{\text{random}} -  \frac{1-p_{\text{random}}}{r+1}, \frac{1- p_{\text{random}}}{r+1}, p_{\text{random}}
   \bigg) \enspace.
 $$
 
@@ -153,5 +153,5 @@ src="{{site.url}}/assets/quarto_files/build/simulate_discrete_difficulty_files/f
 id="fig-confusion" class="margin-caption"
 alt="Figure 4: Confusion matrix of a good worker (left) and a bac worker (right)" />
 <figcaption aria-hidden="true">Figure 4: Confusion matrix of a good
-worker (left) and a bac worker (right)</figcaption>
+worker (left) and a bad worker (right)</figcaption>
 </figure>
