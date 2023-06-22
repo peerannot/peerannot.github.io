@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Majority voting
+title: Naive Soft
 category: [doc]
-tags: [models,aggregation,MV]
-permalink: /models/MV/
+tags: [models,aggregation,NS]
+permalink: /models/NaiveSoft/
 css:
   badge: true
   syntax: true
@@ -26,17 +26,17 @@ featured: false
 
 ## Model
 
-The Majority voting model returns the most voted label among the $K$ labels, for each task:
+The Naive Soft model returns the empirical distribution overs answered for each task:
 
 $$
 \DeclareMathOperator*{\argmax}{argmax}
-\hat y_i = \argmax_{k\in[K]} \sum_{j\in [n_\texttt{worker}]}  \unicode{x1D7D9}_{\{y_i^{(j)}=k\}}.$$
+\hat y_i = \big( \frac{1}{|n_\texttt{worker|}}\sum_{j\in [n_\texttt{worker}]}  \unicode{x1D7D9}_{\{y_i^{(j)}=k\}}\big).$$
 
 ## CLI
-With `peerannot` in a terminal located in the directory of answers, the MV model can be used as follows.
+With `peerannot` in a terminal located in the directory of answers, the DS model can be used as follows.
 
 ```bash
-peerannnot aggregate . --strategy MV --answers-file answers.json
+peerannnot aggregate . --strategy NaiveSoft --answers-file answers.json
 ```
 
 Note that by default, if the answers are in a file names `answers.json` the `--answers-file` argument can be omitted.
@@ -46,28 +46,27 @@ Note that by default, if the answers are in a file names `answers.json` the `--a
 Import the aggregation model in the current session
 
 ```python
-from peerannot.models import MV
+from peerannot.models import NaiveSoft as NS
 ```
 
 Assuming the answers are in a dictionary names `answers` then run:
 
 ```python
-mv = MV(answers, n_classes)
-yhat = mv.get_answers()
+ns = NS(answers, n_classes)
+yhat = ns.get_probas()
 ```
 
-Note that the majority voting aggregation produces hard labels (Dirac distributions).
+Note that the Naive Soft aggregation produces labels in the simplex by default.
 
-
-## API details: class models.MV
-MV model class inherits from `CrowdModel`
+## API details: class models.NaiveSoft
+NS model class inherits from `CrowdModel`
 
 ---
 `__init__(answers, n_classes,**kwargs)`
 
 Parameters:
 - `answers`:*(dict)*
-  Dictionary of workers answers with format
+  Dictionnary of workers answers with format
 ```json
 
             {
@@ -84,6 +83,11 @@ Parameters:
 `compute_baseline()`
 
 For each given task, computes the number of votes for each label.
+
+---
+`get_probas()`
+
+Returns the distribution of voted classes from the `baseline`.
 
 ---
 `get_answers()`
