@@ -1,4 +1,172 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-03-06T10:33:40+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Simulate labels with difficulty</title><link href="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/" rel="alternate" type="text/html" title="Simulate labels with difficulty" /><published>2023-03-02T00:00:00+00:00</published><updated>2023-03-02T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets/difficulty</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/"><![CDATA[<p>This is an example of simulation using the <code class="language-plaintext highlighter-rouge">peerannot</code> library that considers tasks’ difficulty.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-06-22T13:17:37+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">WAUM</title><link href="https://github.com/pages/peerannot/peerannot/models/WAUM/" rel="alternate" type="text/html" title="WAUM" /><published>2023-06-22T00:00:00+00:00</published><updated>2023-06-22T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/WAUM</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/WAUM/"><![CDATA[<h2 id="identification-step">Identification step</h2>
+
+<p>The Weighted Area Under the Margin (WAUM) allows identifying ambiguous tasks in crowdsourced datasets.
+Given a neural network classifier $\mathcal{C}$ and a budget $T$ (number of epochs) and a task (image) $x_i$ with labels ${y_i^{(j)}}_{j\in\mathcal{A(x_i)}$, the WAUM is defined as:</p>
+
+\[\mathrm{WAUM}(x_i) := \frac{1}{|\mathcal{A}(x_i)|}\sum_{j\in\mathcal{A}(x_i)} s^{(j)}(x_i)\left\{\frac{1}{T}\sum_{t=1}^T  \sigma(\mathcal{C}(x_i))_{y_i^{(j)}} - \sigma(\mathcal{C}(x_i))_{[2]}\right\} \enspace.\]
+
+<p>The weights $s^{(j)}(x_i)$ are defined as the dot-product between the diagonal of the DS confusion matrix and the probabilities output by the classifier.
+In a separate file, tasks with WAUM under the quantile $q_\alpha$ are identified as potential ambiguities (with $\alpha\in]0,1[$).
+The criterion optimized is the cross-entropy loss.</p>
+
+<h2 id="cli">CLI</h2>
+<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> in a terminal located in the directory of answers, the WAUM identification can be used as follows.
+In this example, the classification is for 10 classes, using a pretrained Resnet18 network for $T=50$ epochs. The learning rate of the stochastic gradient descent is set to $0.01$.
+The detection quantile is $q_{0.01}$.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannot identify <span class="nb">.</span> <span class="nt">-s</span> WAUM <span class="nt">--n-classes</span> 10 <span class="nt">--model</span> resnet18  <span class="se">\</span>
+                    <span class="nt">--n-epochs</span><span class="o">=</span>50 <span class="nt">--alpha</span><span class="o">=</span>0.01 <span class="nt">--lr</span><span class="o">=</span>0.01 <span class="se">\</span>
+                    <span class="nt">--pretrained</span> <span class="nt">--optimizer</span><span class="o">=</span>sgd
+</code></pre></div></div>
+
+<p>Note that by default, if the answers are in a file names <code class="language-plaintext highlighter-rouge">answers.json</code> the <code class="language-plaintext highlighter-rouge">--answers-file</code> argument can be omitted.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="identification" /><category term="WAUM" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Clustered Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/WDS/" rel="alternate" type="text/html" title="Clustered Dawid and Skene" /><published>2023-04-14T00:00:00+00:00</published><updated>2023-04-14T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DSWC</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/WDS/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
+
+<h2 id="model">Model</h2>
+
+<p>The clustered Dawid and Skene model assumes that the answer is drawn from a multinomial distribution for each worker. This distribution is shared within each cluster.
+The likelihood maximized is:</p>
+
+<p>\(\mathbb{P}(\{y_i^{(j)}\}_{i,j}, \{y_i^\star\}_i|\rho,\pi) = \left[
+  \prod_{i\in [n_\text{task}]} \prod_{j\in[n_\text{worker}]} \mathbbb{P}(y_i^{(j)}|y_i^\star,\pi^{(j)})
+\right] \left[\mathbb{P}(y_i^\star|\rho)\right]\enspace,\)
+with $\rho_k=\mathbb{P}(y_i^\star=k)$ the prevalence prior and $\pi^{(j)}_{k,\bullet}$ the probabilities of the multinomial distribution for an answer with true label $k$.</p>
+
+<h2 id="cli">CLI</h2>
+<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> in a terminal located in the directory of answers, the clustered DS model can be used as follows (for 3 clusters here).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannnot aggregate <span class="nb">.</span> <span class="nt">--strategy</span> DSWC[L<span class="o">=</span>3] <span class="nt">--answers-file</span> answers.json
+</code></pre></div></div>
+
+<p>Note that by default, if the answers are in a file names <code class="language-plaintext highlighter-rouge">answers.json</code> the <code class="language-plaintext highlighter-rouge">--answers-file</code> argument can be omitted.</p>
+
+<h2 id="api">API</h2>
+
+<p>Import the aggregation model in the current session</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">peerannot.models</span> <span class="kn">import</span> <span class="n">Dawid_Skene_clust</span> <span class="k">as</span> <span class="n">DSWC</span>
+</code></pre></div></div>
+
+<p>Assuming the answers are in a dictionary names <code class="language-plaintext highlighter-rouge">answers</code> then run:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dswc</span> <span class="o">=</span> <span class="n">DSWC</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=</span><span class="n">n_workers</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dswc</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">dswc</span><span class="p">.</span><span class="n">get_probas</span><span class="p">()</span>
+</code></pre></div></div>
+<h3 id="estimated-abilities">Estimated abilities</h3>
+
+<p>To access the estimated confusion matrices in a variable <code class="language-plaintext highlighter-rouge">pi</code>, run:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pi</span> <span class="o">=</span> <span class="n">dswc</span><span class="p">.</span><span class="n">pi_hat</span>
+</code></pre></div></div>
+
+<h2 id="api-details-class-modelsnaivesoft">API details: class models.NaiveSoft</h2>
+<p>NS model class inherits from <code class="language-plaintext highlighter-rouge">CrowdModel</code></p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">__init__(answers, n_classes, L=2, **kwargs)</code></p>
+
+<p>Parameters:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">answers</code>:<em>(dict)</em>
+Dictionary of workers answers with format
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="err">task</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">,</span><span class="w"> </span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">},</span><span class="w">
+              </span><span class="err">task</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">n_classes</code>: <em>(int)</em>
+Number of possible classes</li>
+  <li><code class="language-plaintext highlighter-rouge">L=2</code>: <em>(int)</em>
+Number of clusters for confusion matrices (must be lower or equal than the number of workers)</li>
+  <li><code class="language-plaintext highlighter-rouge">kwargs</code>: <em>(dict)</em>
+Dictionary that can contain <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href="/models/WAUM"><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.
+Must contain the number of workers <code class="language-plaintext highlighter-rouge">n_workers</code>.</li>
+</ul>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">run(epsilon=1e-4, maxiter=100)</code></p>
+
+<p>Returns label estimates, confusion matrices, prevalence $\rho$ and number of iterations before the ELBO convergence between two iterates is satisfied.</p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">get_probas()</code></p>
+
+<p>Returns the distribution of voted classes from the <code class="language-plaintext highlighter-rouge">baseline</code>.</p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">get_answers()</code></p>
+
+<p>Returns the most voted class from the <code class="language-plaintext highlighter-rouge">baseline</code>. In case of equalities, a random choice is applied.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="WDS" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Naive Soft</title><link href="https://github.com/pages/peerannot/peerannot/models/NaiveSoft/" rel="alternate" type="text/html" title="Naive Soft" /><published>2023-04-14T00:00:00+00:00</published><updated>2023-04-14T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/NaiveSoft</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/NaiveSoft/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
+
+<h2 id="model">Model</h2>
+
+<p>The Naive Soft model returns the empirical distribution overs answered for each task:</p>
+
+\[\DeclareMathOperator*{\argmax}{argmax}
+\hat y_i = \big( \frac{1}{|n_\texttt{worker|}}\sum_{j\in [n_\texttt{worker}]}  \unicode{x1D7D9}_{\{y_i^{(j)}=k\}}\big).\]
+
+<h2 id="cli">CLI</h2>
+<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> in a terminal located in the directory of answers, the DS model can be used as follows.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannnot aggregate <span class="nb">.</span> <span class="nt">--strategy</span> NaiveSoft <span class="nt">--answers-file</span> answers.json
+</code></pre></div></div>
+
+<p>Note that by default, if the answers are in a file names <code class="language-plaintext highlighter-rouge">answers.json</code> the <code class="language-plaintext highlighter-rouge">--answers-file</code> argument can be omitted.</p>
+
+<h2 id="api">API</h2>
+
+<p>Import the aggregation model in the current session</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">peerannot.models</span> <span class="kn">import</span> <span class="n">NaiveSoft</span> <span class="k">as</span> <span class="n">NS</span>
+</code></pre></div></div>
+
+<p>Assuming the answers are in a dictionary names <code class="language-plaintext highlighter-rouge">answers</code> then run:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ns</span> <span class="o">=</span> <span class="n">NS</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">ns</span><span class="p">.</span><span class="n">get_probas</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Note that the Naive Soft aggregation produces labels in the simplex by default.</p>
+
+<h2 id="api-details-class-modelsnaivesoft">API details: class models.NaiveSoft</h2>
+<p>NS model class inherits from <code class="language-plaintext highlighter-rouge">CrowdModel</code></p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">__init__(answers, n_classes,**kwargs)</code></p>
+
+<p>Parameters:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">answers</code>:<em>(dict)</em>
+Dictionnary of workers answers with format
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="err">task</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">,</span><span class="w"> </span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">},</span><span class="w">
+              </span><span class="err">task</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">n_classes</code>: <em>(int)</em>
+Number of possible classes</li>
+  <li><code class="language-plaintext highlighter-rouge">kwargs</code>: <em>(dict)</em>
+Dictionary that can contain <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href="/models/WAUM"><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.</li>
+</ul>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">compute_baseline()</code></p>
+
+<p>For each given task, computes the number of votes for each label.</p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">get_probas()</code></p>
+
+<p>Returns the distribution of voted classes from the <code class="language-plaintext highlighter-rouge">baseline</code>.</p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">get_answers()</code></p>
+
+<p>Returns the most voted class from the <code class="language-plaintext highlighter-rouge">baseline</code>. In case of equalities, a random choice is applied.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="NS" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Simulate labels with difficulty</title><link href="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/" rel="alternate" type="text/html" title="Simulate labels with difficulty" /><published>2023-03-02T00:00:00+00:00</published><updated>2023-03-02T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/datasets/difficulty</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/datasets/simulate_discrete_difficulty/"><![CDATA[<p>This is an example of simulation using the <code class="language-plaintext highlighter-rouge">peerannot</code> library that considers tasks’ difficulty.
 The <code class="language-plaintext highlighter-rouge">discrete-difficulty</code> strategy simulates the following setting (here presented with $K=3$ classes for simplicity):</p>
 
 <h2 id="discrete-difficulty-simulation">Discrete-difficulty simulation</h2>
@@ -126,9 +294,9 @@ worker (left) and a bad worker (right)</figcaption>
 \hat y_i = \argmax_{k\in[K]} \sum_{j\in [n_\texttt{worker}]}  \unicode{x1D7D9}_{\{y_i^{(j)}=k\}}.\]
 
 <h2 id="cli">CLI</h2>
-<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> in a terminal located in the directory of answers, the DS model can be used as follows.</p>
+<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> in a terminal located in the directory of answers, the MV model can be used as follows.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannnot aggregate <span class="nb">.</span> <span class="nt">--strategy</span> MV <span class="nt">--answers-file</span> DSanswers.json
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannnot aggregate <span class="nb">.</span> <span class="nt">--strategy</span> MV <span class="nt">--answers-file</span> answers.json
 </code></pre></div></div>
 
 <p>Note that by default, if the answers are in a file names <code class="language-plaintext highlighter-rouge">answers.json</code> the <code class="language-plaintext highlighter-rouge">--answers-file</code> argument can be omitted.</p>
@@ -149,7 +317,7 @@ worker (left) and a bad worker (right)</figcaption>
 <p>Note that the majority voting aggregation produces hard labels (Dirac distributions).</p>
 
 <h2 id="api-details-class-modelsmv">API details: class models.MV</h2>
-<p>MV model class herits from <code class="language-plaintext highlighter-rouge">CrowdModel</code></p>
+<p>MV model class inherits from <code class="language-plaintext highlighter-rouge">CrowdModel</code></p>
 
 <hr />
 <p><code class="language-plaintext highlighter-rouge">__init__(answers, n_classes,**kwargs)</code></p>
@@ -157,7 +325,7 @@ worker (left) and a bad worker (right)</figcaption>
 <p>Parameters:</p>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">answers</code>:<em>(dict)</em>
-Dictionnary of workers answers with format
+Dictionary of workers answers with format
     <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
           </span><span class="p">{</span><span class="w">
               </span><span class="err">task</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">,</span><span class="w"> </span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">},</span><span class="w">
@@ -168,7 +336,7 @@ Dictionnary of workers answers with format
   <li><code class="language-plaintext highlighter-rouge">n_classes</code>: <em>(int)</em>
 Number of possible classes</li>
   <li><code class="language-plaintext highlighter-rouge">kwargs</code>: <em>(dict)</em>
-Dictionnary that can contain <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href=""><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.</li>
+Dictionary that can contain <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href="/models/WAUM"><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.</li>
 </ul>
 
 <hr />
@@ -257,7 +425,7 @@ Dictionary of workers answers with format
 Number of possible classes</li>
   <li><code class="language-plaintext highlighter-rouge">kwargs</code>: <em>(dict)</em>
 Dictionary that should contain at least <code class="language-plaintext highlighter-rouge">n_workers</code> the number of workers.
-Other arguments are <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href=""><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.</li>
+Other arguments are <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href="/models/WAUM"><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.</li>
 </ul>
 
 <hr />
@@ -288,133 +456,7 @@ Other arguments are <code class="language-plaintext highlighter-rouge">path_remo
 <p>Parameters:</p>
 <ul>
   <li>path: <em>(str)</em> file path in which coefficients are saved using the <code class="language-plaintext highlighter-rouge">np.save</code> function.</li>
-</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="GLAD" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/"><![CDATA[<h2 id="model">Model</h2>
-
-<p>The Dawid and Skene’s model estimates one confusion matrix $\pi\in\mathbb{R}^{K\times K}$
-per worker.
-The model assumes that the probability for a task $x_i$ to have true label $y_i^\star=k$ follows a multinomial distribution with probabilities $\pi^{(j)}_{k,\bullet}$ for each worker.</p>
-
-<p>The likelihood to maximize is:</p>
-
-\[\displaystyle\prod_{i\in [n_{\texttt{task}}]}\prod_{k \in [K]}\bigg[\rho_k\prod_{j\in [n_{\texttt{worker}}]}
-    \prod_{k\in [K]}\big(\pi^{(j)}_{k, k}\big)^{\unicode{x1D7D9}_{\{y_i^{(j)}=k\}}}
-    \bigg]^{T_{ik}},\]
-
-<p>with $\rho_k=\mathbb{P}(y_i^\star=k)$ and $T_{i,k}=\unicode{x1D7D9}_{\{y_i^{\star}=k \}}.$</p>
-<h2 id="cli">CLI</h2>
-<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> in a terminal located in the directory of answers, the DS model can be used as follows.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannnot aggregate <span class="nb">.</span> <span class="nt">--strategy</span> DS <span class="nt">--answers-file</span> answers.json
-</code></pre></div></div>
-
-<p>Note that by default, if the answers are in a file names <code class="language-plaintext highlighter-rouge">answers.json</code> the <code class="language-plaintext highlighter-rouge">--answers-file</code> argument can be omitted.</p>
-
-<h2 id="api">API</h2>
-
-<p>Import the aggregation model in the current session</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">peerannot.models</span> <span class="kn">import</span> <span class="n">Dawid_Skene</span> <span class="k">as</span> <span class="n">DS</span>
-</code></pre></div></div>
-
-<p>Assuming the answers are in a dictionary names <code class="language-plaintext highlighter-rouge">answers</code> then run:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ds</span> <span class="o">=</span> <span class="n">DS</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">n_workers</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
-<span class="n">ds</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
-<span class="n">yhat</span> <span class="o">=</span> <span class="n">ds</span><span class="p">.</span><span class="n">get_probas</span><span class="p">()</span>
-</code></pre></div></div>
-
-<h3 id="estimated-abilities">Estimated abilities</h3>
-
-<p>To access the estimated confusion matrices in a variable <code class="language-plaintext highlighter-rouge">pi</code>, run:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pi</span> <span class="o">=</span> <span class="n">ds</span><span class="p">.</span><span class="n">pi</span>
-<span class="k">print</span><span class="p">(</span><span class="n">pi</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="c1"># (n_worker, n_classes, n_classes)
-</span></code></pre></div></div>
-
-<h3 id="aggregate-into-hard-labels">Aggregate into hard labels</h3>
-
-<p>After running the aggregation strategy, instead of soft labels one can recover hard labels by running:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">yhat_hard</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">get_answers</span><span class="p">()</span>
-</code></pre></div></div>
-
-<p>Note that this is an <code class="language-plaintext highlighter-rouge">argmax</code> on the first dimension with a random split in case of equalities.</p>
-
-<h2 id="api-details-class-modelsdawid_skene">API details: class models.Dawid_Skene</h2>
-<p>Dawid and Skene model class that herits from <code class="language-plaintext highlighter-rouge">CrowdModel</code></p>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">__init__(answers, n_classes,**kwargs)</code></p>
-
-<p>Parameters:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">answers</code>:<em>(dict)</em>
-Dictionnary of workers answers with format
-    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-          </span><span class="p">{</span><span class="w">
-              </span><span class="err">task</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">,</span><span class="w"> </span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">},</span><span class="w">
-              </span><span class="err">task</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">}</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-</span></code></pre></div>    </div>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">n_classes</code>: <em>(int)</em>
-Number of possible classes</li>
-  <li><code class="language-plaintext highlighter-rouge">kwargs</code>: <em>(dict)</em>
-Dictionnary that should contain at least $n_{\texttt{worker}}$ the number of workers.
-Other arguments are <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href=""><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.</li>
-</ul>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">get_crowd_matrix()</code></p>
-
-<p>From the dictionnary of answers generates a tensor of size $(n_{\texttt{task}},n_{\texttt{worker}},n_{\texttt{class}})$ with $0$ where there is no collected annotation.</p>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">init_T()</code></p>
-
-<p>Empirical distribution initialization for the variables $T_{i,k}$</p>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">m_step()</code></p>
-
-<p>Maximizing log likelihood (see eq. 2.3 and 2.4 Dawid and Skene 1979)</p>
-
-<p>Returns (as attributes):</p>
-<ul>
-  <li>p: (p_j)_j probabilities that instance has true response j if drawn
-      at random (class marginals)</li>
-  <li>pi: number of times worker k records l when j is correct</li>
-</ul>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">e_step()</code></p>
-
-<p>Estimate indicator variables (see eq. 2.5 Dawid and Skene 1979)</p>
-
-<p>Returns (as attributes):</p>
-<ul>
-  <li>T: New estimate for indicator variables (n_task, n_worker)</li>
-  <li>denom: value used to compute likelihood easily</li>
-</ul>
-
-<hr />
-
-<p><code class="language-plaintext highlighter-rouge">log_likelihood()</code></p>
-
-<p>Computes the logarithm of the likelihood.</p>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">run(epsilon=1e-6, maxiter=50, verbose=False)</code></p>
-
-<p>Run the EM algorithm</p>
-
-<p>Parameters:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">epsilon</code>:<em>(float)</em> stopping value for the absolute difference between the log likelihood of two consecutive steps</li>
-  <li><code class="language-plaintext highlighter-rouge">maxiter</code>:<em>(int)</em> Total number of steps in the EM algorithm</li>
-  <li><code class="language-plaintext highlighter-rouge">verbose</code>:<em>(bool)</em> Print if the EM algorithm did not converge.</li>
-</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="DS" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Models</title><link href="https://github.com/pages/peerannot/peerannot/models/" rel="alternate" type="text/html" title="Models" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/"><![CDATA[<h2 id="access-models">Access models</h2>
+</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="GLAD" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Models</title><link href="https://github.com/pages/peerannot/peerannot/models/" rel="alternate" type="text/html" title="Models" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/"><![CDATA[<h2 id="access-models">Access models</h2>
 
 <p>All crowdsourcing models are accessible from the <code class="language-plaintext highlighter-rouge">models</code> module.</p>
 
@@ -432,9 +474,9 @@ Other arguments are <code class="language-plaintext highlighter-rouge">path_remo
 
 <ul>
   <li><a href="/models/MV">Majority vote</a> (MV)</li>
-  <li><a href="">Naive soft</a> (NS)</li>
+  <li><a href="/models/NaiveSoft">Naive soft</a> (NS)</li>
   <li><a href="/models/DS">Dawid and Skene</a> (DS)</li>
-  <li><a href="">Clustered Dawid and Skene</a> (DSWC)</li>
+  <li><a href="/models/DSWC">Clustered Dawid and Skene</a> (DSWC)</li>
   <li><a href="/models/GLAD">Generative model of Labels, Abilities, and Difficulties</a> (GLAD)</li>
 </ul>
 
@@ -550,4 +592,130 @@ However, by doing so many learning strategies are not available.</p>
 <ul>
   <li><a href="/datasets/simulate_confusions">Pairwise confusion with confusion matrices</a></li>
   <li><a href="/datasets/simulate_discrete_difficulty">Discrete levels of difficulty</a></li>
-</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/DS/" rel="alternate" type="text/html" title="Dawid and Skene" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/DS</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/DS/"><![CDATA[<h2 id="model">Model</h2>
+
+<p>The Dawid and Skene’s model estimates one confusion matrix $\pi\in\mathbb{R}^{K\times K}$
+per worker.
+The model assumes that the probability for a task $x_i$ to have true label $y_i^\star=k$ follows a multinomial distribution with probabilities $\pi^{(j)}_{k,\bullet}$ for each worker.</p>
+
+<p>The likelihood to maximize is:</p>
+
+\[\displaystyle\prod_{i\in [n_{\texttt{task}}]}\prod_{k \in [K]}\bigg[\rho_k\prod_{j\in [n_{\texttt{worker}}]}
+    \prod_{k\in [K]}\big(\pi^{(j)}_{k, k}\big)^{\unicode{x1D7D9}_{\{y_i^{(j)}=k\}}}
+    \bigg]^{T_{ik}},\]
+
+<p>with $\rho_k=\mathbb{P}(y_i^\star=k)$ and $T_{i,k}=\unicode{x1D7D9}_{\{y_i^{\star}=k \}}.$</p>
+<h2 id="cli">CLI</h2>
+<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> in a terminal located in the directory of answers, the DS model can be used as follows.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannnot aggregate <span class="nb">.</span> <span class="nt">--strategy</span> DS <span class="nt">--answers-file</span> answers.json
+</code></pre></div></div>
+
+<p>Note that by default, if the answers are in a file names <code class="language-plaintext highlighter-rouge">answers.json</code> the <code class="language-plaintext highlighter-rouge">--answers-file</code> argument can be omitted.</p>
+
+<h2 id="api">API</h2>
+
+<p>Import the aggregation model in the current session</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">peerannot.models</span> <span class="kn">import</span> <span class="n">Dawid_Skene</span> <span class="k">as</span> <span class="n">DS</span>
+</code></pre></div></div>
+
+<p>Assuming the answers are in a dictionary names <code class="language-plaintext highlighter-rouge">answers</code> then run:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ds</span> <span class="o">=</span> <span class="n">DS</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=</span><span class="n">n_workers</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="n">n_classes</span><span class="p">)</span>
+<span class="n">ds</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">ds</span><span class="p">.</span><span class="n">get_probas</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="estimated-abilities">Estimated abilities</h3>
+
+<p>To access the estimated confusion matrices in a variable <code class="language-plaintext highlighter-rouge">pi</code>, run:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pi</span> <span class="o">=</span> <span class="n">ds</span><span class="p">.</span><span class="n">pi</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pi</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (n_worker, n_classes, n_classes)
+</span></code></pre></div></div>
+
+<h3 id="aggregate-into-hard-labels">Aggregate into hard labels</h3>
+
+<p>After running the aggregation strategy, instead of soft labels one can recover hard labels by running:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">yhat_hard</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">get_answers</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Note that this is an <code class="language-plaintext highlighter-rouge">argmax</code> on the first dimension with a random split in case of equalities.</p>
+
+<h2 id="api-details-class-modelsdawid_skene">API details: class models.Dawid_Skene</h2>
+<p>Dawid and Skene model class that herits from <code class="language-plaintext highlighter-rouge">CrowdModel</code></p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">__init__(answers, n_classes,**kwargs)</code></p>
+
+<p>Parameters:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">answers</code>:<em>(dict)</em>
+Dictionnary of workers answers with format
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="err">task</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">,</span><span class="w"> </span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">},</span><span class="w">
+              </span><span class="err">task</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">n_classes</code>: <em>(int)</em>
+Number of possible classes</li>
+  <li><code class="language-plaintext highlighter-rouge">kwargs</code>: <em>(dict)</em>
+Dictionnary that should contain at least $n_{\texttt{worker}}$ the number of workers.
+Other arguments are <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href="/models/WAUM"><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.</li>
+</ul>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">get_crowd_matrix()</code></p>
+
+<p>From the dictionnary of answers generates a tensor of size $(n_{\texttt{task}},n_{\texttt{worker}},n_{\texttt{class}})$ with $0$ where there is no collected annotation.</p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">init_T()</code></p>
+
+<p>Empirical distribution initialization for the variables $T_{i,k}$</p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">m_step()</code></p>
+
+<p>Maximizing log likelihood (see eq. 2.3 and 2.4 Dawid and Skene 1979)</p>
+
+<p>Returns (as attributes):</p>
+<ul>
+  <li>p: (p_j)_j probabilities that instance has true response j if drawn
+      at random (class marginals)</li>
+  <li>pi: number of times worker k records l when j is correct</li>
+</ul>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">e_step()</code></p>
+
+<p>Estimate indicator variables (see eq. 2.5 Dawid and Skene 1979)</p>
+
+<p>Returns (as attributes):</p>
+<ul>
+  <li>T: New estimate for indicator variables (n_task, n_worker)</li>
+  <li>denom: value used to compute likelihood easily</li>
+</ul>
+
+<hr />
+
+<p><code class="language-plaintext highlighter-rouge">log_likelihood()</code></p>
+
+<p>Computes the logarithm of the likelihood.</p>
+
+<hr />
+<p><code class="language-plaintext highlighter-rouge">run(epsilon=1e-6, maxiter=50, verbose=False)</code></p>
+
+<p>Run the EM algorithm</p>
+
+<p>Parameters:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">epsilon</code>:<em>(float)</em> stopping value for the absolute difference between the log likelihood of two consecutive steps</li>
+  <li><code class="language-plaintext highlighter-rouge">maxiter</code>:<em>(int)</em> Total number of steps in the EM algorithm</li>
+  <li><code class="language-plaintext highlighter-rouge">verbose</code>:<em>(bool)</em> Print if the EM algorithm did not converge.</li>
+</ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="aggregation" /><category term="DS" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry></feed>
