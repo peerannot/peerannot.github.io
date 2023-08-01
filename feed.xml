@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-07-20T09:39:57+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">WAUM</title><link href="https://github.com/pages/peerannot/peerannot/models/WAUM/" rel="alternate" type="text/html" title="WAUM" /><published>2023-06-22T00:00:00+00:00</published><updated>2023-06-22T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/WAUM</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/WAUM/"><![CDATA[<h2 id="identification-step">Identification step</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-08-01T09:19:30+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">WAUM</title><link href="https://github.com/pages/peerannot/peerannot/models/WAUM/" rel="alternate" type="text/html" title="WAUM" /><published>2023-06-22T00:00:00+00:00</published><updated>2023-06-22T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/WAUM</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/WAUM/"><![CDATA[<h2 id="identification-step">Identification step</h2>
 
 <p>The Weighted Area Under the Margin (WAUM) allows identifying ambiguous tasks in crowdsourced datasets.
 Given a neural network classifier $\mathcal{C}$ and a budget $T$ (number of epochs) and a task (image) $x_i$ with labels ${y_i^{(j)}}_{j\in\mathcal{A(x_i)}$, the WAUM is defined as:</p>
@@ -27,7 +27,15 @@ with
 \(h_i^{(j)} = \sigma((w_i^{(j)}\pi^g + (1-w_i^{(j)})\pi^{(j)} )z_i).\)</p>
 
 <p>The weight $w_i^{(j)}$ is computed from an auxiliary network that takes into account separately the worker in a vector $u_j$ and the task in a vector $v_i$ and
-\(w_i^{(j)} = (1+\exp(-u_jv_i))^{-1}.\)</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="agg_deep" /><category term="CONAL" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Naive Soft</title><link href="https://github.com/pages/peerannot/peerannot/models/NaiveSoft/" rel="alternate" type="text/html" title="Naive Soft" /><published>2023-04-14T00:00:00+00:00</published><updated>2023-04-14T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/NaiveSoft</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/NaiveSoft/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
+\(w_i^{(j)} = (1+\exp(-u_jv_i))^{-1}.\)</p>
+
+<h2 id="cli">CLI</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannot aggregate-deep <span class="nb">.</span> <span class="nt">-o</span> my_output <span class="nt">--answers</span> ./answers.json <span class="nt">-s</span> CoNAL[scale<span class="o">=</span>0] <span class="nt">--model</span> resnet18 <span class="se">\</span>
+          <span class="nt">--img-size</span><span class="o">=</span>224 <span class="nt">--pretrained</span> <span class="nt">--n-classes</span><span class="o">=</span>K <span class="nt">--n-epochs</span><span class="o">=</span>100 <span class="nt">--lr</span><span class="o">=</span>0.001 <span class="se">\</span>
+          <span class="nt">-m</span> 50 <span class="nt">-m</span> 75 <span class="nt">--scheduler</span><span class="o">=</span>multistep <span class="nt">--batch-size</span><span class="o">=</span>228 <span class="nt">--optimizer</span><span class="o">=</span>adam <span class="se">\</span>
+          <span class="nt">--num-workers</span><span class="o">=</span>8 <span class="nt">--data-augmentation</span> <span class="nt">--seed</span><span class="o">=</span>1
+</code></pre></div></div>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><category term="agg_deep" /><category term="CONAL" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Naive Soft</title><link href="https://github.com/pages/peerannot/peerannot/models/NaiveSoft/" rel="alternate" type="text/html" title="Naive Soft" /><published>2023-04-14T00:00:00+00:00</published><updated>2023-04-14T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/NaiveSoft</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/NaiveSoft/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
 
 <h2 id="model">Model</h2>
 
@@ -473,7 +481,7 @@ The model assumes that the probability for a task $x_i$ to have true label $y_i^
 <p>The likelihood to maximize is:</p>
 
 \[\displaystyle\prod_{i\in [n_{\texttt{task}}]}\prod_{k \in [K]}\bigg[\rho_k\prod_{j\in [n_{\texttt{worker}}]}
-    \prod_{k\in [K]}\big(\pi^{(j)}_{k, k}\big)^{\unicode{x1D7D9}_{\{y_i^{(j)}=k\}}}
+    \prod_{\ell\in [K]}\big(\pi^{(j)}_{k, \ell}\big)^{\unicode{x1D7D9}_{\{y_i^{(j)}=k\}}}
     \bigg]^{T_{ik}},\]
 
 <p>with $\rho_k=\mathbb{P}(y_i^\star=k)$ and $T_{i,k}=\unicode{x1D7D9}_{\{y_i^{\star}=k \}}.$</p>
@@ -688,7 +696,7 @@ However, by doing so many learning strategies are not available.</p>
 
 <p>Examples of simulation strategies can be found in the following:</p>
 <ul>
-  <li><a href="/datasets/simulate_confusions">Pairwise confusion with confusion matrices</a></li>
+  <!-- <li><a href="/datasets/simulate_confusions">Pairwise confusion with confusion matrices</a></li> -->
   <li><a href="/datasets/simulate_discrete_difficulty">Discrete levels of difficulty</a></li>
 </ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="datasets" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Models</title><link href="https://github.com/pages/peerannot/peerannot/models/" rel="alternate" type="text/html" title="Models" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/"><![CDATA[<h2 id="access-models">Access models</h2>
 
@@ -718,12 +726,12 @@ However, by doing so many learning strategies are not available.</p>
 
 <ul>
   <li><a href="">CrowdLayer</a> (CL)</li>
-  <li><a href="">Common Noise Adaptation Layers</a> (CoNAL)</li>
+  <li><a href="/models/CoNAL">Common Noise Adaptation Layers</a> (CoNAL)</li>
 </ul>
 
 <h2 id="identification-strategy">Identification strategy<a class="anchor-link" href="#identification-strategy"><i class="fas fa-link"></i></a></h2>
 
 <ul>
-  <li><a href="/models/WAUM">Area Under the Margin</a> (AUM)</li>
-  <li><a href="">Weighted AUM</a> (WAUM)</li>
+  <li><a href="">Area Under the Margin</a> (AUM)</li>
+  <li><a href="/models/WAUM">Weighted AUM</a> (WAUM)</li>
 </ul>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry></feed>
