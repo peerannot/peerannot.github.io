@@ -86,7 +86,7 @@ pagination:
   </span>                  -<span class="ruby">-model resnet18 \
   </span>                  -<span class="ruby">-img-size=<span class="hljs-number">32</span> \
   </span>                  -<span class="ruby">-n-epochs=<span class="hljs-number">1000</span> \
-  </span>                  -<span class="ruby">-lr=<span class="hljs-number">0</span>.<span class="hljs-number">1</span> --scheduler -m <span class="hljs-number">100</span> -m <span class="hljs-number">250</span> \
+  </span>                  -<span class="ruby">-lr=<span class="hljs-number">0</span>.<span class="hljs-number">1</span> --scheduler=multistep -m <span class="hljs-number">100</span> -m <span class="hljs-number">250</span> \
   </span>                  -<span class="ruby">-num-workers=<span class="hljs-number">8</span>
   </span>done
   </code></pre>
@@ -104,7 +104,7 @@ pagination:
                   -<span class="ruby">K <span class="hljs-number">10</span> \
   </span>                -<span class="ruby">-labels= ./labels/labels_cifar-<span class="hljs-number">10</span>h_ds.npy \
   </span>                -<span class="ruby">-model resnet18 --img-size=<span class="hljs-number">32</span> \
-  </span>                -<span class="ruby">-n-epochs=<span class="hljs-number">150</span> --lr=<span class="hljs-number">0</span>.<span class="hljs-number">1</span> -m <span class="hljs-number">50</span> -m <span class="hljs-number">100</span> --scheduler \
+  </span>                -<span class="ruby">-n-epochs=<span class="hljs-number">150</span> --lr=<span class="hljs-number">0</span>.<span class="hljs-number">1</span> -m <span class="hljs-number">50</span> -m <span class="hljs-number">100</span> --scheduler=multistep \
   </span>                -<span class="ruby">-num-workers=<span class="hljs-number">8</span> \
   </span>                -<span class="ruby">-path-remove ./identification/waum_<span class="hljs-number">0</span>.<span class="hljs-number">01_</span>yang/too_hard_<span class="hljs-number">0</span>.<span class="hljs-number">01</span>.txt</span>
   </code></pre>
