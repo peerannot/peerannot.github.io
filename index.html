@@ -52,7 +52,7 @@ pagination:
     <p>The <code>peerannot</code> library was created to handle crowdsourced labels in classification problems.</p>
 
   <p><h3 id="installation">Installation</h3></p>
-  <p>To install the <code>peerannot</code> library and reproduce results, use <code>cd</code> to be located in the
+  <p>To install the <code>peerannot</code> library and reproduce results, use
     directory of the <code>setup.py</code> file and then</p>
   <pre><code class="lang-bash">$ pip <span class="hljs-keyword">install</span> peerannot
   </code></pre>
@@ -100,7 +100,7 @@ pagination:
   </code></pre>
   <p>Then, one can train on the pruned dataset with any aggregation strategy as follows:</p>
   <pre><code class="lang-bash"># run WAUM + DS strategy
-  $ peerannot train . -o cifar10H_waum_0.01_DS \
+$ peerannot train . -o cifar10H_waum_0.01_DS \
                   -<span class="ruby">K <span class="hljs-number">10</span> \
   </span>                -<span class="ruby">-labels= ./labels/labels_cifar-<span class="hljs-number">10</span>h_ds.npy \
   </span>                -<span class="ruby">-model resnet18 --img-size=<span class="hljs-number">32</span> \
