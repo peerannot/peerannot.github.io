@@ -24,12 +24,12 @@ The spam score was introduced by Raykar et. al (2012).
 A spammer can be defined as someone answered independently of the true label *i.e.*
 
 $$
-\mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell) = \mathbb{P}(y_i^{(j)}=k\ | y_i^\star =\ell')\ \forall (k,\ell, \ell') in [K]^3.
+\mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell) = \mathbb{P}(y_i^{(j)}=k\ | y_i^\star =\ell')\ \forall (k,\ell, \ell') \in [K]^3.
 $$
 
 Let $\alpha_{\ell k}^{(j)} = \mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell)$.
-Then for a spammer $\alpha_{\ell k}^{(j)} = \alpha_{\ell' k}^{(j)}\ \forall (k,\ell,\ell') in [K]$.
-We can store them in a confusion matrix $\pi^{(j)}\in\mathbb{R}^{K\times K}$ such that $\pi^{(j)}_{\ell,k}=\alpha^{(j)}_{\ell,k}$
+Then for a spammer $\alpha_{\ell k}^{(j)} = \alpha_{\ell' k}^{(j)}\ \forall (k,\ell,\ell') \in [K]^3$.
+We can store them in a confusion matrix $ \pi^{(j)}\in\mathbb{R}^{K\times K} $ such that $ \pi^{(j)}_{\ell,k}=\alpha^{(j)}_{\ell,k} $.
 
 A perfect spammer will have equal rows, leading to a matrix of rank $1$.
 The spam score $s^{(j)}$ is thus defined as the distance to the closest rank one approximation of the confusion matrix $\pi^{(j)}$.
@@ -42,14 +42,14 @@ $$
 Solving this optimization problem, we obtain that a perfect worker has $s^{(j)}=K-1$. We can normalize the scores and obtain the following explicit formula:
 
 $$
-s^{(j)}= \frac{1}[K(K-1)] \sum_{\ell\leq \ell'} \sum_k (\alpha^{(j)}_{\ell,k} - \alpha^{(j)}_{\ell',k})^2 \enspace.
+s^{(j)}= \frac{1}{K(K-1)} \sum_{\ell\leq \ell'} \sum_k (\alpha^{(j)}_{\ell,k} - \alpha^{(j)}_{\ell',k})^2 \enspace.
 $$
 
 ## CLI
 
 To run the spammer identification in a classification problem with $K=10$ classes, we use the following command:
 
-```{bash}
+```bash
 peerannot identify . -s spam_score -K 10
 ```
 

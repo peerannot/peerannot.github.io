@@ -99,8 +99,8 @@ jekyll-archives:
     - tags
   layout: archive
   permalinks:
-    category: '/category/:name/'
-    tag: '/tag/:name/'
+    category: '/:name/'
+    tag: '/:name/'
 
 # Other
 markdown: kramdown
