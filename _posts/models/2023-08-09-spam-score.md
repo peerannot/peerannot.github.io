@@ -2,7 +2,7 @@
 layout: post
 title: Spam score
 category: [doc]
-tags: [models,identification]
+tags: [models]
 permalink: /models/spam_score/
 css:
   badge: true

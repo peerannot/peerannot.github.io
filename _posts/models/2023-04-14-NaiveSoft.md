@@ -2,7 +2,7 @@
 layout: post
 title: Naive Soft
 category: [doc]
-tags: [models,aggregation,NS]
+tags: [models]
 permalink: /models/NaiveSoft/
 css:
   badge: true

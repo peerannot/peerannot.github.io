@@ -2,7 +2,7 @@
 layout: post
 title: CrowdLayer
 category: [doc]
-tags: [models,agg_deep,Crowdlayer]
+tags: [models]
 permalink: /models/crowdlayer/
 css:
   badge: true
