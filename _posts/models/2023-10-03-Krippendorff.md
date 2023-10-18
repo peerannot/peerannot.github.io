@@ -36,11 +36,11 @@ Where $D_o$ is the disagreement observed and $D_e$ is the disagreement expected 
 We define as $$\mathcal{L}(x_i)$$ the vector of labels given to the task $x_i \in \mathcal{X}$: $$\mathcal{L}(x_i) = (y_i^{(j)})_{j \in \mathcal{A}(x_i)}$$
 
 $$
-  D_o = \frac{1}{n_{\text{worker}}}\sum_{x_i \in \mathcal{X}}\sum_{k \in \mathcal{L}(x_i)}\sum_{k' \in \mathcal{L}(x_i)}\delta(k,k')\frac{1}{|\mathcal{L}(x_i)|-1} \endspace,
+  D_o = \frac{1}{n_{\text{worker}}}\sum_{x_i \in \mathcal{X}}\sum_{k \in \mathcal{L}(x_i)}\sum_{k' \in \mathcal{L}(x_i)}\delta(k,k')\frac{1}{|\mathcal{L}(x_i)|-1} \enspace,
 $$
 
 $$
-  D_e = \frac{1}{ n_{\text{task}}(n_{\text{task}}-1)}\sum_{x_i \in \mathcal{X}}\sum_{k \in \mathcal{L}(x_i)}\sum_{k' \in \mathcal{L}(x_i)}\delta(k,k') \endspace,
+  D_e = \frac{1}{ n_{\text{task}}(n_{\text{task}}-1)}\sum_{x_i \in \mathcal{X}}\sum_{k \in \mathcal{L}(x_i)}\sum_{k' \in \mathcal{L}(x_i)}\delta(k,k') \enspace,
 $$
 
 Where $\delta$ is a metric function, for our case we use the discrete distance defined as : 
