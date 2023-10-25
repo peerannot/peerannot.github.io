@@ -29,7 +29,7 @@ $$
 
 Let $\alpha_{\ell k}^{(j)} = \mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell)$.
 Then for a spammer $\alpha_{\ell k}^{(j)} = \alpha_{\ell' k}^{(j)}\ \forall (k,\ell,\ell') \in [K]^3$.
-We can store them in a confusion matrix $ \pi^{(j)}\in\mathbb{R}^{K\times K} $ such that $ \pi^{(j)}_{\ell,k}=\alpha^{(j)}_{\ell,k} $.
+We can store them in a confusion matrix $ \pi^{(j)}\in\mathbb{R}^{K\times K} $ such that $ \pi^{(j)}\_{\ell,k}=\alpha^{(j)}_{\ell,k} $.
 
 A perfect spammer will have equal rows, leading to a matrix of rank $1$.
 The spam score $s^{(j)}$ is thus defined as the distance to the closest rank one approximation of the confusion matrix $\pi^{(j)}$.
