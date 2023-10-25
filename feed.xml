@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-10-25T08:19:59+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Krippendorff’s Alpha</title><link href="https://github.com/pages/peerannot/peerannot/models/KrippendorffAlpha/" rel="alternate" type="text/html" title="Krippendorff’s Alpha" /><published>2023-10-03T00:00:00+00:00</published><updated>2023-10-03T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/Krippendorff</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/KrippendorffAlpha/"><![CDATA[<h2 id="identification-step">Identification step</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-10-25T12:52:46+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Krippendorff’s Alpha</title><link href="https://github.com/pages/peerannot/peerannot/models/KrippendorffAlpha/" rel="alternate" type="text/html" title="Krippendorff’s Alpha" /><published>2023-10-03T00:00:00+00:00</published><updated>2023-10-03T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/Krippendorff</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/KrippendorffAlpha/"><![CDATA[<h2 id="identification-step">Identification step</h2>
 
 <p>The Krippendorff’s Alpha coefficient identification measures the agreement between workers on the labels answered to a dataset.</p>
 
@@ -46,7 +46,7 @@ A spammer can be defined as someone answered independently of the true label <em
 
 <p>Let $\alpha_{\ell k}^{(j)} = \mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell)$.
 Then for a spammer $\alpha_{\ell k}^{(j)} = \alpha_{\ell’ k}^{(j)}\ \forall (k,\ell,\ell’) \in [K]^3$.
-We can store them in a confusion matrix $ \pi^{(j)}\in\mathbb{R}^{K\times K} $ such that $ \pi^{(j)}<em>{\ell,k}=\alpha^{(j)}</em>{\ell,k} $.</p>
+We can store them in a confusion matrix $ \pi^{(j)}\in\mathbb{R}^{K\times K} $ such that $ \pi^{(j)}_{\ell,k}=\alpha^{(j)}_{\ell,k} $.</p>
 
 <p>A perfect spammer will have equal rows, leading to a matrix of rank $1$.
 The spam score $s^{(j)}$ is thus defined as the distance to the closest rank one approximation of the confusion matrix $\pi^{(j)}$.
@@ -68,7 +68,7 @@ More formally:</p>
 <p>Label file can be modified using the argument <code class="language-plaintext highlighter-rouge">--labels=&lt;new_path_to_json_file&gt;</code>.
 Spam scores are stored in the folder <code class="language-plaintext highlighter-rouge">./identification</code> in the <code class="language-plaintext highlighter-rouge">spam_score.npy</code> file.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Weighted with Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/WDS/" rel="alternate" type="text/html" title="Weighted with Dawid and Skene" /><published>2023-08-09T00:00:00+00:00</published><updated>2023-08-09T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/wds</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/WDS/"><![CDATA[<h2 id="model">Model</h2>
 
-<p>Following the [DS][/models/DS] model, one can use the diagonal of the estimated confusion matrices ${\pi^{(j)}}<em>{j\in [n</em>\text{worker}]}$ to create a weighted soft label as follows:</p>
+<p>Following the [DS][/models/DS] model, one can use the diagonal of the estimated confusion matrices ${\pi^{(j)}}_{j\in [n_\text{worker}]}$ to create a weighted soft label as follows:</p>
 
 \[\hat y_i^{\mathrm{WDS}} = \mathrm{Norm}\left(\sum_{j\in [n_\text{worker}]} \pi^{(j)}_{k,k} \unicode{x1D7D9}_{\\{y_i^{\star}=k \\}} \right)_{k\in[K]} \enspace,\]
 
@@ -87,10 +87,9 @@ With enough labels, tasks with high entropy can be identified as potential ambig
 A task with a null-entropy has reached perfect consensus.</p>
 
 <p>More formally, let task $x_i\in\mathcal{X}$ for a classification problem with $K$ possible labels.
-From the multiple answers, we can compute the frequency of each answers per label denoted</p>
+From the multiple answers, we can compute the frequency of each answers per label denoted $\hat{y_i^{\mathrm{NS}}} = \mathrm{NS}({y_i^{(j)}}_{j\in [n_\text{worker}]})$.</p>
 
-<p>\(\hat{y_i^{\mathrm{NS}}}=\mathrm{NS}(\{y_i^{(j)}\}_{j\in [n_\text{worker}]}) \enspace.\)
-The entropy can then be written:
+<p>The entropy can then be written:
 \(\forall x_i,\ \mathrm{Ent}(x_i) = -\sum_{k\in[K]} \hat{y_{i, k}^{\mathrm{NS}}} \log\left(\hat{y_{i, k}^{\mathrm{NS}}}\right) \enspace.\)</p>
 
 <h2 id="cli">CLI</h2>
