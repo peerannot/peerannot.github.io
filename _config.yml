@@ -23,6 +23,8 @@ nav:
         url: /models
       - name: Datasets
         url: /datasets/
+      - name: Glossary
+        url: /glossary/
     menu: true
     title:
       limit: 40
