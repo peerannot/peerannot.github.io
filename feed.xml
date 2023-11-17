@@ -1,4 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-10-25T12:52:46+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Krippendorff’s Alpha</title><link href="https://github.com/pages/peerannot/peerannot/models/KrippendorffAlpha/" rel="alternate" type="text/html" title="Krippendorff’s Alpha" /><published>2023-10-03T00:00:00+00:00</published><updated>2023-10-03T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/Krippendorff</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/KrippendorffAlpha/"><![CDATA[<h2 id="identification-step">Identification step</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://github.com/pages/peerannot/peerannot/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/peerannot/peerannot/" rel="alternate" type="text/html" /><updated>2023-11-17T13:06:36+00:00</updated><id>https://github.com/pages/peerannot/peerannot/feed.xml</id><title type="html">Peerannot</title><subtitle>Handling your crowdsourced datasets</subtitle><entry><title type="html">Glossary</title><link href="https://github.com/pages/peerannot/peerannot/glossary/" rel="alternate" type="text/html" title="Glossary" /><published>2023-10-24T00:00:00+00:00</published><updated>2023-10-24T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/glossary</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/glossary/"><![CDATA[<h2 id="symbols">Symbols</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Definition</th>
+      <th>Mathematical Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$n_{task}$</td>
+      <td>The total number of tasks in a dataset</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$n_{worker}$</td>
+      <td>The total number of workers in a dataset</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$[K]$</td>
+      <td>The set of labels a task can take</td>
+      <td>$[K] = \{1,…,K\}$</td>
+    </tr>
+    <tr>
+      <td>$\Delta_K$</td>
+      <td>The simplex of dimension $K-1$, used to represent soft labels (ie. labels as a probability vector along $[K])</td>
+      <td>$\Delta_K = \{ p \in [K] : \sum_{k=1}^K p_k=1, p_k \geq 0 \}  $</td>
+    </tr>
+    <tr>
+      <td>$\mathcal{A(x_i)}$</td>
+      <td>The set of workers that answered the task $i$</td>
+      <td>$\{j\in[ n_{worker} : w_j \text{ answered } x_i]\}$</td>
+    </tr>
+    <tr>
+      <td>$\mathcal{T(w_j)}$</td>
+      <td>The set of tasks answered by the worker $j$</td>
+      <td>$\{i\in[ n_{task} : w_j \text{ answered }x_i]\}$</td>
+    </tr>
+    <tr>
+      <td>$\mathcal{Lab(x_i)}$</td>
+      <td>The vector of answered labels of the task $i$</td>
+      <td>$(y_i^{(j)})_{j\in\mathcal{A(x_i)}}$</td>
+    </tr>
+    <tr>
+      <td>$y_i^*$</td>
+      <td>The true label of the task $i$</td>
+      <td>$y_i^* \in [K]$</td>
+    </tr>
+    <tr>
+      <td>$\hat{y}_i^{agg}$</td>
+      <td>The computed label of the task $i$ given the aggregation $agg$ method</td>
+      <td>\(\begin{cases}\hat{y}_i^{agg} \in [K] \text{ if a hard label} \\ \hat{y}_i^{agg} \in \Delta_K \text{ if a soft label} \end{cases}\)</td>
+    </tr>
+    <tr>
+      <td>$y^{(j)}_i$</td>
+      <td>The label (hard) that the worker $j$ assigned to the task $i$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$\pi^{(j)}$</td>
+      <td>The confusion matrix of the worker $j$</td>
+      <td>$\pi^{(j)}_{k,\ell}=\mathbb{P}(y_i^{(j)​}=\ell∣y_i^\star​=k) \forall (\ell,k)\in [K]^2$</td>
+    </tr>
+    <tr>
+      <td>AccTrain($\mathcal{D}$)</td>
+      <td>A metric that measure aggregation strategies’ accuracies</td>
+      <td>AccTrain($\mathcal{D}$) = $ \frac{1}{|\mathcal{D}|} \sum_{i=1}^{|\mathcal{D}|} \unicode{x1D7D9}_{y_i = \text{argmax}_{k\in [K]}(ŷ_i)_k} $</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="commands">Commands</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>identify</td>
+      <td>Command that include the methods allowing to indentify difficult tasks and/or mislabeled labels</td>
+    </tr>
+    <tr>
+      <td>aggregate</td>
+      <td>Command that include the methods allowing to aggregate label from common noise model</td>
+    </tr>
+    <tr>
+      <td>aggregate-deep</td>
+      <td>Command that include the methods that train a model directly from the raw collection of labels</td>
+    </tr>
+    <tr>
+      <td>train</td>
+      <td>Command that include the methods that train a model using aggregated labels</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="glossary" /><summary type="html"><![CDATA[Words and symbols used in peerannot]]></summary></entry><entry><title type="html">Krippendorff’s Alpha</title><link href="https://github.com/pages/peerannot/peerannot/models/KrippendorffAlpha/" rel="alternate" type="text/html" title="Krippendorff’s Alpha" /><published>2023-10-03T00:00:00+00:00</published><updated>2023-10-03T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/Krippendorff</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/KrippendorffAlpha/"><![CDATA[<h2 id="identification-step">Identification step</h2>
 
 <p>The Krippendorff’s Alpha coefficient identification measures the agreement between workers on the labels answered to a dataset.</p>
 
@@ -37,36 +138,7 @@ We define as \(\mathcal{L}(x_i)\) the vector of labels given to the task $x_i \i
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannot identify <span class="nb">.</span> <span class="nt">-s</span> krippendorffalpha
 </code></pre></div></div>
 
-<p>This creates a file named <code class="language-plaintext highlighter-rouge">krippendorff_alpha.npy</code> saved in the <code class="language-plaintext highlighter-rouge">./identification</code> folder.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Spam score</title><link href="https://github.com/pages/peerannot/peerannot/models/spam_score/" rel="alternate" type="text/html" title="Spam score" /><published>2023-08-09T00:00:00+00:00</published><updated>2023-08-09T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/spam-score</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/spam_score/"><![CDATA[<h2 id="identification-step">Identification step</h2>
-
-<p>The spam score was introduced by Raykar et. al (2012).
-A spammer can be defined as someone answered independently of the true label <em>i.e.</em></p>
-
-\[\mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell) = \mathbb{P}(y_i^{(j)}=k\ | y_i^\star =\ell')\ \forall (k,\ell, \ell') \in [K]^3.\]
-
-<p>Let $\alpha_{\ell k}^{(j)} = \mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell)$.
-Then for a spammer $\alpha_{\ell k}^{(j)} = \alpha_{\ell’ k}^{(j)}\ \forall (k,\ell,\ell’) \in [K]^3$.
-We can store them in a confusion matrix $ \pi^{(j)}\in\mathbb{R}^{K\times K} $ such that $ \pi^{(j)}_{\ell,k}=\alpha^{(j)}_{\ell,k} $.</p>
-
-<p>A perfect spammer will have equal rows, leading to a matrix of rank $1$.
-The spam score $s^{(j)}$ is thus defined as the distance to the closest rank one approximation of the confusion matrix $\pi^{(j)}$.
-More formally:</p>
-
-\[s^{(j)} = \|\pi^{(j)} - e\hat v_j^\top \|_F^2 \quad \text{s.t } \hat v_j = \arg\min_{v_j} \|\pi^{(j)}-ev_j^\top \|_F^2,\ v_j^\top e=1 \enspace.\]
-
-<p>Solving this optimization problem, we obtain that a perfect worker has $s^{(j)}=K-1$. We can normalize the scores and obtain the following explicit formula:</p>
-
-\[s^{(j)}= \frac{1}{K(K-1)} \sum_{\ell\leq \ell'} \sum_k (\alpha^{(j)}_{\ell,k} - \alpha^{(j)}_{\ell',k})^2 \enspace.\]
-
-<h2 id="cli">CLI</h2>
-
-<p>To run the spammer identification in a classification problem with $K=10$ classes, we use the following command:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannot identify <span class="nb">.</span> <span class="nt">-s</span> spam_score <span class="nt">-K</span> 10
-</code></pre></div></div>
-
-<p>Label file can be modified using the argument <code class="language-plaintext highlighter-rouge">--labels=&lt;new_path_to_json_file&gt;</code>.
-Spam scores are stored in the folder <code class="language-plaintext highlighter-rouge">./identification</code> in the <code class="language-plaintext highlighter-rouge">spam_score.npy</code> file.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Weighted with Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/WDS/" rel="alternate" type="text/html" title="Weighted with Dawid and Skene" /><published>2023-08-09T00:00:00+00:00</published><updated>2023-08-09T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/wds</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/WDS/"><![CDATA[<h2 id="model">Model</h2>
+<p>This creates a file named <code class="language-plaintext highlighter-rouge">krippendorff_alpha.npy</code> saved in the <code class="language-plaintext highlighter-rouge">./identification</code> folder.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Weighted with Dawid and Skene</title><link href="https://github.com/pages/peerannot/peerannot/models/WDS/" rel="alternate" type="text/html" title="Weighted with Dawid and Skene" /><published>2023-08-09T00:00:00+00:00</published><updated>2023-08-09T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/wds</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/WDS/"><![CDATA[<h2 id="model">Model</h2>
 
 <p>Following the [DS][/models/DS] model, one can use the diagonal of the estimated confusion matrices ${\pi^{(j)}}_{j\in [n_\text{worker}]}$ to create a weighted soft label as follows:</p>
 
@@ -99,7 +171,36 @@ From the multiple answers, we can compute the frequency of each answers per labe
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannot identify <span class="nb">.</span> <span class="nt">-s</span> entropy <span class="nt">-K</span> 10
 </code></pre></div></div>
 
-<p>This creates a file named <code class="language-plaintext highlighter-rouge">entropy.npy</code> saved in the <code class="language-plaintext highlighter-rouge">./identification</code> folder.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">CrowdLayer</title><link href="https://github.com/pages/peerannot/peerannot/models/crowdlayer/" rel="alternate" type="text/html" title="CrowdLayer" /><published>2023-08-08T00:00:00+00:00</published><updated>2023-08-08T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/crowdlayer</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/crowdlayer/"><![CDATA[<h2 id="crowdlayer-rodrigues-et-al-2018">Crowdlayer (Rodrigues et. al 2018)</h2>
+<p>This creates a file named <code class="language-plaintext highlighter-rouge">entropy.npy</code> saved in the <code class="language-plaintext highlighter-rouge">./identification</code> folder.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Spam score</title><link href="https://github.com/pages/peerannot/peerannot/models/spam_score/" rel="alternate" type="text/html" title="Spam score" /><published>2023-08-09T00:00:00+00:00</published><updated>2023-08-09T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/spam-score</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/spam_score/"><![CDATA[<h2 id="identification-step">Identification step</h2>
+
+<p>The spam score was introduced by Raykar et. al (2012).
+A spammer can be defined as someone answered independently of the true label <em>i.e.</em></p>
+
+\[\mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell) = \mathbb{P}(y_i^{(j)}=k\ | y_i^\star =\ell')\ \forall (k,\ell, \ell') \in [K]^3.\]
+
+<p>Let $\alpha_{\ell k}^{(j)} = \mathbb{P}(y_i^{(j)}=k\ |\ y_i^\star =\ell)$.
+Then for a spammer $\alpha_{\ell k}^{(j)} = \alpha_{\ell’ k}^{(j)}\ \forall (k,\ell,\ell’) \in [K]^3$.
+We can store them in a confusion matrix $ \pi^{(j)}\in\mathbb{R}^{K\times K} $ such that $ \pi^{(j)}_{\ell,k}=\alpha^{(j)}_{\ell,k} $.</p>
+
+<p>A perfect spammer will have equal rows, leading to a matrix of rank $1$.
+The spam score $s^{(j)}$ is thus defined as the distance to the closest rank one approximation of the confusion matrix $\pi^{(j)}$.
+More formally:</p>
+
+\[s^{(j)} = \|\pi^{(j)} - e\hat v_j^\top \|_F^2 \quad \text{s.t } \hat v_j = \arg\min_{v_j} \|\pi^{(j)}-ev_j^\top \|_F^2,\ v_j^\top e=1 \enspace.\]
+
+<p>Solving this optimization problem, we obtain that a perfect worker has $s^{(j)}=K-1$. We can normalize the scores and obtain the following explicit formula:</p>
+
+\[s^{(j)}= \frac{1}{K(K-1)} \sum_{\ell\leq \ell'} \sum_k (\alpha^{(j)}_{\ell,k} - \alpha^{(j)}_{\ell',k})^2 \enspace.\]
+
+<h2 id="cli">CLI</h2>
+
+<p>To run the spammer identification in a classification problem with $K=10$ classes, we use the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannot identify <span class="nb">.</span> <span class="nt">-s</span> spam_score <span class="nt">-K</span> 10
+</code></pre></div></div>
+
+<p>Label file can be modified using the argument <code class="language-plaintext highlighter-rouge">--labels=&lt;new_path_to_json_file&gt;</code>.
+Spam scores are stored in the folder <code class="language-plaintext highlighter-rouge">./identification</code> in the <code class="language-plaintext highlighter-rouge">spam_score.npy</code> file.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">CrowdLayer</title><link href="https://github.com/pages/peerannot/peerannot/models/crowdlayer/" rel="alternate" type="text/html" title="CrowdLayer" /><published>2023-08-08T00:00:00+00:00</published><updated>2023-08-08T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/crowdlayer</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/crowdlayer/"><![CDATA[<h2 id="crowdlayer-rodrigues-et-al-2018">Crowdlayer (Rodrigues et. al 2018)</h2>
 
 <p>Given the output $z_i=\mathcal{C}(x_i)$, CrowdLayer introduce worker specific noise as an added layer to the network such that</p>
 
@@ -259,74 +360,6 @@ Must contain the number of workers <code class="language-plaintext highlighter-r
 <p><code class="language-plaintext highlighter-rouge">run(epsilon=1e-4, maxiter=100)</code></p>
 
 <p>Returns label estimates, confusion matrices, prevalence $\rho$ and number of iterations before the ELBO convergence between two iterates is satisfied.</p>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">get_probas()</code></p>
-
-<p>Returns the distribution of voted classes from the <code class="language-plaintext highlighter-rouge">baseline</code>.</p>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">get_answers()</code></p>
-
-<p>Returns the most voted class from the <code class="language-plaintext highlighter-rouge">baseline</code>. In case of equalities, a random choice is applied.</p>]]></content><author><name></name></author><category term="[&quot;doc&quot;]" /><category term="models" /><summary type="html"><![CDATA[Models available in peerannot]]></summary></entry><entry><title type="html">Naive Soft</title><link href="https://github.com/pages/peerannot/peerannot/models/NaiveSoft/" rel="alternate" type="text/html" title="Naive Soft" /><published>2023-04-14T00:00:00+00:00</published><updated>2023-04-14T00:00:00+00:00</updated><id>https://github.com/pages/peerannot/peerannot/models/NaiveSoft</id><content type="html" xml:base="https://github.com/pages/peerannot/peerannot/models/NaiveSoft/"><![CDATA[<!-- https://math.meta.stackexchange.com/questions/33302/double-struck-1-in-mathjax -->
-
-<h2 id="model">Model</h2>
-
-<p>The Naive Soft model returns the empirical distribution overs answered for each task:</p>
-
-\[\DeclareMathOperator*{\argmax}{argmax}
-\hat y_i = \big( \frac{1}{|n_\texttt{worker|}}\sum_{j\in [n_\texttt{worker}]}  \unicode{x1D7D9}_{\{y_i^{(j)}=k\}}\big).\]
-
-<h2 id="cli">CLI</h2>
-<p>With <code class="language-plaintext highlighter-rouge">peerannot</code> in a terminal located in the directory of answers, the DS model can be used as follows.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>peerannnot aggregate <span class="nb">.</span> <span class="nt">--strategy</span> NaiveSoft <span class="nt">--answers-file</span> answers.json
-</code></pre></div></div>
-
-<p>Note that by default, if the answers are in a file names <code class="language-plaintext highlighter-rouge">answers.json</code> the <code class="language-plaintext highlighter-rouge">--answers-file</code> argument can be omitted.</p>
-
-<h2 id="api">API</h2>
-
-<p>Import the aggregation model in the current session</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">peerannot.models</span> <span class="kn">import</span> <span class="n">NaiveSoft</span> <span class="k">as</span> <span class="n">NS</span>
-</code></pre></div></div>
-
-<p>Assuming the answers are in a dictionary names <code class="language-plaintext highlighter-rouge">answers</code> then run:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ns</span> <span class="o">=</span> <span class="n">NS</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
-<span class="n">yhat</span> <span class="o">=</span> <span class="n">ns</span><span class="p">.</span><span class="n">get_probas</span><span class="p">()</span>
-</code></pre></div></div>
-
-<p>Note that the Naive Soft aggregation produces labels in the simplex by default.</p>
-
-<h2 id="api-details-class-modelsnaivesoft">API details: class models.NaiveSoft</h2>
-<p>NS model class inherits from <code class="language-plaintext highlighter-rouge">CrowdModel</code></p>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">__init__(answers, n_classes,**kwargs)</code></p>
-
-<p>Parameters:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">answers</code>:<em>(dict)</em>
-Dictionnary of workers answers with format
-    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-          </span><span class="p">{</span><span class="w">
-              </span><span class="err">task</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">0</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">,</span><span class="w"> </span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">},</span><span class="w">
-              </span><span class="err">task</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="err">worker</span><span class="mi">1</span><span class="err">:</span><span class="w"> </span><span class="err">label</span><span class="p">}</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-</span></code></pre></div>    </div>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">n_classes</code>: <em>(int)</em>
-Number of possible classes</li>
-  <li><code class="language-plaintext highlighter-rouge">kwargs</code>: <em>(dict)</em>
-Dictionary that can contain <code class="language-plaintext highlighter-rouge">path_remove</code> to remove tasks identified from the <a href="/models/WAUM"><code class="language-plaintext highlighter-rouge">WAUM</code></a> or another method.</li>
-</ul>
-
-<hr />
-<p><code class="language-plaintext highlighter-rouge">compute_baseline()</code></p>
-
-<p>For each given task, computes the number of votes for each label.</p>
 
 <hr />
 <p><code class="language-plaintext highlighter-rouge">get_probas()</code></p>
