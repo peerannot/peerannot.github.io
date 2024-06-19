@@ -1,0 +1,10 @@
+﻿WAUM\_perworker
+===============
+
+.. currentmodule:: peerannot.models.identification.WAUM_perworker
+
+.. autoclass:: WAUM_perworker
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.identification.WAUM_perworker.WAUM_perworker:

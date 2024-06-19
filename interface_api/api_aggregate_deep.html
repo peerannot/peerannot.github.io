@@ -4,37 +4,39 @@
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="docsearch:name" content="peerannot" />
     <meta name="docsearch:package_type" content="" />
     <meta name="docsearch:release" content="0.0.1.post41" />
     <meta name="docsearch:version" content="0.0.1.post41" />
     
-      <title>Search &mdash; peerannot 0.0.1.post41 documentation</title>
+      <title>API aggregate_deep &mdash; peerannot 0.0.1.post41 documentation</title>
     
-      <link rel="icon" href="_static/logo.png" />
-    <link rel="stylesheet" href="_static/bootstrap-icons.css" type="text/css" />
+      <link rel="icon" href="../_static/logo.png" />
+    <link rel="stylesheet" href="../_static/bootstrap-icons.css" type="text/css" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments.css', priority=200, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/copybutton.css', priority=500, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+          <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments_dark.css', priority=500, rel='stylesheet', type='text/css', media='(prefers-color-scheme: dark)', id='pygments_dark_css')" -->
-          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=b20cc3f5" />
+          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/sphinx-design.min.css', priority=500, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+          <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css', priority=500, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/nunito/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="_static/fonts/nunito/stylesheet.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/nunito/stylesheet.css" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/red-hat-mono/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="_static/fonts/red-hat-mono/stylesheet.css" />
-        <link rel="index" title="Index" href="genindex.html" />
-        <link rel="search" title="Search" href="#" />
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/red-hat-mono/stylesheet.css" />
+        <link rel="index" title="Index" href="../genindex.html" />
+        <link rel="search" title="Search" href="../search.html" />
         <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
-    
-  <script src="searchindex.js" defer></script>
-  
-<style>
+        <link rel="up" title="API Reference" href="index.html" />
+        <link rel="next" title="CoNAL" href="generated/peerannot.models.agg_deep.CoNAL.CoNAL.html" />
+        <link rel="prev" title="WDS" href="generated/peerannot.models.aggregation.WDS.WDS.html" />
+    <style>
       :root {
         --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
         --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
@@ -58,7 +60,7 @@
             <i class="bi bi-list"></i>
           </button>
         </div>
-          <a href="index.html"
+          <a href="../index.html"
               
               class="navbar-brand p-0 me-0 md-lg-2"
           ><span class="brand-text">peerannot</span></a>
@@ -72,7 +74,28 @@
           </button>
         </div>
         
-<div class="flex-grow-1"></div>
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="../search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
         <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
           <div class="offcanvas-header px-4 pb-0">
             <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-text">Nefertiti for Sphinx</span></div>
@@ -152,18 +175,18 @@
       <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
     </div>
     <ul>
-<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
 </ul>
 
   </nav>
@@ -179,44 +202,30 @@
           </div>
         </aside>
         <article id="content" class="nftt-content" role="main">
-  <h1 id="search-documentation">Search</h1>
-  
-  <noscript>
-    <div id="fallback" class="admonition warning">
-      <p class="last">
-        Please activate JavaScript to enable the search
-        functionality.
-      </p>
-    </div>
-  </noscript>
-  
-  
-  <p>
-    Searching for multiple words only shows matches that contain
-    all words.
-  </p>
-  
+    <section id="module-peerannot.models.agg_deep">
+<span id="id1"></span><span id="api-aggregate-deep"></span><h1>API aggregate_deep<a class="headerlink" href="#module-peerannot.models.agg_deep" title="Link to this heading">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">aggregate-deep</span></code> strategies are end-to-end strategies that include an aggregation-like layer in the architecture of the computer vision model.</p>
+<p>All computer vision models that can be used for training are available through the <code class="docutils literal notranslate"><span class="pre">Torchvision</span></code> library and can be found running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">peerannot<span class="w"> </span>modelinfo</span>
+</pre></div></div><p>All aggregation-based strategies are available running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">peerannot<span class="w"> </span>agginfo</span>
+</pre></div></div><p>All strategies are located at <cite>this direction on GitHub &lt;https://github.com/peerannot/peerannot/tree/main/peerannot/models/agg_deep&gt;</cite></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/peerannot.models.agg_deep.CoNAL.CoNAL.html#peerannot.models.agg_deep.CoNAL.CoNAL" title="peerannot.models.agg_deep.CoNAL.CoNAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoNAL.CoNAL</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/peerannot.models.agg_deep.Crowdlayer.Crowdlayer.html#peerannot.models.agg_deep.Crowdlayer.Crowdlayer" title="peerannot.models.agg_deep.Crowdlayer.Crowdlayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Crowdlayer.Crowdlayer</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 
-  
-  <form id="nftt-search-form" action="#" method="get">
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-    <div class="row">
-      <div class="col-auto">
-        <div class="input-group input-group-lg">
-        <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
-        <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
-      </div>
-    </div>
-  </form>
-  
-
-  
-  
-  <div id="search-results">
-    
-  </div>
-  
 </article>
         <aside class="nftt-toc">
           
@@ -225,8 +234,30 @@
     </div>
 
     <footer class="nftt-footer">
-      
-<nav id="paginator"></nav>
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="generated/peerannot.models.aggregation.WDS.WDS.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: WDS">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">WDS</span>
+              </div>
+            </a>
+          </li>
+        <li class="page-item ms-auto">
+            <a href="generated/peerannot.models.agg_deep.CoNAL.CoNAL.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: CoNAL">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">CoNAL</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
 
       <div class="py-5 px-4 px-md-3">
   <div class="container">
@@ -252,19 +283,16 @@
   </div>
 </div>
     </footer>
-    
-    <script src="_static/documentation_options.js?v=ddba79f2"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=30646c52"></script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <script src="../_static/documentation_options.js?v=ddba79f2"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
 
-    <script type="text/javascript" src="_static/sphinx-nefertiti-0.3.2.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap.bundle-0.3.2.min.js"></script>
+    <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>
     
-    <script type="text/javascript" src="_static/doc_versions.js"></script>
+    <script type="text/javascript" src="../_static/doc_versions.js"></script>
   </body>
 </html>

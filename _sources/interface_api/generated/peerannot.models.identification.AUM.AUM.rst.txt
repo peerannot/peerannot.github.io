@@ -1,0 +1,10 @@
+﻿AUM
+===
+
+.. currentmodule:: peerannot.models.identification.AUM
+
+.. autoclass:: AUM
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.identification.AUM.AUM:

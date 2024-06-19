@@ -1,0 +1,10 @@
+﻿Dawid\_Skene
+============
+
+.. currentmodule:: peerannot.models.aggregation.DS
+
+.. autoclass:: Dawid_Skene
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.DS.Dawid_Skene:

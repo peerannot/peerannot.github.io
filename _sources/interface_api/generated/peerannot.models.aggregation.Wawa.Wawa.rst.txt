@@ -1,0 +1,10 @@
+﻿Wawa
+====
+
+.. currentmodule:: peerannot.models.aggregation.Wawa
+
+.. autoclass:: Wawa
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.Wawa.Wawa:

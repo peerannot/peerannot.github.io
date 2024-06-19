@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="docsearch:name" content="peerannot" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="0.0.1.post41" />
+    <meta name="docsearch:version" content="0.0.1.post41" />
+    
+      <title>Add a dataset to peerannot &mdash; peerannot 0.0.1.post41 documentation</title>
+    
+      <link rel="icon" href="../_static/logo.png" />
+    <link rel="stylesheet" href="../_static/bootstrap-icons.css" type="text/css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments.css', priority=200, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/copybutton.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments_dark.css', priority=500, rel='stylesheet', type='text/css', media='(prefers-color-scheme: dark)', id='pygments_dark_css')" -->
+          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/sphinx-design.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/nunito/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/nunito/stylesheet.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/red-hat-mono/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/red-hat-mono/stylesheet.css" />
+        <link rel="index" title="Index" href="../genindex.html" />
+        <link rel="search" title="Search" href="../search.html" />
+        <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
+        <link rel="up" title="Tutorials" href="index.html" />
+        <link rel="next" title="Add a strategy in peerannot" href="add_strategy.html" />
+        <link rel="prev" title="Tutorials" href="index.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);}
+      h1 *, h2 *, h3 *, h4 *, h5 *, h6 * { font-size: inherit; }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-xl navbar-dark nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to docs navigation</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-wrap flex-xl-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="../index.html"
+              
+              class="navbar-brand p-0 me-0 md-lg-2"
+          ><span class="brand-text">peerannot</span></a>
+        
+        <div class="d-flex d-xl-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="../search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-text">Nefertiti for Sphinx</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+            <hr class="d-xl-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-lg-auto">
+              
+              <!-- version_dropdown.html -->
+
+              
+              <!-- colorscheme_dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle light/dark">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-xl-none small ms-2">Toggle light/dark</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Light/dark</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="small ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="small ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="small ms-3">Default</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid flex-grow-1">
+      <div class="nftt-gutter nftt-page">
+        <aside class="nftt-sidebar ">
+          <div class="nftt-sidebar-content">
+            
+            <div class="title d-none d-xl-block">
+              <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
+            </div>
+            <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+                <!-- danirus sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
+    Table of contents
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pt-3 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
+    </div>
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Add a dataset to peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_strategy.html">Add a strategy in peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+            </div>
+            
+          </div>
+        </aside>
+        <article id="content" class="nftt-content" role="main">
+    <section id="add-a-dataset-to-peerannot">
+<span id="add-dataset"></span><h1>Add a dataset to peerannot<a class="headerlink" href="#add-a-dataset-to-peerannot" title="Link to this heading">¶</a></h1>
+<p>This tutorial shows how to add a new dataset in <code class="docutils literal notranslate"><span class="pre">peerannot</span></code>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If not yet done, please go to <a class="reference internal" href="../get_started.html#get-started"><span class="std std-ref">get started page</span></a> to install the <code class="docutils literal notranslate"><span class="pre">peerannot</span></code> library.</p>
+</div>
+<section id="what-is-a-dataset">
+<h2>What is a dataset?<a class="headerlink" href="#what-is-a-dataset" title="Link to this heading">¶</a></h2>
+<p>Datasets are located in the <cite>datasets/</cite> directory.
+You can create a new dataset by creating a new directory in <cite>datasets/</cite> and adding the following files:</p>
+<ul class="simple">
+<li><p><cite>mydataset.py</cite> containing how to install the dataset</p></li>
+<li><p><cite>metadata.json</cite> containing all relevant information about the dataset</p></li>
+<li><p><cite>answers.json</cite> a <cite>.json</cite> file containing the answers to the questions asked in the crowdsourced experiment</p></li>
+</ul>
+<p>If the task images are also available, they can be installed in the <cite>mydataset.py</cite> file using the <cite>setfolders</cite> method.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">datasets/mydataset/mydataset.py</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="k">class</span> <span class="nc">MyDataset</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;mydataset&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="o">...</span>  <span class="c1"># download all necessary files</span>
+
+    <span class="k">def</span> <span class="nf">setfolders</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># split data into train/val/test folders</span>
+        <span class="n">selg</span><span class="o">.</span><span class="n">get_crowd_labels</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_crowd_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># save the crowd labels in a .json file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DIR</span> <span class="o">/</span> <span class="s2">&quot;answers.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">answ</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">mylabels</span><span class="p">,</span> <span class="n">answ</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The dataset folder should look like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mydataset/
+├──<span class="w"> </span>mydataset.py<span class="w">     </span><span class="c1"># install file</span>
+├──<span class="w"> </span>train/
+│<span class="w">   </span>├──<span class="w"> </span>...<span class="w">          </span><span class="c1"># existing images with crowd labels</span>
+├──<span class="w"> </span>val/
+│<span class="w">   </span>├──<span class="w"> </span>...<span class="w">          </span><span class="c1"># existing images for validation</span>
+├──<span class="w"> </span>test/
+│<span class="w">   </span>├──<span class="w"> </span>...<span class="w">          </span><span class="c1"># existing images with known labels</span>
+├──<span class="w"> </span>answers.json<span class="w">     </span><span class="c1"># crowdsourced answers</span>
+└──<span class="w"> </span>metadata.json<span class="w">    </span><span class="c1"># dataset information</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+</article>
+        <aside class="nftt-toc">
+          
+          <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link link-dark p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">Add a dataset to peerannot</a><ul>
+<li><a class="reference internal" href="#what-is-a-dataset">What is a dataset?</a></li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
+          
+        </aside>
+      </div>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="index.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: Tutorials">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">Tutorials</span>
+              </div>
+            </a>
+          </li>
+        <li class="page-item ms-auto">
+            <a href="add_strategy.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: Add a strategy in peerannot">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">Add a strategy in peerannot</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="Nefertiti-for-Sphinx">
+          <span class="fs-6 fw-bold">peerannot</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2023-2024</li>
+          </ul>
+        
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.3.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.3.2</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+    <script src="../_static/documentation_options.js?v=ddba79f2"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+
+    <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/doc_versions.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+﻿TwoThird
+========
+
+.. currentmodule:: peerannot.models.aggregation.twothird
+
+.. autoclass:: TwoThird
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.twothird.TwoThird:

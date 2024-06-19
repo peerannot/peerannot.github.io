@@ -1,0 +1,10 @@
+﻿Spam\_Score
+===========
+
+.. currentmodule:: peerannot.models.identification.Spam_score
+
+.. autoclass:: Spam_Score
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.identification.Spam_score.Spam_Score:

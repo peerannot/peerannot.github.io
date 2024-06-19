@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="docsearch:name" content="peerannot" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="0.0.1.post41" />
+    <meta name="docsearch:version" content="0.0.1.post41" />
+    
+      <title>GLAD &mdash; peerannot 0.0.1.post41 documentation</title>
+    
+      <link rel="icon" href="../../_static/logo.png" />
+    <link rel="stylesheet" href="../../_static/bootstrap-icons.css" type="text/css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments.css', priority=200, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/copybutton.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments_dark.css', priority=500, rel='stylesheet', type='text/css', media='(prefers-color-scheme: dark)', id='pygments_dark_css')" -->
+          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css?v=b20cc3f5" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/sphinx-design.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../../_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/nunito/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../../_static/fonts/nunito/stylesheet.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/red-hat-mono/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../../_static/fonts/red-hat-mono/stylesheet.css" />
+        <link rel="index" title="Index" href="../../genindex.html" />
+        <link rel="search" title="Search" href="../../search.html" />
+        <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
+        <link rel="up" title="API aggregate" href="../api_aggregate.html" />
+        <link rel="next" title="PlantNet" href="peerannot.models.aggregation.plantnet.PlantNet.html" />
+        <link rel="prev" title="Dawid_Skene" href="peerannot.models.aggregation.DS.Dawid_Skene.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);}
+      h1 *, h2 *, h3 *, h4 *, h5 *, h6 * { font-size: inherit; }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-xl navbar-dark nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to docs navigation</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-wrap flex-xl-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="../../index.html"
+              
+              class="navbar-brand p-0 me-0 md-lg-2"
+          ><span class="brand-text">peerannot</span></a>
+        
+        <div class="d-flex d-xl-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="../../search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-text">Nefertiti for Sphinx</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+            <hr class="d-xl-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-lg-auto">
+              
+              <!-- version_dropdown.html -->
+
+              
+              <!-- colorscheme_dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle light/dark">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-xl-none small ms-2">Toggle light/dark</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Light/dark</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="small ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="small ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="small ms-3">Default</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid flex-grow-1">
+      <div class="nftt-gutter nftt-page">
+        <aside class="nftt-sidebar ">
+          <div class="nftt-sidebar-content">
+            
+            <div class="title d-none d-xl-block">
+              <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
+            </div>
+            <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+                <!-- danirus sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
+    Table of contents
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pt-3 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
+    </div>
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Get started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+            </div>
+            
+          </div>
+        </aside>
+        <article id="content" class="nftt-content" role="main">
+    <section id="glad">
+<h1>GLAD<a class="headerlink" href="#glad" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GLAD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">answers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD" title="Link to this definition">¶</a></dt>
+<dd><section id="glad-whitehill-et-al-2009">
+<h2>GLAD (Whitehill et. al 2009)<a class="headerlink" href="#glad-whitehill-et-al-2009" title="Link to this heading">¶</a></h2>
+<p>Each worker ability is modeled using one scalar.
+Each task has a difficulty level represented as a positive scalar.
+Knowing these coefficients, the probability to have the right answer is a sigmoid of their product.</p>
+<p>Assumption:
+- The errors are uniform over classes</p>
+<p>Using:
+- One scalar per task and worker (task difficulty and worker ability)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">answers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>The probability of a worker to give the right answer is a sigmoid (denoted <span class="math notranslate nohighlight">\(\mathrm{sig}\)</span>) of the product of the worker ability <span class="math notranslate nohighlight">\(\alpha_j\)</span> and the task difficulty <span class="math notranslate nohighlight">\(\beta_i\)</span>. Given a label <span class="math notranslate nohighlight">\(k\in [K]\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{P}(y_i^{(j)}=k |y_i^\star=k, \alpha_j,\beta_i) = \mathrm{sig}(\alpha_j\beta_i) = \frac{1}{1+e^{-\alpha_j\beta_i}} \enspace.\]</div>
+<p>And the following likelihood is maximized:</p>
+<div class="math notranslate nohighlight">
+\[\prod_{i\in[n_\text{task}]} \prod_{k\in[K]}\mathbb{P}(y_i^\star=k)\prod_{j\in [n_\text{worker}]} \left(\frac{1}{K-1}\left(1-\mathrm{sig}(\alpha_j\beta_i)\right)\right)^{1-\mathbf{1}_{\{y_i^{(j)}=k\}}}\mathrm{sig}(\alpha_j\beta_i)^{\mathbf{1}_{\{y_i^{(j)}=k\}}} \enspace.\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>answers</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – <p>Dictionary of workers answers with format</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nx">task0</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">worker0</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">,</span><span class="w"> </span><span class="nx">worker1</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">},</span>
+<span class="w">    </span><span class="nx">task1</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">worker1</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>n_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of possible classes</p></li>
+<li><p><strong>dataset</strong> (<em>path</em>) – path to where model estimated parameters are stores Defaults to the current directory</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.EM">
+<span class="sig-name descname"><span class="pre">EM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.EM" title="Link to this definition">¶</a></dt>
+<dd><p>Infer true labels, tasks’ difficulty and workers’ ability</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.calcLogProbL">
+<span class="sig-name descname"><span class="pre">calcLogProbL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.calcLogProbL" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the log probability of a label given the task and worker parameters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.EStep">
+<span class="sig-name descname"><span class="pre">EStep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.EStep" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluate the posterior probability of true labels given observed labels and parameters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.packX">
+<span class="sig-name descname"><span class="pre">packX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.packX" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.unpackX">
+<span class="sig-name descname"><span class="pre">unpackX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.unpackX" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.getBoundsX">
+<span class="sig-name descname"><span class="pre">getBoundsX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-100,</span> <span class="pre">100)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-100,</span> <span class="pre">100)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.getBoundsX" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.f">
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.f" title="Link to this definition">¶</a></dt>
+<dd><p>Return the value of the objective function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.df">
+<span class="sig-name descname"><span class="pre">df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.df" title="Link to this definition">¶</a></dt>
+<dd><p>Return gradient vector</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.MStep">
+<span class="sig-name descname"><span class="pre">MStep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.MStep" title="Link to this definition">¶</a></dt>
+<dd><p>Maximization step</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.computeQ">
+<span class="sig-name descname"><span class="pre">computeQ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.computeQ" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the expectation of the joint likelihood</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.dAlpha">
+<span class="sig-name descname"><span class="pre">dAlpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.dAlpha" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the derivative of the objective function with respect to the worker ability</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.dBeta">
+<span class="sig-name descname"><span class="pre">dBeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.dBeta" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the derivative of the objective function with respect to the task difficulty</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.gradientQ">
+<span class="sig-name descname"><span class="pre">gradientQ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.gradientQ" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.run" title="Link to this definition">¶</a></dt>
+<dd><p>Run the label aggregation via EM algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – tolerance hyperparameter, relative change in likelihood, defaults to 1e-5</p></li>
+<li><p><strong>maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of iterations, defaults to 100</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.get_probas">
+<span class="sig-name descname"><span class="pre">get_probas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.get_probas" title="Link to this definition">¶</a></dt>
+<dd><p>Get soft labels distribution for each task</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Soft labels</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1.dev0)">numpy.ndarray</a>(n_task, n_classes)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.get_answers">
+<span class="sig-name descname"><span class="pre">get_answers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.get_answers" title="Link to this definition">¶</a></dt>
+<dd><p>Argmax of soft labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Hard labels</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1.dev0)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.save_difficulty">
+<span class="sig-name descname"><span class="pre">save_difficulty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.save_difficulty" title="Link to this definition">¶</a></dt>
+<dd><p>Save  task difficulty coefficients</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – path folder</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="peerannot.models.aggregation.GLAD.GLAD.save_ability">
+<span class="sig-name descname"><span class="pre">save_ability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.aggregation.GLAD.GLAD.save_ability" title="Link to this definition">¶</a></dt>
+<dd><p>Save  worker ability coefficients</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – path folder</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<span class="target" id="sphx-glr-backreferences-peerannot-models-aggregation-glad-glad"></span></section>
+
+</article>
+        <aside class="nftt-toc">
+          
+          <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link link-dark p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">GLAD</a><ul>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD"><code class="docutils literal notranslate"><span class="pre">GLAD</span></code></a><ul>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.__init__"><code class="docutils literal notranslate"><span class="pre">GLAD.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.EM"><code class="docutils literal notranslate"><span class="pre">GLAD.EM()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.calcLogProbL"><code class="docutils literal notranslate"><span class="pre">GLAD.calcLogProbL()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.EStep"><code class="docutils literal notranslate"><span class="pre">GLAD.EStep()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.packX"><code class="docutils literal notranslate"><span class="pre">GLAD.packX()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.unpackX"><code class="docutils literal notranslate"><span class="pre">GLAD.unpackX()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.getBoundsX"><code class="docutils literal notranslate"><span class="pre">GLAD.getBoundsX()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.f"><code class="docutils literal notranslate"><span class="pre">GLAD.f()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.df"><code class="docutils literal notranslate"><span class="pre">GLAD.df()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.MStep"><code class="docutils literal notranslate"><span class="pre">GLAD.MStep()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.computeQ"><code class="docutils literal notranslate"><span class="pre">GLAD.computeQ()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.dAlpha"><code class="docutils literal notranslate"><span class="pre">GLAD.dAlpha()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.dBeta"><code class="docutils literal notranslate"><span class="pre">GLAD.dBeta()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.gradientQ"><code class="docutils literal notranslate"><span class="pre">GLAD.gradientQ()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.run"><code class="docutils literal notranslate"><span class="pre">GLAD.run()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.get_probas"><code class="docutils literal notranslate"><span class="pre">GLAD.get_probas()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.get_answers"><code class="docutils literal notranslate"><span class="pre">GLAD.get_answers()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.save_difficulty"><code class="docutils literal notranslate"><span class="pre">GLAD.save_difficulty()</span></code></a></li>
+<li><a class="reference internal" href="#peerannot.models.aggregation.GLAD.GLAD.save_ability"><code class="docutils literal notranslate"><span class="pre">GLAD.save_ability()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
+          
+        </aside>
+      </div>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="peerannot.models.aggregation.DS.Dawid_Skene.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: Dawid_Skene">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">Dawid_Skene</span>
+              </div>
+            </a>
+          </li>
+        <li class="page-item ms-auto">
+            <a href="peerannot.models.aggregation.plantnet.PlantNet.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: PlantNet">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">PlantNet</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="Nefertiti-for-Sphinx">
+          <span class="fs-6 fw-bold">peerannot</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2023-2024</li>
+          </ul>
+        
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.3.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.3.2</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+    <script src="../../_static/documentation_options.js?v=ddba79f2"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=30646c52"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script type="text/javascript" src="../../_static/sphinx-nefertiti-0.3.2.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap.bundle-0.3.2.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/doc_versions.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+﻿GLAD
+====
+
+.. currentmodule:: peerannot.models.aggregation.GLAD
+
+.. autoclass:: GLAD
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.GLAD.GLAD:

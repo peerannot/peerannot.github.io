@@ -1,0 +1,10 @@
+﻿Entropy
+=======
+
+.. currentmodule:: peerannot.models.identification.entropy
+
+.. autoclass:: Entropy
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.identification.entropy.Entropy:

@@ -1,0 +1,10 @@
+﻿Krippendorff\_Alpha
+===================
+
+.. currentmodule:: peerannot.models.identification.krippendorff_alpha
+
+.. autoclass:: Krippendorff_Alpha
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.identification.krippendorff_alpha.Krippendorff_Alpha:

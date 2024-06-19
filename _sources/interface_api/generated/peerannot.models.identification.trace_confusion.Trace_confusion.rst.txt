@@ -1,0 +1,10 @@
+﻿Trace\_confusion
+================
+
+.. currentmodule:: peerannot.models.identification.trace_confusion
+
+.. autoclass:: Trace_confusion
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.identification.trace_confusion.Trace_confusion:

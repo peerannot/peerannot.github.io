@@ -1,0 +1,10 @@
+﻿WAUM
+====
+
+.. currentmodule:: peerannot.models.identification.WAUM
+
+.. autoclass:: WAUM
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.identification.WAUM.WAUM:

@@ -1,0 +1,10 @@
+﻿MV
+==
+
+.. currentmodule:: peerannot.models.aggregation.MV
+
+.. autoclass:: MV
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.MV.MV:

@@ -1,0 +1,10 @@
+﻿PlantNet
+========
+
+.. currentmodule:: peerannot.models.aggregation.plantnet
+
+.. autoclass:: PlantNet
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.plantnet.PlantNet:

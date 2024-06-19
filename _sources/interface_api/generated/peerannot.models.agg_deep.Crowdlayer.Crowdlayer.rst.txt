@@ -1,0 +1,10 @@
+﻿Crowdlayer
+==========
+
+.. currentmodule:: peerannot.models.agg_deep.Crowdlayer
+
+.. autoclass:: Crowdlayer
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.agg_deep.Crowdlayer.Crowdlayer:

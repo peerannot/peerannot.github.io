@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="docsearch:name" content="peerannot" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="0.0.1.post41" />
+    <meta name="docsearch:version" content="0.0.1.post41" />
+    
+      <title>CLI identify &mdash; peerannot 0.0.1.post41 documentation</title>
+    
+      <link rel="icon" href="../_static/logo.png" />
+    <link rel="stylesheet" href="../_static/bootstrap-icons.css" type="text/css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments.css', priority=200, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/copybutton.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments_dark.css', priority=500, rel='stylesheet', type='text/css', media='(prefers-color-scheme: dark)', id='pygments_dark_css')" -->
+          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/sphinx-design.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/nunito/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/nunito/stylesheet.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/red-hat-mono/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/red-hat-mono/stylesheet.css" />
+        <link rel="index" title="Index" href="../genindex.html" />
+        <link rel="search" title="Search" href="../search.html" />
+        <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
+        <link rel="up" title="CLI interface" href="index.html" />
+        <link rel="next" title="CLI simulate" href="cli_simulate.html" />
+        <link rel="prev" title="CLI aggregate_deep" href="cli_aggregate_deep.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);}
+      h1 *, h2 *, h3 *, h4 *, h5 *, h6 * { font-size: inherit; }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-xl navbar-dark nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to docs navigation</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-wrap flex-xl-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="../index.html"
+              
+              class="navbar-brand p-0 me-0 md-lg-2"
+          ><span class="brand-text">peerannot</span></a>
+        
+        <div class="d-flex d-xl-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="../search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-text">Nefertiti for Sphinx</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+            <hr class="d-xl-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-lg-auto">
+              
+              <!-- version_dropdown.html -->
+
+              
+              <!-- colorscheme_dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle light/dark">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-xl-none small ms-2">Toggle light/dark</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Light/dark</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="small ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="small ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="small ms-3">Default</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid flex-grow-1">
+      <div class="nftt-gutter nftt-page">
+        <aside class="nftt-sidebar ">
+          <div class="nftt-sidebar-content">
+            
+            <div class="title d-none d-xl-block">
+              <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
+            </div>
+            <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+                <!-- danirus sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
+    Table of contents
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pt-3 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
+    </div>
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+            </div>
+            
+          </div>
+        </aside>
+        <article id="content" class="nftt-content" role="main">
+    <section id="cli-identify">
+<span id="id1"></span><h1>CLI identify<a class="headerlink" href="#cli-identify" title="Link to this heading">¶</a></h1>
+<p>The help documentation is available in the terminal from:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">peerannot<span class="w"> </span>identify<span class="w"> </span>--help</span>
+</pre></div></div><section id="peerannot">
+<h2>peerannot<a class="headerlink" href="#peerannot" title="Link to this heading">¶</a></h2>
+<p>Identify ambiguous tasks using different methods available in <cite>peerannot identificationinfo</cite></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>peerannot<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>FOLDERPATH<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-hard-labels">
+<span class="sig-name descname"><span class="pre">--hard-labels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;hard_labels&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-hard-labels" title="Link to this definition">¶</a></dt>
+<dd><p>Path to file of hard labels (only for AUM)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-K">
+<span id="cmdoption-peerannot-n-classes"></span><span class="sig-name descname"><span class="pre">-K</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--n-classes</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_classes&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-K" title="Link to this definition">¶</a></dt>
+<dd><p>Number of classes</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-s">
+<span id="cmdoption-peerannot-method"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--method</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;method&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-s" title="Link to this definition">¶</a></dt>
+<dd><p>Method to find ambiguous tasks</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-labels">
+<span class="sig-name descname"><span class="pre">--labels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;labels&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-labels" title="Link to this definition">¶</a></dt>
+<dd><p>Path to file of crowdsourced answers</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-use-pleiss">
+<span class="sig-name descname"><span class="pre">--use-pleiss</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-use-pleiss" title="Link to this definition">¶</a></dt>
+<dd><p>Use Pleiss et. al (2020) margin instead of Yang’s</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-model">
+<span class="sig-name descname"><span class="pre">--model</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;model&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-model" title="Link to this definition">¶</a></dt>
+<dd><p>Name of neural network to use. The list is available at <cite>peerannot modelinfo</cite></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-n-epochs">
+<span class="sig-name descname"><span class="pre">--n-epochs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_epochs&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-n-epochs" title="Link to this definition">¶</a></dt>
+<dd><p>Number of training epochs</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-alpha">
+<span class="sig-name descname"><span class="pre">--alpha</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;alpha&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-alpha" title="Link to this definition">¶</a></dt>
+<dd><p>Cutoff hyperparameter</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-topk">
+<span class="sig-name descname"><span class="pre">--topk</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;topk&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-topk" title="Link to this definition">¶</a></dt>
+<dd><p>Use TopK WAUM with k=XXX</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-n-params">
+<span class="sig-name descname"><span class="pre">--n-params</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_params&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-n-params" title="Link to this definition">¶</a></dt>
+<dd><p>Number of parameters for the logistic regression only</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-lr">
+<span class="sig-name descname"><span class="pre">--lr</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;lr&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-lr" title="Link to this definition">¶</a></dt>
+<dd><p>Learning rate</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-pretrained">
+<span class="sig-name descname"><span class="pre">--pretrained</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-pretrained" title="Link to this definition">¶</a></dt>
+<dd><p>Use torch available weights to initialize the network</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-momentum">
+<span class="sig-name descname"><span class="pre">--momentum</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;momentum&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-momentum" title="Link to this definition">¶</a></dt>
+<dd><p>Momentum for the optimizer</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-metadata_path">
+<span class="sig-name descname"><span class="pre">--metadata_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;metadata_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-metadata_path" title="Link to this definition">¶</a></dt>
+<dd><p>Path to the metadata of the dataset if different than default</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-decay">
+<span class="sig-name descname"><span class="pre">--decay</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;decay&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-decay" title="Link to this definition">¶</a></dt>
+<dd><p>Weight decay for the optimizer</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-img-size">
+<span class="sig-name descname"><span class="pre">--img-size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;img_size&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-img-size" title="Link to this definition">¶</a></dt>
+<dd><p>Size of image (square)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-maxiter-DS">
+<span class="sig-name descname"><span class="pre">--maxiter-DS</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;maxiter_ds&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-maxiter-DS" title="Link to this definition">¶</a></dt>
+<dd><p>Maximum number of iterations for the Dawid and Skene algorithm</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-optim">
+<span id="cmdoption-peerannot-optimizer"></span><span class="sig-name descname"><span class="pre">-optim</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--optimizer</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;optimizer&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-optim" title="Link to this definition">¶</a></dt>
+<dd><p>Optimizer for the neural network</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-data-augmentation">
+<span class="sig-name descname"><span class="pre">--data-augmentation</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-data-augmentation" title="Link to this definition">¶</a></dt>
+<dd><p>Perform data augmentation on training set with a random choice between RandomAffine(shear=15), RandomHorizontalFlip(0.5) and RandomResizedCrop</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-freeze">
+<span class="sig-name descname"><span class="pre">--freeze</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-freeze" title="Link to this definition">¶</a></dt>
+<dd><p>Freeze all layers of the network except for the last one</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-matrix-file">
+<span class="sig-name descname"><span class="pre">--matrix-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;matrix_file&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-matrix-file" title="Link to this definition">¶</a></dt>
+<dd><p>Path to confusion matrices saved with an aggregation method like DS. If not provided, run DS model</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-0">
+<span class="sig-name descname"><span class="pre">--hard-labels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;hard_labels&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-0" title="Link to this definition">¶</a></dt>
+<dd><p>Path to file of hard labels</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-seed">
+<span class="sig-name descname"><span class="pre">--seed</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;seed&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-seed" title="Link to this definition">¶</a></dt>
+<dd><p>random seed</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-arg-FOLDERPATH">
+<span class="sig-name descname"><span class="pre">FOLDERPATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-arg-FOLDERPATH" title="Link to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+</section>
+
+</article>
+        <aside class="nftt-toc">
+          
+          <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link link-dark p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">CLI identify</a><ul>
+<li><a class="reference internal" href="#peerannot">peerannot</a></li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
+          
+        </aside>
+      </div>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="cli_aggregate_deep.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: CLI aggregate_deep">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">CLI aggregate_deep</span>
+              </div>
+            </a>
+          </li>
+        <li class="page-item ms-auto">
+            <a href="cli_simulate.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: CLI simulate">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">CLI simulate</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="Nefertiti-for-Sphinx">
+          <span class="fs-6 fw-bold">peerannot</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2023-2024</li>
+          </ul>
+        
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.3.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.3.2</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+    <script src="../_static/documentation_options.js?v=ddba79f2"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+
+    <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/doc_versions.js"></script>
+  </body>
+</html>

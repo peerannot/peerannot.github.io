@@ -1,0 +1,10 @@
+﻿CoNAL
+=====
+
+.. currentmodule:: peerannot.models.agg_deep.CoNAL
+
+.. autoclass:: CoNAL
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.agg_deep.CoNAL.CoNAL:

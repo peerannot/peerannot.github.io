@@ -1,0 +1,10 @@
+﻿IWMV
+====
+
+.. currentmodule:: peerannot.models.aggregation.IWMV
+
+.. autoclass:: IWMV
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.IWMV.IWMV:
