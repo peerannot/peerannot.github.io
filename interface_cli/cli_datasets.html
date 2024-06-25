@@ -33,6 +33,9 @@
         <link rel="index" title="Index" href="../genindex.html" />
         <link rel="search" title="Search" href="../search.html" />
         <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
+        <link rel="up" title="CLI interface" href="index.html" />
+        <link rel="next" title="Glossary" href="../glossary.html" />
+        <link rel="prev" title="CLI train" href="cli_train.html" />
     <style>
       :root {
         --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
@@ -178,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -210,8 +219,7 @@ span.prompt1:before {
 </pre></div></div><p>For either case, a Python file describing the installation will be needed.</p>
 <section id="example-datasets">
 <h2>Example datasets<a class="headerlink" href="#example-datasets" title="Link to this heading">¶</a></h2>
-<p>To install an example dataset, only the installation file is needed. For example
-want to install the <code class="docutils literal notranslate"><span class="pre">cifar10H</span></code> library, run:</p>
+<p>To install an example dataset, only the installation file is needed. For example if you want to install the <code class="docutils literal notranslate"><span class="pre">cifar10H</span></code> dataset, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span><span class="w"> </span>datasets/cifar10H<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>peerannot<span class="w"> </span>install<span class="w"> </span>cifar10h.py</span>
 </pre></div></div></section>
 <section id="custom-datasets">
@@ -247,83 +255,83 @@ where tasks are arranged inside folders per labels.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">peerannot<span class="w"> </span>install<span class="w"> </span>datasets/customDataset.py<span class="w"> </span>--train-path<span class="w"> </span>PATH_TO_TRAIN_DIR<span class="w"> </span>--answers-format<span class="w"> </span><span class="m">1</span><span class="w"> </span>--files-path<span class="w"> </span>PATH_TO_FILENAME_FILE/filenames.txt<span class="w"> </span>--answers<span class="w"> </span>PATH_TO_ANSWERS_FILE/answers.json<span class="w"> </span>--label-names<span class="w"> </span>PATH_TO_LABELNAMES_FILE/labelNames.txt</span>
 </pre></div></div><p>The help documentation is available in the terminal from:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">peerannot<span class="w"> </span>install<span class="w"> </span>--help</span>
-</pre></div></div><section id="peerannot">
-<h4>peerannot<a class="headerlink" href="#peerannot" title="Link to this heading">¶</a></h4>
+</pre></div></div><section id="peerannot-install">
+<h4>peerannot install<a class="headerlink" href="#peerannot-install" title="Link to this heading">¶</a></h4>
 <p>Install dataset from <cite>.py</cite> file</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>peerannot<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>PATH
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>peerannot<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>PATH
 </pre></div>
 </div>
 <p class="rubric">Options</p>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-no-task">
-<span class="sig-name descname"><span class="pre">--no-task</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-no-task" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-no-task">
+<span class="sig-name descname"><span class="pre">--no-task</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-install-no-task" title="Link to this definition">¶</a></dt>
 <dd><p>True if no task is associated with the dataset</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-answers-format">
-<span class="sig-name descname"><span class="pre">--answers-format</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;answers_format&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-answers-format" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-answers-format">
+<span class="sig-name descname"><span class="pre">--answers-format</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;answers_format&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-answers-format" title="Link to this definition">¶</a></dt>
 <dd><p>annotation file format</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-answers">
-<span class="sig-name descname"><span class="pre">--answers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;answers&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-answers" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-answers">
+<span class="sig-name descname"><span class="pre">--answers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;answers&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-answers" title="Link to this definition">¶</a></dt>
 <dd><p>annotation file</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-metadata">
-<span class="sig-name descname"><span class="pre">--metadata</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;metadata&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-metadata" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-metadata">
+<span class="sig-name descname"><span class="pre">--metadata</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;metadata&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-metadata" title="Link to this definition">¶</a></dt>
 <dd><p>metadata information file</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-label-names">
-<span class="sig-name descname"><span class="pre">--label-names</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;label_names&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-label-names" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-label-names">
+<span class="sig-name descname"><span class="pre">--label-names</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;label_names&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-label-names" title="Link to this definition">¶</a></dt>
 <dd><p>path to label names files</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-files-path">
-<span class="sig-name descname"><span class="pre">--files-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;files_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-files-path" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-files-path">
+<span class="sig-name descname"><span class="pre">--files-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;files_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-files-path" title="Link to this definition">¶</a></dt>
 <dd><p>path to train filenames</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-train-path">
-<span class="sig-name descname"><span class="pre">--train-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;train_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-path" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-train-path">
+<span class="sig-name descname"><span class="pre">--train-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;train_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-train-path" title="Link to this definition">¶</a></dt>
 <dd><p>path to train data</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-test-ground-truth-format">
-<span class="sig-name descname"><span class="pre">--test-ground-truth-format</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;test_ground_truth_format&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-test-ground-truth-format" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-test-ground-truth-format">
+<span class="sig-name descname"><span class="pre">--test-ground-truth-format</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;test_ground_truth_format&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-test-ground-truth-format" title="Link to this definition">¶</a></dt>
 <dd><p>annotation file format</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-test-ground-truth">
-<span class="sig-name descname"><span class="pre">--test-ground-truth</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;test_ground_truth&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-test-ground-truth" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-test-ground-truth">
+<span class="sig-name descname"><span class="pre">--test-ground-truth</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;test_ground_truth&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-test-ground-truth" title="Link to this definition">¶</a></dt>
 <dd><p>test ground truth file</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-test-path">
-<span class="sig-name descname"><span class="pre">--test-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;test_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-test-path" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-test-path">
+<span class="sig-name descname"><span class="pre">--test-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;test_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-test-path" title="Link to this definition">¶</a></dt>
 <dd><p>path to test data</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-val-path">
-<span class="sig-name descname"><span class="pre">--val-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;val_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-val-path" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-val-path">
+<span class="sig-name descname"><span class="pre">--val-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;val_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-install-val-path" title="Link to this definition">¶</a></dt>
 <dd><p>path to val data</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-arg-PATH">
-<span class="sig-name descname"><span class="pre">PATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-arg-PATH" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-install-arg-PATH">
+<span class="sig-name descname"><span class="pre">PATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-install-arg-PATH" title="Link to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -358,7 +366,7 @@ where tasks are arranged inside folders per labels.</p>
 <li><a class="reference internal" href="#custom-datasets">Custom datasets</a><ul>
 <li><a class="reference internal" href="#taskless-dataset">Taskless dataset</a></li>
 <li><a class="reference internal" href="#dataset-with-tasks">Dataset with tasks</a><ul>
-<li><a class="reference internal" href="#peerannot">peerannot</a></li>
+<li><a class="reference internal" href="#peerannot-install">peerannot install</a></li>
 </ul>
 </li>
 </ul>
@@ -376,8 +384,30 @@ where tasks are arranged inside folders per labels.</p>
     </div>
 
     <footer class="nftt-footer">
-      
-<nav id="paginator"></nav>
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="cli_train.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: CLI train">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">CLI train</span>
+              </div>
+            </a>
+          </li>
+        <li class="page-item ms-auto">
+            <a href="../glossary.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: Glossary">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">Glossary</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
 
       <div class="py-5 px-4 px-md-3">
   <div class="container">
@@ -409,6 +439,7 @@ where tasks are arranged inside folders per labels.</p>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 
     <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>

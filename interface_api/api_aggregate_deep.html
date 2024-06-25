@@ -181,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -217,13 +223,17 @@ span.prompt1:before {
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/peerannot.models.agg_deep.CoNAL.CoNAL.html#peerannot.models.agg_deep.CoNAL.CoNAL" title="peerannot.models.agg_deep.CoNAL.CoNAL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoNAL.CoNAL</span></code></a></p></td>
-<td><p></p></td>
+<td><p>CoNAL (Common Noise Adaptation Layer), Chu et.al 2021
+
+Implementation based from the unofficial repository
+<a class="reference external" href="https://github.com/seunghyukcho/CoNAL-pytorch">https://github.com/seunghyukcho/CoNAL-pytorch</a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/peerannot.models.agg_deep.Crowdlayer.Crowdlayer.html#peerannot.models.agg_deep.Crowdlayer.Crowdlayer" title="peerannot.models.agg_deep.Crowdlayer.Crowdlayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Crowdlayer.Crowdlayer</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Crowdlayer (Rodrigues et. al 2018)</p></td>
 </tr>
 </tbody>
 </table>
+<p>For more specifications on the architectures and blocks of the networks, please visit <cite>the strategy file documentation on GitHub &lt;https://github.com/peerannot/peerannot/tree/main/peerannot/models/agg_deep&gt;</cite>.</p>
 </section>
 
 </article>
@@ -289,6 +299,9 @@ span.prompt1:before {
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>

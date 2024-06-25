@@ -181,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -207,20 +213,29 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="peerannot.models.identification.AUM.AUM">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AUM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pleiss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.AUM.AUM" title="Link to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><section id="aum-pleiss-et-al-2020">
+<h2>AUM (Pleiss et. al, 2020)<a class="headerlink" href="#aum-pleiss-et-al-2020" title="Link to this heading">¶</a></h2>
+<p>Measures the AUM per task given the ground truth label.</p>
+<p>Using:</p>
+<ul class="simple">
+<li><p>Margin estimation</p></li>
+<li><p>Trust score per task</p></li>
+</ul>
+<dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.AUM.AUM.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pleiss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.AUM.AUM.__init__" title="Link to this definition">¶</a></dt>
-<dd><p>Compute the AUM score for each task</p>
+<dd><p>Compute the AUM score for each task. Given a classifier <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> and tasks <span class="math notranslate nohighlight">\(x_i\)</span> with hard labels from an aggregation <span class="math notranslate nohighlight">\(y_i^\text{agg}\)</span>, the AUM writes</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{AUM}(x_i)=\frac{1}{T}\sum_{t=1}^T \left(\sigma(\mathcal{C}(x_i)){y_i^{\text{agg}}} - \sigma(\mathcal{C}(x_i))_{[2]}\right)\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tasks</strong> (<em>torch Dataset</em>) – Dataset of tasks as
-(x_i, _, y_i^*, i)_(i,j)</p></li>
+<li><p><strong>tasks</strong> (<em>torch Dataset</em>) – Dataset of tasks as <span class="math notranslate nohighlight">\((x_i, _, y_i^{\text{agg}}, i)_{(i,j)}\)</span></p></li>
 <li><p><strong>n_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of possible classes, defaults to 2</p></li>
 <li><p><strong>model</strong> (<em>torch Module</em>) – Neural network to use</p></li>
 <li><p><strong>criterion</strong> (<em>torch loss</em>) – loss to minimize for the network</p></li>
 <li><p><strong>optimizer</strong> (<em>torch optimizer</em>) – Optimization strategy for the minimization</p></li>
-<li><p><strong>n_epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of epochs</p></li>
+<li><p><strong>n_epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of epochs (should be the first learning rate scheduler step drop or lower than half the training epochs)</p></li>
 <li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>optional</em>) – Print details in log, defaults to False</p></li>
 <li><p><strong>use_pleiss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>optional</em>) – Use Pleiss margin instead of Yang, defaults to False</p></li>
 </ul>
@@ -234,16 +249,16 @@
 <dd><p>One optimization step</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>batch</strong> (<em>batch</em>) – <p>Batch of tasks
-Batch:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>index 0: tasks (x_i)_i</p></li>
-<li><p>index 1: whatever</p></li>
+<dd class="field-odd"><p><strong>batch</strong> (<em>batch</em>) – <p>Batch of tasks</p>
+<dl class="simple">
+<dt>Batch:</dt><dd><ul class="simple">
+<li><p>index 0: tasks <span class="math notranslate nohighlight">\((x_i)_i\)</span></p></li>
+<li><p>index 1: placeholder</p></li>
 <li><p>index 2: labels</p></li>
-<li><p>index 3: tasks index (i)_i</p></li>
+<li><p>index 3: tasks index <span class="math notranslate nohighlight">\((i)_i\)</span></p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -258,17 +273,26 @@ Batch:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.AUM.AUM.get_aum">
 <span class="sig-name descname"><span class="pre">get_aum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.AUM.AUM.get_aum" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Records prediction scores of interest for the AUM during n_epoch training epochs</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.AUM.AUM.compute_aum">
 <span class="sig-name descname"><span class="pre">compute_aum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.AUM.AUM.compute_aum" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Compute the AUM for each task</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.AUM.AUM.cut_lowests">
 <span class="sig-name descname"><span class="pre">cut_lowests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.AUM.AUM.cut_lowests" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Computes the tasks with the lowest AUM scores.
+The index of such tasks are stored in the <cite>.too_hard</cite> attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – quantile order to identify as ambiguous, defaults to 0.01</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.AUM.AUM.run">
@@ -276,6 +300,7 @@ Batch:</p>
 <dd><p>Run AUM identification</p>
 </dd></dl>
 
+</section>
 </dd></dl>
 
 <span class="target" id="sphx-glr-backreferences-peerannot-models-identification-aum-aum"></span></section>
@@ -370,6 +395,9 @@ Batch:</p>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=30646c52"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script type="text/javascript" src="../../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap.bundle-0.3.2.min.js"></script>

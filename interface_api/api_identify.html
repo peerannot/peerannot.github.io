@@ -181,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -231,10 +237,10 @@ span.prompt1:before {
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/peerannot.models.identification.Spam_score.Spam_Score.html#peerannot.models.identification.Spam_score.Spam_Score" title="peerannot.models.identification.Spam_score.Spam_Score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Spam_score.Spam_Score</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Spammer score (Raykar and Yu, 2011)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/peerannot.models.identification.trace_confusion.Trace_confusion.html#peerannot.models.identification.trace_confusion.Trace_confusion" title="peerannot.models.identification.trace_confusion.Trace_confusion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace_confusion.Trace_confusion</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Use Dawid and Skene confusion matrices to obtain a scalar indicator of the worker's confusion</p></td>
 </tr>
 </tbody>
 </table>
@@ -244,16 +250,16 @@ span.prompt1:before {
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/peerannot.models.identification.AUM.AUM.html#peerannot.models.identification.AUM.AUM" title="peerannot.models.identification.AUM.AUM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AUM.AUM</span></code></a></p></td>
-<td><p></p></td>
+<td><p>AUM (Pleiss et. al, 2020)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/peerannot.models.identification.entropy.Entropy.html#peerannot.models.identification.entropy.Entropy" title="peerannot.models.identification.entropy.Entropy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">entropy.Entropy</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Computes the votes's distribution entropy per task.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/peerannot.models.identification.WAUM_perworker.WAUM_perworker.html#peerannot.models.identification.WAUM_perworker.WAUM_perworker" title="peerannot.models.identification.WAUM_perworker.WAUM_perworker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WAUM_perworker.WAUM_perworker</span></code></a></p></td>
-<td><p></p></td>
+<td><p>WAUM per worker (Lefort et al. 2024 in TMLR)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/peerannot.models.identification.WAUM.WAUM.html#peerannot.models.identification.WAUM.WAUM" title="peerannot.models.identification.WAUM.WAUM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WAUM.WAUM</span></code></a></p></td>
-<td><p></p></td>
+<td><p>WAUM (Lefort et al., 2024 in TMLR)</p></td>
 </tr>
 </tbody>
 </table>
@@ -344,6 +350,9 @@ span.prompt1:before {
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>

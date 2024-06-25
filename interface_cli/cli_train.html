@@ -12,7 +12,7 @@
     <meta name="docsearch:release" content="0.0.1.post41" />
     <meta name="docsearch:version" content="0.0.1.post41" />
     
-      <title>CLI simulate &mdash; peerannot 0.0.1.post41 documentation</title>
+      <title>CLI train &mdash; peerannot 0.0.1.post41 documentation</title>
     
       <link rel="icon" href="../_static/logo.png" />
     <link rel="stylesheet" href="../_static/bootstrap-icons.css" type="text/css" />
@@ -34,7 +34,7 @@
         <link rel="search" title="Search" href="../search.html" />
         <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
         <link rel="up" title="CLI interface" href="index.html" />
-        <link rel="next" title="Glossary" href="../glossary.html" />
+        <link rel="next" title="CLI datasets" href="cli_datasets.html" />
         <link rel="prev" title="CLI simulate" href="cli_simulate.html" />
     <style>
       :root {
@@ -181,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -202,8 +208,8 @@
           </div>
         </aside>
         <article id="content" class="nftt-content" role="main">
-    <section id="cli-simulate">
-<span id="cli-train"></span><h1>CLI simulate<a class="headerlink" href="#cli-simulate" title="Link to this heading">¶</a></h1>
+    <section id="cli-train">
+<span id="id1"></span><h1>CLI train<a class="headerlink" href="#cli-train" title="Link to this heading">¶</a></h1>
 <p>The help documentation is available in the terminal from:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -212,10 +218,196 @@ span.prompt1:before {
 </style><span class="prompt1">peerannot<span class="w"> </span>train<span class="w"> </span>--help</span>
 </pre></div></div><p>All computer vision models that can be used for training are available through the <code class="docutils literal notranslate"><span class="pre">Torchvision</span></code> library and can be found running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">peerannot<span class="w"> </span>modelinfo<span class="w"> </span>--help</span>
-</pre></div></div></section>
+</pre></div></div><section id="peerannot-train">
+<h2>peerannot train<a class="headerlink" href="#peerannot-train" title="Link to this heading">¶</a></h2>
+<p>Train a classification neural network given a dataset path, an output name and the number of classes</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>peerannot<span class="w"> </span>train<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>DATAPATH<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-o">
+<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output-name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_name&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-o" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the generated results file</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-K">
+<span class="sig-name descname"><span class="pre">-K</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--n-classes</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_classes&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-K" title="Link to this definition">¶</a></dt>
+<dd><p>Number of classes to separate</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-labels">
+<span class="sig-name descname"><span class="pre">--labels</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;labels&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-labels" title="Link to this definition">¶</a></dt>
+<dd><p>Path to file of labels</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-optim">
+<span class="sig-name descname"><span class="pre">-optim</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--optimizer</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;optimizer&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-optim" title="Link to this definition">¶</a></dt>
+<dd><p>Optimizer for the neural network</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-model">
+<span class="sig-name descname"><span class="pre">--model</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;model&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-model" title="Link to this definition">¶</a></dt>
+<dd><p>Name of neural network to use. The list is available at <cite>peerannot modelinfo</cite></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-metadata_path">
+<span class="sig-name descname"><span class="pre">--metadata_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;metadata_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-metadata_path" title="Link to this definition">¶</a></dt>
+<dd><p>Path to the metadata of the dataset if different than default</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-img-size">
+<span class="sig-name descname"><span class="pre">--img-size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;img_size&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-img-size" title="Link to this definition">¶</a></dt>
+<dd><p>Size of image (square)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-data-augmentation">
+<span class="sig-name descname"><span class="pre">--data-augmentation</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-train-data-augmentation" title="Link to this definition">¶</a></dt>
+<dd><p>Perform data augmentation on training set with a random choice between RandomAffine(shear=15), RandomHorizontalFlip(0.5) and RandomResizedCrop</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-path-remove">
+<span class="sig-name descname"><span class="pre">--path-remove</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;path_remove&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-path-remove" title="Link to this definition">¶</a></dt>
+<dd><p>Path to file of index to prune from the training set</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-pretrained">
+<span class="sig-name descname"><span class="pre">--pretrained</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-train-pretrained" title="Link to this definition">¶</a></dt>
+<dd><p>Use torch available weights to initialize the network</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-n-epochs">
+<span class="sig-name descname"><span class="pre">--n-epochs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_epochs&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-n-epochs" title="Link to this definition">¶</a></dt>
+<dd><p>Number of training epochs</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-lr">
+<span class="sig-name descname"><span class="pre">--lr</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;lr&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-lr" title="Link to this definition">¶</a></dt>
+<dd><p>Learning rate</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-momentum">
+<span class="sig-name descname"><span class="pre">--momentum</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;momentum&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-momentum" title="Link to this definition">¶</a></dt>
+<dd><p>Momentum for the optimizer</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-decay">
+<span class="sig-name descname"><span class="pre">--decay</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;decay&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-decay" title="Link to this definition">¶</a></dt>
+<dd><p>Weight decay for the optimizer</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-scheduler">
+<span class="sig-name descname"><span class="pre">--scheduler</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;scheduler&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-scheduler" title="Link to this definition">¶</a></dt>
+<dd><p>Use a multistepscheduler for the learning rate by default. To use the cosine annealing use the keyword ‘cosine’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'multistep'</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-m">
+<span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--milestones</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;milestones&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-m" title="Link to this definition">¶</a></dt>
+<dd><p>Milestones for the learning rate decay scheduler</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-n-params">
+<span class="sig-name descname"><span class="pre">--n-params</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_params&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-n-params" title="Link to this definition">¶</a></dt>
+<dd><p>Number of parameters for the logistic regression only</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-lr-decay">
+<span class="sig-name descname"><span class="pre">--lr-decay</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;lr_decay&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-lr-decay" title="Link to this definition">¶</a></dt>
+<dd><p>Learning rate decay for the scheduler</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-num-workers">
+<span class="sig-name descname"><span class="pre">--num-workers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;num_workers&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-num-workers" title="Link to this definition">¶</a></dt>
+<dd><p>Number of workers</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-batch-size">
+<span class="sig-name descname"><span class="pre">--batch-size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;batch_size&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-batch-size" title="Link to this definition">¶</a></dt>
+<dd><p>Batch size</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-freeze">
+<span class="sig-name descname"><span class="pre">--freeze</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-train-freeze" title="Link to this definition">¶</a></dt>
+<dd><p>Freeze all layers of the network except for the last one</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-seed">
+<span class="sig-name descname"><span class="pre">--seed</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;seed&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-train-seed" title="Link to this definition">¶</a></dt>
+<dd><p>random state</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-train-arg-DATAPATH">
+<span class="sig-name descname"><span class="pre">DATAPATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-train-arg-DATAPATH" title="Link to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+</section>
 
 </article>
         <aside class="nftt-toc">
+          
+          <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link link-dark p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">CLI train</a><ul>
+<li><a class="reference internal" href="#peerannot-train">peerannot train</a></li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
           
         </aside>
       </div>
@@ -234,10 +426,10 @@ span.prompt1:before {
             </a>
           </li>
         <li class="page-item ms-auto">
-            <a href="../glossary.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: Glossary">
+            <a href="cli_datasets.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: CLI datasets">
               <div class="d-flex flex-column">
                 <span class="text-small text-end text-start text-muted">Next</span>
-                <span class="underline">Glossary</span>
+                <span class="underline">CLI datasets</span>
               </div>
               <span class="next-page"><i class="bi bi-caret-right"></i></span>
             </a>
@@ -277,6 +469,7 @@ span.prompt1:before {
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 
     <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>

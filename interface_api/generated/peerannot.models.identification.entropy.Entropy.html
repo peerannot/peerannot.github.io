@@ -181,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -207,15 +213,39 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="peerannot.models.identification.entropy.Entropy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">answers</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.entropy.Entropy" title="Link to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Computes the votes’s distribution entropy per task.</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.entropy.Entropy.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">answers</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.entropy.Entropy.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>For each task, first compute the Naive Soft distribution. Then, obtain the entropy of the distribution.</p>
+<p>With enough votes, the higher the entropy, the more uncertain the task.</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{H}(i, \{y_i^{(j)}\}_j) = -\sum_{k=1}^{K} p_k \log(p_k)\ \mathrm{with}\ p=\mathrm{NS}(\{y_i^{(j)}\}_j)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>answers</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – <p>Dictionary of workers answers with format</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nx">task0</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">worker0</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">,</span><span class="w"> </span><span class="nx">worker1</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">},</span>
+<span class="w">    </span><span class="nx">task1</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">worker1</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+<p>The number of classes <cite>n_classes</cite> should be specified as keyword argument.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.entropy.Entropy.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.entropy.Entropy.run" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Computes the entropy and save it for each task</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – path to save the entropies. The file will be saved as <cite>&lt;path&gt;/entropies.npy</cite></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -307,6 +337,9 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=30646c52"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script type="text/javascript" src="../../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap.bundle-0.3.2.min.js"></script>

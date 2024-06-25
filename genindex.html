@@ -176,7 +176,13 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -233,7 +239,7 @@
         --alpha
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-alpha">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-alpha">peerannot-identify command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -241,7 +247,9 @@
         --answers
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-answers">peerannot command line option</a>, <a href="interface_cli/cli_datasets.html#cmdoption-peerannot-answers">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-answers">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-answers">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -249,7 +257,7 @@
         --answers-file
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-answers-file">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-answers-file">peerannot-aggregate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -257,7 +265,7 @@
         --answers-format
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-answers-format">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-answers-format">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -265,7 +273,9 @@
         --batch-size
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-batch-size">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-batch-size">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-batch-size">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -273,7 +283,11 @@
         --data-augmentation
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-data-augmentation">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-data-augmentation">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-data-augmentation">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-data-augmentation">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-data-augmentation">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -281,7 +295,19 @@
         --decay
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-decay">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-decay">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-decay">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-decay">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-decay">peerannot-train command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --feedback
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-fb">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -289,7 +315,15 @@
         --files-path
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-files-path">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-files-path">peerannot-install command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --folder
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-folder">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -297,7 +331,11 @@
         --freeze
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-freeze">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-freeze">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-freeze">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-freeze">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-freeze">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -305,7 +343,7 @@
         --hard
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-hard">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-hard">peerannot-aggregate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -313,7 +351,15 @@
         --hard-labels
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-0">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-hard-labels">[1]</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-0">peerannot-identify command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-hard-labels">[1]</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --imbalance-votes
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-imbalance-votes">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -321,7 +367,11 @@
         --img-size
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-img-size">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-img-size">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-img-size">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-img-size">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-img-size">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -329,7 +379,7 @@
         --label-names
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-label-names">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-label-names">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -337,7 +387,9 @@
         --labels
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-labels">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-labels">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-labels">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -345,7 +397,11 @@
         --lr
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-lr">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-lr">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-lr">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-lr">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-lr">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -353,7 +409,9 @@
         --lr-decay
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-lr-decay">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-lr-decay">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-lr-decay">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -361,7 +419,9 @@
         --matrix-file
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-matrix-file">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-matrix-file">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-matrix-file">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -369,7 +429,7 @@
         --maxiter-DS
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-maxiter-DS">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-maxiter-DS">peerannot-identify command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -377,7 +437,7 @@
         --metadata
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-metadata">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-metadata">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -385,7 +445,13 @@
         --metadata_path
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-metadata_path">peerannot command line option</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-metadata_path">[1]</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-metadata_path">[2]</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-metadata_path">peerannot-aggregate command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-metadata_path">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-metadata_path">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-metadata_path">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -393,7 +459,7 @@
         --method
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-s">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-s">peerannot-identify command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -401,7 +467,9 @@
         --milestones
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-m">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-m">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-m">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -409,7 +477,11 @@
         --model
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-model">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-model">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-model">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-model">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-model">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -417,7 +489,49 @@
         --momentum
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-momentum">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-momentum">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-momentum">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-momentum">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-momentum">peerannot-train command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --n-classes
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-K">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-K">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-K">peerannot-simulate command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-K">peerannot-train command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --n-epochs
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-n-epochs">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-n-epochs">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-n-epochs">peerannot-train command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --n-params
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-n-params">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-n-params">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-n-params">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                         </ul>
@@ -426,26 +540,18 @@
                         <ul>
                                 <li>
                                     
-        --n-classes
+        --n-task
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-K">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-K">[1]</a>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-n-task">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
                                     
-        --n-epochs
+        --n-worker
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-n-epochs">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-n-epochs">[1]</a>
-</li>
-                                        </ul></li>
-                                <li>
-                                    
-        --n-params
-
-                                        <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-n-params">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-n-params">[1]</a>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-n-worker">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -453,7 +559,7 @@
         --no-task
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-no-task">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-no-task">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -461,7 +567,9 @@
         --num-workers
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-num-workers">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-num-workers">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-num-workers">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -469,7 +577,11 @@
         --optimizer
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-optim">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-optim">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-optim">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-optim">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-optim">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -477,7 +589,9 @@
         --output-name
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-o">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-o">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-o">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -485,7 +599,11 @@
         --path-remove
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-path-remove">peerannot command line option</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-path-remove">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-path-remove">peerannot-aggregate command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-path-remove">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-path-remove">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -493,7 +611,35 @@
         --pretrained
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-pretrained">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-pretrained">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-pretrained">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-pretrained">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-pretrained">peerannot-train command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --random
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-random">peerannot-simulate command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --ratio
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-r">peerannot-simulate command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --ratio-diff
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-ratio-diff">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -501,7 +647,9 @@
         --scheduler
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-scheduler">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-scheduler">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-scheduler">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -509,7 +657,13 @@
         --seed
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-seed">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-seed">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-seed">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-seed">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-seed">peerannot-simulate command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-seed">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -517,7 +671,11 @@
         --strategy
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-s">peerannot command line option</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-s">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-s">peerannot-aggregate command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-s">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-s">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -525,7 +683,7 @@
         --test-ground-truth
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-test-ground-truth">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-test-ground-truth">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -533,7 +691,7 @@
         --test-ground-truth-format
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-test-ground-truth-format">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-test-ground-truth-format">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -541,7 +699,7 @@
         --test-path
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-test-path">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-test-path">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -549,7 +707,7 @@
         --topk
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-topk">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-topk">peerannot-identify command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -557,7 +715,7 @@
         --train-path
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-train-path">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-train-path">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -565,7 +723,7 @@
         --use-pleiss
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-use-pleiss">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-use-pleiss">peerannot-identify command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -573,7 +731,31 @@
         --val-path
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-val-path">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-val-path">peerannot-install command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --verbose
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-verbose">peerannot-simulate command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        --workerload
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-wl">peerannot-simulate command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        -fb
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-fb">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -581,7 +763,13 @@
         -K
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-K">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-K">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-K">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-K">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-K">peerannot-simulate command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-K">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -589,7 +777,9 @@
         -m
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-m">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-m">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-m">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -597,7 +787,9 @@
         -o
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-o">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-o">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-o">peerannot-train command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -605,7 +797,19 @@
         -optim
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-optim">peerannot command line option</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-optim">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-optim">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-optim">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-optim">peerannot-train command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        -r
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-r">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -613,7 +817,21 @@
         -s
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-s">peerannot command line option</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-s">[1]</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-s">[2]</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-s">peerannot-aggregate command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-s">peerannot-aggregate-deep command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-s">peerannot-identify command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-s">peerannot-simulate command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        -wl
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-wl">peerannot-simulate command line option</a>
 </li>
                                         </ul></li>
                         </ul>
@@ -750,10 +968,20 @@
 </li>
                                 <li>
                                     
+        DATAPATH
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-arg-DATAPATH">peerannot-train command line option</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
         DATASET
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-arg-DATASET">peerannot command line option</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-arg-DATASET">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-arg-DATASET">peerannot-aggregate command line option</a>
+</li>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-arg-DATASET">peerannot-aggregate-deep command line option</a>
 </li>
                                         </ul></li>
                         </ul>
@@ -823,7 +1051,7 @@
         FOLDERPATH
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-arg-FOLDERPATH">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-arg-FOLDERPATH">peerannot-identify command line option</a>
 </li>
                                         </ul></li>
                         </ul>
@@ -1044,8 +1272,6 @@
         module
 
                                         <ul>
-                                                <li><a href="interface_api/api_simulate.html#module-peerannot.helpers">peerannot.helpers</a>
-</li>
                                                 <li><a href="interface_api/api_aggregate_deep.html#module-peerannot.models.agg_deep">peerannot.models.agg_deep</a>
 </li>
                                                 <li><a href="interface_api/api_aggregate.html#module-peerannot.models.aggregation">peerannot.models.aggregation</a>
@@ -1117,115 +1343,149 @@
         PATH
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-arg-PATH">peerannot command line option</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-arg-PATH">peerannot-install command line option</a>
 </li>
                                         </ul></li>
                                 <li>
                                     
-        peerannot command line option
+        peerannot-aggregate command line option
 
                                         <ul>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-alpha">--alpha</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-answers-file">--answers-file</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-answers">--answers</a>, <a href="interface_cli/cli_datasets.html#cmdoption-peerannot-answers">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-hard">--hard</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-answers-file">--answers-file</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-metadata_path">--metadata_path</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-answers-format">--answers-format</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-path-remove">--path-remove</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-batch-size">--batch-size</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-s">--strategy</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-data-augmentation">--data-augmentation</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-data-augmentation">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-s">-s</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-decay">--decay</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-decay">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-aggregate-arg-DATASET">DATASET</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-files-path">--files-path</a>
+                                        </ul></li>
+                                <li>
+                                    
+        peerannot-aggregate-deep command line option
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-answers">--answers</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-freeze">--freeze</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-freeze">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-batch-size">--batch-size</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-hard">--hard</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-data-augmentation">--data-augmentation</a>
 </li>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-0">--hard-labels</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-hard-labels">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-decay">--decay</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-img-size">--img-size</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-img-size">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-freeze">--freeze</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-label-names">--label-names</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-img-size">--img-size</a>
 </li>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-labels">--labels</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-lr">--lr</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-lr">--lr</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-lr">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-lr-decay">--lr-decay</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-lr-decay">--lr-decay</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-metadata_path">--metadata_path</a>
 </li>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-matrix-file">--matrix-file</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-m">--milestones</a>
 </li>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-maxiter-DS">--maxiter-DS</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-model">--model</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-metadata">--metadata</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-momentum">--momentum</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-metadata_path">--metadata_path</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-metadata_path">[1]</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-metadata_path">[2]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-K">--n-classes</a>
 </li>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-s">--method</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-n-epochs">--n-epochs</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-m">--milestones</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-n-params">--n-params</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-model">--model</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-model">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-num-workers">--num-workers</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-momentum">--momentum</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-momentum">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-optim">--optimizer</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-K">--n-classes</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-K">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-o">--output-name</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-n-epochs">--n-epochs</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-n-epochs">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-path-remove">--path-remove</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-n-params">--n-params</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-n-params">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-pretrained">--pretrained</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-no-task">--no-task</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-scheduler">--scheduler</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-num-workers">--num-workers</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-seed">--seed</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-optim">--optimizer</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-optim">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-s">--strategy</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-o">--output-name</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-K">-K</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-path-remove">--path-remove</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-path-remove">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-m">-m</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-pretrained">--pretrained</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-pretrained">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-o">-o</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-scheduler">--scheduler</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-optim">-optim</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-seed">--seed</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-seed">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-s">-s</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-s">--strategy</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-s">[1]</a>
+                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-aggregate-deep-arg-DATASET">DATASET</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-test-ground-truth">--test-ground-truth</a>
+                                        </ul></li>
+                                <li>
+                                    
+        peerannot-identify command line option
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-alpha">--alpha</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-test-ground-truth-format">--test-ground-truth-format</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-data-augmentation">--data-augmentation</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-test-path">--test-path</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-decay">--decay</a>
 </li>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-topk">--topk</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-freeze">--freeze</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-train-path">--train-path</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-0">--hard-labels</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-hard-labels">[1]</a>
 </li>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-use-pleiss">--use-pleiss</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-img-size">--img-size</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-val-path">--val-path</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-labels">--labels</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-K">-K</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-K">[1]</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-lr">--lr</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-m">-m</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-matrix-file">--matrix-file</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-o">-o</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-maxiter-DS">--maxiter-DS</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-optim">-optim</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-optim">[1]</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-metadata_path">--metadata_path</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-s">-s</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-s">[1]</a>, <a href="interface_cli/cli_identify.html#cmdoption-peerannot-s">[2]</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-s">--method</a>
 </li>
-                                                <li><a href="interface_cli/cli_aggregate.html#cmdoption-peerannot-arg-DATASET">DATASET</a>, <a href="interface_cli/cli_aggregate_deep.html#cmdoption-peerannot-arg-DATASET">[1]</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-model">--model</a>
 </li>
-                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-arg-FOLDERPATH">FOLDERPATH</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-momentum">--momentum</a>
 </li>
-                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-arg-PATH">PATH</a>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-K">--n-classes</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-n-epochs">--n-epochs</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-n-params">--n-params</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-optim">--optimizer</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-pretrained">--pretrained</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-seed">--seed</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-topk">--topk</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-use-pleiss">--use-pleiss</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-K">-K</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-optim">-optim</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-s">-s</a>
+</li>
+                                                <li><a href="interface_cli/cli_identify.html#cmdoption-peerannot-identify-arg-FOLDERPATH">FOLDERPATH</a>
 </li>
                                         </ul></li>
                         </ul>
@@ -1234,10 +1494,136 @@
                         <ul>
                                 <li>
                                     
-        peerannot.helpers
+        peerannot-install command line option
 
                                         <ul>
-                                                <li><a href="interface_api/api_simulate.html#module-peerannot.helpers">module</a>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-answers">--answers</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-answers-format">--answers-format</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-files-path">--files-path</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-label-names">--label-names</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-metadata">--metadata</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-no-task">--no-task</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-test-ground-truth">--test-ground-truth</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-test-ground-truth-format">--test-ground-truth-format</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-test-path">--test-path</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-train-path">--train-path</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-val-path">--val-path</a>
+</li>
+                                                <li><a href="interface_cli/cli_datasets.html#cmdoption-peerannot-install-arg-PATH">PATH</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        peerannot-simulate command line option
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-fb">--feedback</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-folder">--folder</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-imbalance-votes">--imbalance-votes</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-matrix-file">--matrix-file</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-K">--n-classes</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-n-task">--n-task</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-n-worker">--n-worker</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-random">--random</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-r">--ratio</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-ratio-diff">--ratio-diff</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-seed">--seed</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-s">--strategy</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-verbose">--verbose</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-wl">--workerload</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-fb">-fb</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-K">-K</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-r">-r</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-s">-s</a>
+</li>
+                                                <li><a href="interface_cli/cli_simulate.html#cmdoption-peerannot-simulate-wl">-wl</a>
+</li>
+                                        </ul></li>
+                                <li>
+                                    
+        peerannot-train command line option
+
+                                        <ul>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-batch-size">--batch-size</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-data-augmentation">--data-augmentation</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-decay">--decay</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-freeze">--freeze</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-img-size">--img-size</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-labels">--labels</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-lr">--lr</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-lr-decay">--lr-decay</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-metadata_path">--metadata_path</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-m">--milestones</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-model">--model</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-momentum">--momentum</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-K">--n-classes</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-n-epochs">--n-epochs</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-n-params">--n-params</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-num-workers">--num-workers</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-optim">--optimizer</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-o">--output-name</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-path-remove">--path-remove</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-pretrained">--pretrained</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-scheduler">--scheduler</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-seed">--seed</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-K">-K</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-m">-m</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-o">-o</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-optim">-optim</a>
+</li>
+                                                <li><a href="interface_cli/cli_train.html#cmdoption-peerannot-train-arg-DATAPATH">DATAPATH</a>
 </li>
                                         </ul></li>
                                 <li>
@@ -1488,6 +1874,7 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=30646c52"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 
     <script type="text/javascript" src="_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap.bundle-0.3.2.min.js"></script>

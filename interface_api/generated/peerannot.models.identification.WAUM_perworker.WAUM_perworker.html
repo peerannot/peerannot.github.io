@@ -181,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -207,15 +213,57 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">WAUM_perworker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">answers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pleiss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker" title="Link to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><section id="waum-per-worker-lefort-et-al-2024-in-tmlr">
+<h2>WAUM per worker (Lefort et al. 2024 in TMLR)<a class="headerlink" href="#waum-per-worker-lefort-et-al-2024-in-tmlr" title="Link to this heading">¶</a></h2>
+<p>Measures the WAUM per worker and task without duplication for each task by the number of workers that responded.
+Once too prone to confusion tasks are removed, the final label is a
+weighted distribution by the diagonal of the estimated confusion matrix.</p>
+<p>Using:</p>
+<ul class="simple">
+<li><p>Margin estimation</p></li>
+<li><p>Trust score per worker and task</p></li>
+</ul>
+<dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">answers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pleiss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Compute the WAUM score for each task using a stacked version of the dataset (stacked over workers). Each classifier is trained on <span class="math notranslate nohighlight">\((x_i, y_i^{(j)})_i\)</span> for a given worker <span class="math notranslate nohighlight">\(j\)</span>. THE WAUM per worker writes:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{WAUM}(x_i)= \frac{1}{\displaystyle\sum_{j'\in\mathcal{A}(x_i)} s^{(j')}(x_i)}\sum_{j\in\mathcal{A}(x_i)} s^{(j)}(x_i) \mathrm{AUM}\big(x_i, y_i^{(j)}\big)\]</div>
+<p>where the difference with the classical WAUM is that the weights are notinfluenced by other workers’ answers in the classifier’s prediction. In low-number of votes per worker regime, the classical WAUM is recommended.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tasks</strong> (<em>torch Dataset</em>) – Loader for dataset of tasks as <span class="math notranslate nohighlight">\((x_i, y_i^{(j)}, w^{(j)}, y_i^\star, i)_{(i,j)}\)</span></p></li>
+<li><p><strong>answers</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – <p>Dictionary of workers answers with format</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nx">task0</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">worker0</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">,</span><span class="w"> </span><span class="nx">worker1</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">},</span>
+<span class="w">    </span><span class="nx">task1</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">worker1</span><span class="o">:</span><span class="w"> </span><span class="nx">label</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>n_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of possible classes, defaults to 2</p></li>
+<li><p><strong>model</strong> (<em>torch Module</em>) – Neural network to use</p></li>
+<li><p><strong>criterion</strong> (<em>torch loss</em>) – loss to minimize for the network</p></li>
+<li><p><strong>optimizer</strong> (<em>torch optimizer</em>) – Optimization strategy for the minimization</p></li>
+<li><p><strong>n_epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of epochs</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>optional</em>) – Print details in log, defaults to False</p></li>
+<li><p><strong>use_pleiss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>optional</em>) – Use Pleiss margin instead of Yang, defaults to False</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.run_DS">
 <span class="sig-name descname"><span class="pre">run_DS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker.run_DS" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Run Dawid and Skene aggregation model. It <code class="docutils literal notranslate"><span class="pre">cut=True</span></code>, runs it on the pruned dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>optional</em>) – Run on full dataset or dataset pruned from lower WAUM tasks, defaults to False</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.make_step">
@@ -223,15 +271,15 @@
 <dd><p>One optimization step</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>batch</strong> (<em>batch</em>) – <p>Batch of tasks
-Batch:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>index 0: tasks (x_i)_i</p></li>
+<dd class="field-odd"><p><strong>batch</strong> (<em>batch</em>) – <p>Batch of tasks</p>
+<dl class="simple">
+<dt>Batch:</dt><dd><ul class="simple">
+<li><p>index 0: tasks <span class="math notranslate nohighlight">\((x_i)_i\)</span></p></li>
 <li><p>index 1: labels</p></li>
-<li><p>index 2: tasks index (i)_i</p></li>
+<li><p>index 2: tasks index <span class="math notranslate nohighlight">\((i)_i\)</span></p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -246,32 +294,64 @@ Batch:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.get_aum">
 <span class="sig-name descname"><span class="pre">get_aum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker.get_aum" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Records prediction scores of interest for the AUM during n_epoch training epochs for each worker</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker.reset" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Reload the model and optimizer from the last checkpoint. The checkpoint path is <code class="docutils literal notranslate"><span class="pre">./temp/checkpoint_waum.pth</span></code>. The classifier backbone is reset between each worker in this version of the WAUM.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.get_psuccess">
 <span class="sig-name descname"><span class="pre">get_psuccess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pij</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker.get_psuccess" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>From the classifier associated to worker j <span class="math notranslate nohighlight">\(\mathcal{C}^{(j)}\)</span>, computes weights as:</p>
+<div class="math notranslate nohighlight">
+\[s_i^{(j)}=\sum_{k=1}^K \sigma(\mathcal{C}^{(j)}(x_i))_k \pi^{(j)}_{k,k}\]</div>
+<p>If one wishes to modify the weight, they only need to modify this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>probas</strong> (<em>torch.Tensor</em>) – Output predictions of neural network classifier</p></li>
+<li><p><strong>pij</strong> (<em>torch.tensor</em>) – Confusion matrix of worker j</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Weight in the WAUM</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.tensor</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.get_psi1_waum">
 <span class="sig-name descname"><span class="pre">get_psi1_waum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker.get_psi1_waum" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>To use the original margin from Pleiss et al. (2020):</p>
+<div class="math notranslate nohighlight">
+\[\sigma(\mathcal{C}^{(j)}(x_i))_{y_i^{(j)}} - \max_{k\neq y_i^{(j)}} \sigma(\mathcal{C}^{(j)}(x_i))_{k}\]</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.get_psi5_waum">
 <span class="sig-name descname"><span class="pre">get_psi5_waum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker.get_psi5_waum" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>To use the margin for top-2 (or top-k):</p>
+<div class="math notranslate nohighlight">
+\[\sigma(\mathcal{C}^{(j)}(x_i))_{y_i^{(j)}} - \sigma(\mathcal{C}^{(j)}(x_i))_{[2]}\]</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.cut_lowests">
 <span class="sig-name descname"><span class="pre">cut_lowests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#peerannot.models.identification.WAUM_perworker.WAUM_perworker.cut_lowests" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Identify tasks with lowest WAUM</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – quantile for identification, defaults to 0.01</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="peerannot.models.identification.WAUM_perworker.WAUM_perworker.run">
@@ -312,6 +392,7 @@ Batch:</p>
 </dl>
 </dd></dl>
 
+</section>
 </dd></dl>
 
 <span class="target" id="sphx-glr-backreferences-peerannot-models-identification-waum-perworker-waum-perworker"></span></section>
@@ -412,6 +493,9 @@ Batch:</p>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=30646c52"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script type="text/javascript" src="../../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap.bundle-0.3.2.min.js"></script>

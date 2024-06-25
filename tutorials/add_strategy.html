@@ -34,7 +34,7 @@
         <link rel="search" title="Search" href="../search.html" />
         <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
         <link rel="up" title="Tutorials" href="index.html" />
-        <link rel="next" title="Run a label aggregation strategy using peerannot" href="run_aggregation.html" />
+        <link rel="next" title="Data generation" href="run_aggregation_notebook.html" />
         <link rel="prev" title="Add a dataset to peerannot" href="add_dataset.html" />
     <style>
       :root {
@@ -181,7 +181,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -205,10 +211,89 @@
     <section id="add-a-strategy-in-peerannot">
 <span id="add-strategy"></span><h1>Add a strategy in peerannot<a class="headerlink" href="#add-a-strategy-in-peerannot" title="Link to this heading">¶</a></h1>
 <p>This tutorial shows how to add a new strategy in <code class="docutils literal notranslate"><span class="pre">peerannot</span></code>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If not yet done, please go to <a class="reference internal" href="../get_started.html#get-started"><span class="std std-ref">get started page</span></a> to install the <code class="docutils literal notranslate"><span class="pre">peerannot</span></code> library.</p>
+</div>
+<section id="what-is-an-aggregation">
+<h2>What is an aggregation?<a class="headerlink" href="#what-is-an-aggregation" title="Link to this heading">¶</a></h2>
+<p>The goal is, from a set of collected labels, to obtain a single label (or label distribution) for each task following an aggregation <span class="math notranslate nohighlight">\(\texttt{agg}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\forall i\in[n_\texttt{task}],\texttt{agg}(\{y_i^{(j)}\}_{j\in\mathcal{A}(x_i)}) = \hat y_i\in\Delta_K\]</div>
+<p>If the aggregation results in a distribution that is not a Dirac, the label is called a <cite>soft</cite> label. Otherwise it is a <cite>hard</cite> label.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>All aggregations in <code class="docutils literal notranslate"><span class="pre">peerannot</span></code> are in the folder at <code class="docutils literal notranslate"><span class="pre">peerannot/models/aggregation</span></code> and should be added in the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file at <code class="docutils literal notranslate"><span class="pre">peerannot.models/</span></code> once validated to be used through the CLI.</p>
+</div>
+</section>
+<section id="iterative-aggregations">
+<h2>Iterative aggregations<a class="headerlink" href="#iterative-aggregations" title="Link to this heading">¶</a></h2>
+<p>An iterative aggregation strategy is like Dawid and Skene’s algorithm.
+There is an initialization and then an optimization-like process to update the label distribution.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">..template</span> <span class="kn">import</span> <span class="n">CrowdModel</span>
+
+<span class="k">class</span> <span class="nc">MyAggregation</span><span class="p">(</span><span class="n">CrowdModel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">answers</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">,</span> <span class="n">n_workers</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="o">...</span> <span class="c1"># instantiate all your parameters</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Initialization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+        <span class="c1"># Iterative process</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+            <span class="o">...</span> <span class="c1"># update the label distribution</span>
+            <span class="o">...</span> <span class="c1"># check convergence</span>
+
+    <span class="k">def</span> <span class="nf">get_probas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span> <span class="c1"># return label distributions</span>
+
+    <span class="k">def</span> <span class="nf">get_answers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span> <span class="c1"># return hard labels</span>
+</pre></div>
+</div>
+<p>If the aggregation is not able to return label distributions per task, raise a warning and redirect to the <code class="docutils literal notranslate"><span class="pre">get_answers</span></code> method.
+For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_probas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        MyAggregation only returns hard labels.</span>
+<span class="sd">        Defaulting to ``get_answers()``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_answers</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="not-iterative-aggregations">
+<h2>Not iterative aggregations<a class="headerlink" href="#not-iterative-aggregations" title="Link to this heading">¶</a></h2>
+<p>For non iterative aggregations (like Majority vote), simply drop the <code class="docutils literal notranslate"><span class="pre">run</span></code> method and implement the <code class="docutils literal notranslate"><span class="pre">get_probas</span></code> and <code class="docutils literal notranslate"><span class="pre">get_answers</span></code> methods.</p>
+</section>
 </section>
 
 </article>
         <aside class="nftt-toc">
+          
+          <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link link-dark p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">Add a strategy in peerannot</a><ul>
+<li><a class="reference internal" href="#what-is-an-aggregation">What is an aggregation?</a></li>
+<li><a class="reference internal" href="#iterative-aggregations">Iterative aggregations</a></li>
+<li><a class="reference internal" href="#not-iterative-aggregations">Not iterative aggregations</a></li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
           
         </aside>
       </div>
@@ -227,10 +312,10 @@
             </a>
           </li>
         <li class="page-item ms-auto">
-            <a href="run_aggregation.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: Run a label aggregation strategy using peerannot">
+            <a href="run_aggregation_notebook.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: Data generation">
               <div class="d-flex flex-column">
                 <span class="text-small text-end text-start text-muted">Next</span>
-                <span class="underline">Run a label aggregation strategy using peerannot</span>
+                <span class="underline">Data generation</span>
               </div>
               <span class="next-page"><i class="bi bi-caret-right"></i></span>
             </a>
@@ -270,6 +355,9 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>

@@ -181,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -209,52 +215,52 @@ span.prompt1:before {
   content: "$ ";
 }
 </style><span class="prompt1">peerannot<span class="w"> </span>aggregate-deep<span class="w"> </span>--help</span>
-</pre></div></div><section id="peerannot">
-<h2>peerannot<a class="headerlink" href="#peerannot" title="Link to this heading">¶</a></h2>
+</pre></div></div><section id="peerannot-aggregate-deep">
+<h2>peerannot aggregate-deep<a class="headerlink" href="#peerannot-aggregate-deep" title="Link to this heading">¶</a></h2>
 <p>Crowdsourcing strategy using deep learning models</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>peerannot<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>DATASET<span class="o">]</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>peerannot<span class="w"> </span>aggregate-deep<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>DATASET<span class="o">]</span>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-K">
-<span id="cmdoption-peerannot-n-classes"></span><span class="sig-name descname"><span class="pre">-K</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--n-classes</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_classes&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-K" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-K">
+<span class="sig-name descname"><span class="pre">-K</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--n-classes</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_classes&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-K" title="Link to this definition">¶</a></dt>
 <dd><p>Number of classes to separate</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-o">
-<span id="cmdoption-peerannot-output-name"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output-name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_name&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-o" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-o">
+<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output-name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_name&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-o" title="Link to this definition">¶</a></dt>
 <dd><p>Name of the generated results file</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-s">
-<span id="cmdoption-peerannot-strategy"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--strategy</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;strategy&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-s" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-s">
+<span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--strategy</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;strategy&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-s" title="Link to this definition">¶</a></dt>
 <dd><p>Deep learning strategy</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-model">
-<span class="sig-name descname"><span class="pre">--model</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;model&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-model" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-model">
+<span class="sig-name descname"><span class="pre">--model</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;model&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-model" title="Link to this definition">¶</a></dt>
 <dd><p>Neural network to train on</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-answers">
-<span class="sig-name descname"><span class="pre">--answers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;answers&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-answers" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-answers">
+<span class="sig-name descname"><span class="pre">--answers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;answers&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-answers" title="Link to this definition">¶</a></dt>
 <dd><p>Crowdsourced labels in json file</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-img-size">
-<span class="sig-name descname"><span class="pre">--img-size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;img_size&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-img-size" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-img-size">
+<span class="sig-name descname"><span class="pre">--img-size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;img_size&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-img-size" title="Link to this definition">¶</a></dt>
 <dd><p>Size of image (square)</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-pretrained">
-<span class="sig-name descname"><span class="pre">--pretrained</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-pretrained" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-pretrained">
+<span class="sig-name descname"><span class="pre">--pretrained</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-pretrained" title="Link to this definition">¶</a></dt>
 <dd><p>Use torch available weights to initialize the network</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
@@ -264,32 +270,32 @@ span.prompt1:before {
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-n-epochs">
-<span class="sig-name descname"><span class="pre">--n-epochs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_epochs&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-n-epochs" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-n-epochs">
+<span class="sig-name descname"><span class="pre">--n-epochs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_epochs&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-n-epochs" title="Link to this definition">¶</a></dt>
 <dd><p>Number of training epochs</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-lr">
-<span class="sig-name descname"><span class="pre">--lr</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;lr&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-lr" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-lr">
+<span class="sig-name descname"><span class="pre">--lr</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;lr&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-lr" title="Link to this definition">¶</a></dt>
 <dd><p>Learning rate</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-momentum">
-<span class="sig-name descname"><span class="pre">--momentum</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;momentum&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-momentum" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-momentum">
+<span class="sig-name descname"><span class="pre">--momentum</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;momentum&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-momentum" title="Link to this definition">¶</a></dt>
 <dd><p>Momentum for the optimizer</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-decay">
-<span class="sig-name descname"><span class="pre">--decay</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;decay&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-decay" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-decay">
+<span class="sig-name descname"><span class="pre">--decay</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;decay&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-decay" title="Link to this definition">¶</a></dt>
 <dd><p>Weight decay for the optimizer</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-scheduler">
-<span class="sig-name descname"><span class="pre">--scheduler</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;scheduler&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-scheduler" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-scheduler">
+<span class="sig-name descname"><span class="pre">--scheduler</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;scheduler&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-scheduler" title="Link to this definition">¶</a></dt>
 <dd><p>Use a multistepscheduler for the learning rate by default. To use the cosine annealing use the keyword ‘cosine’</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
@@ -299,44 +305,44 @@ span.prompt1:before {
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-m">
-<span id="cmdoption-peerannot-milestones"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--milestones</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;milestones&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-m" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-m">
+<span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--milestones</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;milestones&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-m" title="Link to this definition">¶</a></dt>
 <dd><p>Milestones for the learning rate decay scheduler</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-n-params">
-<span class="sig-name descname"><span class="pre">--n-params</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_params&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-n-params" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-n-params">
+<span class="sig-name descname"><span class="pre">--n-params</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_params&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-n-params" title="Link to this definition">¶</a></dt>
 <dd><p>Number of parameters for the logistic regression only</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-lr-decay">
-<span class="sig-name descname"><span class="pre">--lr-decay</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;lr_decay&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-lr-decay" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-lr-decay">
+<span class="sig-name descname"><span class="pre">--lr-decay</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;lr_decay&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-lr-decay" title="Link to this definition">¶</a></dt>
 <dd><p>Learning rate decay for the scheduler</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-num-workers">
-<span class="sig-name descname"><span class="pre">--num-workers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;num_workers&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-num-workers" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-num-workers">
+<span class="sig-name descname"><span class="pre">--num-workers</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;num_workers&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-num-workers" title="Link to this definition">¶</a></dt>
 <dd><p>Number of workers</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-batch-size">
-<span class="sig-name descname"><span class="pre">--batch-size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;batch_size&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-batch-size" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-batch-size">
+<span class="sig-name descname"><span class="pre">--batch-size</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;batch_size&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-batch-size" title="Link to this definition">¶</a></dt>
 <dd><p>Batch size</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-optim">
-<span id="cmdoption-peerannot-optimizer"></span><span class="sig-name descname"><span class="pre">-optim</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--optimizer</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;optimizer&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-optim" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-optim">
+<span class="sig-name descname"><span class="pre">-optim</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--optimizer</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;optimizer&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-optim" title="Link to this definition">¶</a></dt>
 <dd><p>Optimizer for the neural network</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-data-augmentation">
-<span class="sig-name descname"><span class="pre">--data-augmentation</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-data-augmentation" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-data-augmentation">
+<span class="sig-name descname"><span class="pre">--data-augmentation</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-data-augmentation" title="Link to this definition">¶</a></dt>
 <dd><p>Perform data augmentation on training set with a random choice between RandomAffine(shear=15), RandomHorizontalFlip(0.5) and RandomResizedCrop</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
@@ -346,20 +352,20 @@ span.prompt1:before {
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-path-remove">
-<span class="sig-name descname"><span class="pre">--path-remove</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;path_remove&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-path-remove" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-path-remove">
+<span class="sig-name descname"><span class="pre">--path-remove</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;path_remove&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-path-remove" title="Link to this definition">¶</a></dt>
 <dd><p>Path to file of index to prune from the training set</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-metadata_path">
-<span class="sig-name descname"><span class="pre">--metadata_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;metadata_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-metadata_path" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-metadata_path">
+<span class="sig-name descname"><span class="pre">--metadata_path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;metadata_path&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-metadata_path" title="Link to this definition">¶</a></dt>
 <dd><p>Path to the metadata of the dataset if different than default</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-freeze">
-<span class="sig-name descname"><span class="pre">--freeze</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-freeze" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-freeze">
+<span class="sig-name descname"><span class="pre">--freeze</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-freeze" title="Link to this definition">¶</a></dt>
 <dd><p>Freeze all layers of the network except for the last one</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
@@ -369,15 +375,15 @@ span.prompt1:before {
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-seed">
-<span class="sig-name descname"><span class="pre">--seed</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;seed&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-seed" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-seed">
+<span class="sig-name descname"><span class="pre">--seed</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;seed&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-seed" title="Link to this definition">¶</a></dt>
 <dd><p>random state</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-peerannot-arg-DATASET">
-<span class="sig-name descname"><span class="pre">DATASET</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-arg-DATASET" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object std" id="cmdoption-peerannot-aggregate-deep-arg-DATASET">
+<span class="sig-name descname"><span class="pre">DATASET</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-aggregate-deep-arg-DATASET" title="Link to this definition">¶</a></dt>
 <dd><p>Optional argument</p>
 </dd></dl>
 
@@ -397,7 +403,7 @@ span.prompt1:before {
               <nav id="TableOfContents">
                 <ul>
 <li><a class="reference internal" href="#">CLI aggregate_deep</a><ul>
-<li><a class="reference internal" href="#peerannot">peerannot</a></li>
+<li><a class="reference internal" href="#peerannot-aggregate-deep">peerannot aggregate-deep</a></li>
 </ul>
 </li>
 </ul>
@@ -466,6 +472,7 @@ span.prompt1:before {
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 
     <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>

@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="docsearch:name" content="peerannot" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="0.0.1.post41" />
+    <meta name="docsearch:version" content="0.0.1.post41" />
+    
+      <title>Data generation &mdash; peerannot 0.0.1.post41 documentation</title>
+    
+      <link rel="icon" href="../_static/logo.png" />
+    <link rel="stylesheet" href="../_static/bootstrap-icons.css" type="text/css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments.css', priority=200, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/copybutton.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments_dark.css', priority=500, rel='stylesheet', type='text/css', media='(prefers-color-scheme: dark)', id='pygments_dark_css')" -->
+          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/sphinx-design.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/nbsphinx-code-cells.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/nunito/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/nunito/stylesheet.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/red-hat-mono/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/red-hat-mono/stylesheet.css" />
+        <link rel="index" title="Index" href="../genindex.html" />
+        <link rel="search" title="Search" href="../search.html" />
+        <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
+        <link rel="up" title="Tutorials" href="index.html" />
+        <link rel="next" title="Simulate the dataset" href="run_pipeline_notebook.html" />
+        <link rel="prev" title="Add a strategy in peerannot" href="add_strategy.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);}
+      h1 *, h2 *, h3 *, h4 *, h5 *, h6 * { font-size: inherit; }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-xl navbar-dark nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to docs navigation</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-wrap flex-xl-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="../index.html"
+              
+              class="navbar-brand p-0 me-0 md-lg-2"
+          ><span class="brand-text">peerannot</span></a>
+        
+        <div class="d-flex d-xl-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="../search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-text">Nefertiti for Sphinx</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+            <hr class="d-xl-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-lg-auto">
+              
+              <!-- version_dropdown.html -->
+
+              
+              <!-- colorscheme_dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle light/dark">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-xl-none small ms-2">Toggle light/dark</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Light/dark</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="small ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="small ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="small ms-3">Default</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid flex-grow-1">
+      <div class="nftt-gutter nftt-page">
+        <aside class="nftt-sidebar ">
+          <div class="nftt-sidebar-content">
+            
+            <div class="title d-none d-xl-block">
+              <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
+            </div>
+            <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+                <!-- danirus sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
+    Table of contents
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pt-3 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
+    </div>
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="add_dataset.html">Add a dataset to peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_strategy.html">Add a strategy in peerannot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+            </div>
+            
+          </div>
+        </aside>
+        <article id="content" class="nftt-content" role="main">
+    <section id="Data-generation">
+<h1>Data generation<a class="headerlink" href="#Data-generation" title="Link to this heading">¶</a></h1>
+<p>First, we generate a dataset with the <code class="docutils literal notranslate"><span class="pre">peerannot</span> <span class="pre">simulate</span></code> command. This dataset has 30 workers, 200 tasks for 5 classes. Each task receives 10 votes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="n">Path</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;_build&quot;</span> <span class="o">/</span> <span class="s2">&quot;notebooks&quot;</span><span class="p">)</span>
+<span class="n">path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="o">!</span><span class="w"> </span>peerannot<span class="w"> </span>simulate<span class="w"> </span>--n-worker<span class="o">=</span><span class="m">30</span><span class="w"> </span>--n-task<span class="o">=</span><span class="m">200</span><span class="w">  </span>--n-classes<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="err">\</span>
+                     <span class="o">--</span><span class="n">strategy</span> <span class="n">independent</span><span class="o">-</span><span class="n">confusion</span> \
+                     <span class="o">--</span><span class="n">feedback</span><span class="o">=</span><span class="mi">10</span> <span class="o">--</span><span class="n">seed</span> <span class="mi">0</span> \
+                     <span class="o">--</span><span class="n">folder</span> <span class="o">../</span><span class="n">_build</span><span class="o">/</span><span class="n">notebooks</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+    Saved answers at ../_build/notebooks/answers.json
+
+    Saved ground truth at ../_build/notebooks/ground_truth.npy
+
+</pre></div></div>
+</div>
+<p>We can visualize the generated votes and the true labels of the tasks. For example let us consider task 5:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;answers.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">answers</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">gt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;ground_truth.npy&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Task 5:&quot;</span><span class="p">,</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;5&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of votes:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;5&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ground truth:&quot;</span><span class="p">,</span> <span class="n">gt</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;5&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">minlength</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;class </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of votes&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Number of votes for each class for task 5&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Task 5: {&#39;2&#39;: 1, &#39;3&#39;: 0, &#39;4&#39;: 0, &#39;5&#39;: 3, &#39;9&#39;: 0, &#39;11&#39;: 1, &#39;15&#39;: 2, &#39;17&#39;: 4, &#39;21&#39;: 0, &#39;26&#39;: 2}
+Number of votes: 10
+Ground truth: 0
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_run_aggregation_notebook_3_1.png" src="../_images/tutorials_run_aggregation_notebook_3_1.png" />
+</div>
+</div>
+</section>
+<section id="Command-Line-Aggregation">
+<h1>Command Line Aggregation<a class="headerlink" href="#Command-Line-Aggregation" title="Link to this heading">¶</a></h1>
+<p>Let us run some aggregation methods on the dataset we just generated using the command line interface.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">strat</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;MV&quot;</span><span class="p">,</span> <span class="s2">&quot;NaiveSoft&quot;</span><span class="p">,</span> <span class="s2">&quot;DS&quot;</span><span class="p">,</span> <span class="s2">&quot;GLAD&quot;</span><span class="p">,</span> <span class="s2">&quot;DSWC[L=5]&quot;</span><span class="p">,</span> <span class="s2">&quot;Wawa&quot;</span><span class="p">]:</span>
+    <span class="o">!</span><span class="w"> </span>peerannot<span class="w"> </span>aggregate<span class="w"> </span>../_build/notebooks/<span class="w"> </span>-s<span class="w"> </span><span class="o">{</span>strat<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Running aggregation mv with options {}
+Aggregated labels stored at /home/circleci/project/doc/_build/notebooks/labels/labels_independent-confusion_mv.npy with shape (200,)
+Running aggregation naivesoft with options {}
+Aggregated labels stored at /home/circleci/project/doc/_build/notebooks/labels/labels_independent-confusion_naivesoft.npy with shape (200, 5)
+Running aggregation ds with options {}
+Finished:  40%|████████████▊                   | 20/50 [00:00&lt;00:00, 122.65it/s]
+Aggregated labels stored at /home/circleci/project/doc/_build/notebooks/labels/labels_independent-confusion_ds.npy with shape (200, 5)
+Running aggregation glad with options {}
+- Running EM
+Finished:  74%|████████████████████████▍        | 37/50 [00:32&lt;00:11,  1.15it/s]
+Task difficulty coefficients saved at /home/circleci/project/doc/_build/notebooks/identification/glad/difficulties.npy
+Worker ability coefficients saved at /home/circleci/project/doc/_build/notebooks/identification/glad/abilities.npy
+Aggregated labels stored at /home/circleci/project/doc/_build/notebooks/labels/labels_independent-confusion_glad.npy with shape (200, 5)
+Running aggregation dswc with options {&#39;L&#39;: 5}
+Aggregated labels stored at /home/circleci/project/doc/_build/notebooks/labels/labels_independent-confusion_dswc[l=5].npy with shape (200, 5)
+Running aggregation wawa with options {}
+/home/circleci/project/peerannot/models/aggregation/Wawa.py:59: UserWarning:
+            Wawa aggregation only returns hard labels.
+            Defaulting to ``get_answers()``.
+
+  warnings.warn(
+Aggregated labels stored at /home/circleci/project/doc/_build/notebooks/labels/labels_independent-confusion_wawa.npy with shape (200,)
+</pre></div></div>
+</div>
+<p>Now, as we know the ground truth we can evaluate the performance of the aggregation methods. In this example we consider the accuracy. Other metrics such as F1-scores, precision, recall, etc. can be used.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">gt</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">gt</span><span class="p">)</span> <span class="k">if</span> <span class="n">labels</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">gt</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">{</span>  <span class="c1"># initialize results dictionary</span>
+    <span class="s2">&quot;mv&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;naivesoft&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;glad&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;ds&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;wawa&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;dswc[l=5]&quot;</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">path_labels</span> <span class="o">=</span> <span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;labels&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;labels_independent-confusion_</span><span class="si">{</span><span class="n">strategy</span><span class="si">}</span><span class="s2">.npy&quot;</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_labels</span><span class="p">)</span>  <span class="c1"># load aggregated labels</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">strategy</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">gt</span><span class="p">))</span>  <span class="c1"># compute accuracy</span>
+<span class="n">results</span><span class="p">[</span><span class="s2">&quot;NS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;naivesoft&quot;</span><span class="p">]</span>  <span class="c1"># rename naivesoft to NS</span>
+<span class="n">results</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;naivesoft&quot;</span><span class="p">)</span>
+
+<span class="c1"># Styling the results</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AccTrain&quot;</span><span class="p">])</span>
+<span class="n">results</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_table_styles</span><span class="p">(</span>
+    <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;th&quot;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;text-align&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">)])]</span>
+<span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">})</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+#T_cbcf9 th {
+  text-align: center;
+}
+#T_cbcf9_row0_col0, #T_cbcf9_row0_col1, #T_cbcf9_row0_col2, #T_cbcf9_row0_col3, #T_cbcf9_row0_col4, #T_cbcf9_row0_col5 {
+  text-align: center;
+}
+</style>
+<table id="T_cbcf9">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_cbcf9_level0_col0" class="col_heading level0 col0" >MV</th>
+      <th id="T_cbcf9_level0_col1" class="col_heading level0 col1" >GLAD</th>
+      <th id="T_cbcf9_level0_col2" class="col_heading level0 col2" >DS</th>
+      <th id="T_cbcf9_level0_col3" class="col_heading level0 col3" >WAWA</th>
+      <th id="T_cbcf9_level0_col4" class="col_heading level0 col4" >DSWC[L=5]</th>
+      <th id="T_cbcf9_level0_col5" class="col_heading level0 col5" >NS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_cbcf9_level0_row0" class="row_heading level0 row0" >AccTrain</th>
+      <td id="T_cbcf9_row0_col0" class="data row0 col0" >0.750</td>
+      <td id="T_cbcf9_row0_col1" class="data row0 col1" >0.780</td>
+      <td id="T_cbcf9_row0_col2" class="data row0 col2" >0.890</td>
+      <td id="T_cbcf9_row0_col3" class="data row0 col3" >0.790</td>
+      <td id="T_cbcf9_row0_col4" class="data row0 col4" >0.775</td>
+      <td id="T_cbcf9_row0_col5" class="data row0 col5" >0.760</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+</section>
+<section id="API-Aggregation">
+<h1>API Aggregation<a class="headerlink" href="#API-Aggregation" title="Link to this heading">¶</a></h1>
+<p>We showed how to use the command line interface, but what about the API? It’s just as simple!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">peerannot.models</span> <span class="kn">import</span> <span class="n">agg_strategies</span>
+
+<span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MV&quot;</span><span class="p">,</span> <span class="s2">&quot;GLAD&quot;</span><span class="p">,</span> <span class="s2">&quot;DS&quot;</span><span class="p">,</span> <span class="s2">&quot;NaiveSoft&quot;</span><span class="p">,</span> <span class="s2">&quot;DSWC&quot;</span><span class="p">,</span> <span class="s2">&quot;Wawa&quot;</span><span class="p">]</span>
+<span class="n">yhats</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">strat</span> <span class="ow">in</span> <span class="n">strategies</span><span class="p">:</span>
+    <span class="n">agg</span> <span class="o">=</span> <span class="n">agg_strategies</span><span class="p">[</span><span class="n">strat</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">strat</span> <span class="o">!=</span> <span class="s2">&quot;DSWC&quot;</span><span class="p">:</span>
+        <span class="n">agg</span> <span class="o">=</span> <span class="n">agg</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_tasks</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">agg</span> <span class="o">=</span> <span class="n">agg</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_tasks</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="s2">&quot;run&quot;</span><span class="p">):</span>
+        <span class="n">agg</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">yhats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">agg</span><span class="o">.</span><span class="n">get_answers</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/circleci/miniconda/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+- Running EM
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Finished: : 21it [00:20,  1.05it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Task difficulty coefficients saved at /home/circleci/project/doc/_build/notebooks/identification/glad/difficulties.npy
+Worker ability coefficients saved at /home/circleci/project/doc/_build/notebooks/identification/glad/abilities.npy
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Finished: 100% 20/20 [00:00&lt;00:00, 124.01it/s]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{</span>  <span class="c1"># initialize results dictionary</span>
+    <span class="s2">&quot;mv&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;glad&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;ds&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;naivesoft&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;dswc[l=5]&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;wawa&quot;</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">yhats</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># load aggregated labels</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">strategy</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">gt</span><span class="p">))</span>  <span class="c1"># compute accuracy</span>
+<span class="n">results</span><span class="p">[</span><span class="s2">&quot;NS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;naivesoft&quot;</span><span class="p">]</span>  <span class="c1"># rename naivesoft to NS</span>
+<span class="n">results</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;naivesoft&quot;</span><span class="p">)</span>
+
+<span class="c1"># Styling the results</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AccTrain&quot;</span><span class="p">])</span>
+<span class="n">results</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_table_styles</span><span class="p">(</span>
+    <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;th&quot;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;text-align&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">)])]</span>
+<span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">})</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<style type="text/css">
+#T_a8832 th {
+  text-align: center;
+}
+#T_a8832_row0_col0, #T_a8832_row0_col1, #T_a8832_row0_col2, #T_a8832_row0_col3, #T_a8832_row0_col4, #T_a8832_row0_col5 {
+  text-align: center;
+}
+</style>
+<table id="T_a8832">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_a8832_level0_col0" class="col_heading level0 col0" >MV</th>
+      <th id="T_a8832_level0_col1" class="col_heading level0 col1" >GLAD</th>
+      <th id="T_a8832_level0_col2" class="col_heading level0 col2" >DS</th>
+      <th id="T_a8832_level0_col3" class="col_heading level0 col3" >DSWC[L=5]</th>
+      <th id="T_a8832_level0_col4" class="col_heading level0 col4" >WAWA</th>
+      <th id="T_a8832_level0_col5" class="col_heading level0 col5" >NS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_a8832_level0_row0" class="row_heading level0 row0" >AccTrain</th>
+      <td id="T_a8832_row0_col0" class="data row0 col0" >0.775</td>
+      <td id="T_a8832_row0_col1" class="data row0 col1" >0.775</td>
+      <td id="T_a8832_row0_col2" class="data row0 col2" >0.890</td>
+      <td id="T_a8832_row0_col3" class="data row0 col3" >0.775</td>
+      <td id="T_a8832_row0_col4" class="data row0 col4" >0.790</td>
+      <td id="T_a8832_row0_col5" class="data row0 col5" >0.760</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<p>The difference in performance shown result from the random tie-breaks generated.</p>
+</section>
+
+</article>
+        <aside class="nftt-toc">
+          
+          <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link link-dark p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">Data generation</a></li>
+<li><a class="reference internal" href="#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li><a class="reference internal" href="#API-Aggregation">API Aggregation</a></li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
+          
+        </aside>
+      </div>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="add_strategy.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: Add a strategy in peerannot">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">Add a strategy in peerannot</span>
+              </div>
+            </a>
+          </li>
+        <li class="page-item ms-auto">
+            <a href="run_pipeline_notebook.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: Simulate the dataset">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">Simulate the dataset</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="Nefertiti-for-Sphinx">
+          <span class="fs-6 fw-bold">peerannot</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2023-2024</li>
+          </ul>
+        
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.3.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.3.2</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+    <script src="../_static/documentation_options.js?v=ddba79f2"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/doc_versions.js"></script>
+  </body>
+</html>

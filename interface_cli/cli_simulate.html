@@ -34,7 +34,7 @@
         <link rel="search" title="Search" href="../search.html" />
         <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
         <link rel="up" title="CLI interface" href="index.html" />
-        <link rel="next" title="CLI simulate" href="cli_train.html" />
+        <link rel="next" title="CLI train" href="cli_train.html" />
         <link rel="prev" title="CLI identify" href="cli_identify.html" />
     <style>
       :root {
@@ -181,7 +181,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_dataset.html">Add a dataset to peerannot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_strategy.html">Add a strategy in peerannot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation.html">Run a label aggregation strategy using peerannot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html">Data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#Command-Line-Aggregation">Command Line Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_aggregation_notebook.html#API-Aggregation">API Aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html">Simulate the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Value-of-the-krippendorff-alpha">Value of the krippendorff alpha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Identify-spammers">Identify spammers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/run_pipeline_notebook.html#Aggregation-with-and-without-identification">Aggregation with and without identification</a></li>
 </ul>
 </li>
 </ul>
@@ -210,10 +216,161 @@ span.prompt1:before {
   content: "$ ";
 }
 </style><span class="prompt1">peerannot<span class="w"> </span>simulate<span class="w"> </span>--help</span>
-</pre></div></div></section>
+</pre></div></div><section id="simulate-independent-mistakes">
+<h2>Simulate independent mistakes<a class="headerlink" href="#simulate-independent-mistakes" title="Link to this heading">¶</a></h2>
+<p>The independent mistakes setting considers that each worker <span class="math notranslate nohighlight">\(w_j\)</span> answers following a multinomial distribution with weights given at the row <span class="math notranslate nohighlight">\(y_i^{\star}\)</span> of their confusion matrix <span class="math notranslate nohighlight">\(\pi^{(j)}\)</span>. Each confusion row in the confusion matrix is generated uniformly in the simplex. Then, we make the matrix diagonally dominant (to represent non-adversarial workers) by switching the diagonal term with the maximum value by row. Answers are independent of one another as each matrix is generated independently and each worker answers independently of other workers. In this setting, the DS model is expected to perform better with enough data as we are simulating data from its assumed noise model.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">peerannot<span class="w"> </span>simulate<span class="w"> </span>--n-worker<span class="o">=</span><span class="m">30</span><span class="w"> </span>--n-task<span class="o">=</span><span class="m">200</span><span class="w">  </span>--n-classes<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--strategy<span class="w"> </span>independent-confusion<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--feedback<span class="o">=</span><span class="m">10</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--folder<span class="w"> </span>./simus/independent</span>
+</pre></div></div><p>This example generates 200 tasks and 30 workers with <span class="math notranslate nohighlight">\(K=5\)</span> classes. Each task receivex <span class="math notranslate nohighlight">\(\mathcal{A}(x_i)=10\)</span> votes. This leads to around <span class="math notranslate nohighlight">\(200\times 10/30\simeq 67\)</span> tasks per worker (variations are due to the randomness in the affectations).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To create imbalanced number of votes per task, use the <code class="docutils literal notranslate"><span class="pre">--imbalance-votes</span></code> option. The number of votes is then chosen at random uniformly between 1 and the number of workers available.</p>
+</div>
+</section>
+<section id="simulate-correlated-mistakes">
+<h2>Simulate correlated mistakes<a class="headerlink" href="#simulate-correlated-mistakes" title="Link to this heading">¶</a></h2>
+<p>The correlated mistakes are also known as the student-teacher or junior-expert setting (Cao et al. (2019)). Consider that the crowd of workers is divided into two categories: teachers and students (with <span class="math notranslate nohighlight">\(n_{teacher}+n_{student}=n_{worker}\)</span>). Each student is randomly assigned to one teacher at the beginning of the experiment. We generate the (diagonally dominant) confusion matrices of each teacher and the students share the same confusion matrix as their associated teacher. Hence, clustering strategies are expected to perform best in this context. Then, they all answer independently, following a multinomial distribution with weights given at the row <span class="math notranslate nohighlight">\(y_i^{\star}\)</span> of their confusion matrix <span class="math notranslate nohighlight">\(\pi^{(j)}\)</span>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">peerannot<span class="w"> </span>simulate<span class="w"> </span>--n-worker<span class="o">=</span><span class="m">30</span><span class="w"> </span>--n-task<span class="o">=</span><span class="m">200</span><span class="w">  </span>--n-classes<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--strategy<span class="w"> </span>student-teacher<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--ratio<span class="w"> </span><span class="m">0</span>.8<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--feedback<span class="o">=</span><span class="m">10</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--folder<span class="w"> </span>./simus/student_teacher</span>
+</pre></div></div><p>This example generates 200 tasks and 30 workers with <span class="math notranslate nohighlight">\(K=5\)</span> classes. Each task receivex <span class="math notranslate nohighlight">\(\mathcal{A}(x_i)=10\)</span> votes. There are 80% of students in the crowd, defined by the <code class="docutils literal notranslate"><span class="pre">--ratio</span></code> parameter.</p>
+</section>
+<section id="simulate-mistakes-with-discrete-difficulty-levels">
+<h2>Simulate mistakes with discrete difficulty levels<a class="headerlink" href="#simulate-mistakes-with-discrete-difficulty-levels" title="Link to this heading">¶</a></h2>
+<p>Introduced in Whitehill et al. (2009), workers are either good or bad. Tasks are either easy or hard. The keyword <code class="docutils literal notranslate"><span class="pre">ratio-diff</span></code> indicates the prevalence of each level of difficulty as the ratio of easy tasks over hard tasks:</p>
+<div class="math notranslate nohighlight">
+\[\texttt{ratio-diff} = \frac{\mathbb{P}(\texttt{easy})}{\mathbb{P}(\texttt{hard})}, \mathbb{P}(\texttt{easy})+\mathbb{P}(\texttt{hard})=1\]</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">peerannot<span class="w"> </span>simulate<span class="w"> </span>--n-worker<span class="o">=</span><span class="m">100</span><span class="w"> </span>--n-task<span class="o">=</span><span class="m">200</span><span class="w">  </span>--n-classes<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--strategy<span class="w"> </span>discrete-difficulty<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--ratio<span class="w"> </span><span class="m">0</span>.35<span class="w"> </span>--ratio-diff<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--feedback<span class="w"> </span><span class="m">10</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>--folder<span class="w"> </span>./simus/discrete_difficulty</span>
+</pre></div></div><p>We simulate 200 tasks and 100 workers with <span class="math notranslate nohighlight">\(K=5\)</span> classes. Each task receives <span class="math notranslate nohighlight">\(\mathcal{A}(x_i)=10\)</span> votes. The ratio of good workers is 0.35. The ratio of easy tasks is 1. 35% of workers are good and there is 50% of easy tasks.</p>
+<section id="peerannot-simulate">
+<h3>peerannot simulate<a class="headerlink" href="#peerannot-simulate" title="Link to this heading">¶</a></h3>
+<p>Crowdsourcing simulations of workers</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>peerannot<span class="w"> </span>simulate<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-n-worker">
+<span class="sig-name descname"><span class="pre">--n-worker</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_worker&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-n-worker" title="Link to this definition">¶</a></dt>
+<dd><p>Number of workers</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-n-task">
+<span class="sig-name descname"><span class="pre">--n-task</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_task&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-n-task" title="Link to this definition">¶</a></dt>
+<dd><p>Number of tasks</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-K">
+<span class="sig-name descname"><span class="pre">-K</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--n-classes</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n_classes&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-K" title="Link to this definition">¶</a></dt>
+<dd><p>Number of classes</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-folder">
+<span class="sig-name descname"><span class="pre">--folder</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;folder&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-folder" title="Link to this definition">¶</a></dt>
+<dd><p>Folder in which produces simulations are stored.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-s">
+<span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--strategy</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;strategy&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-s" title="Link to this definition">¶</a></dt>
+<dd><p>Type of worker simulation</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-matrix-file">
+<span class="sig-name descname"><span class="pre">--matrix-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;matrix_file&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-matrix-file" title="Link to this definition">¶</a></dt>
+<dd><p>Numpy file containing a tensor of confusion matrices of size (n_worker, n_classes, n_classes)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-r">
+<span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ratio</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;ratio&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-r" title="Link to this definition">¶</a></dt>
+<dd><p>Number in (0,1) representing the ratio of spammers/students/good workers amongst total number of workers (depending on the strategy used)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-ratio-diff">
+<span class="sig-name descname"><span class="pre">--ratio-diff</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;ratio_diff&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-ratio-diff" title="Link to this definition">¶</a></dt>
+<dd><p>Ratio of easy tasks amongst hard. Only used in simulations based on task difficulty</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-random">
+<span class="sig-name descname"><span class="pre">--random</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;random&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-random" title="Link to this definition">¶</a></dt>
+<dd><p>Probability for a given task to have a difficulty <cite>random</cite> ie to be unidentifiable</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-wl">
+<span class="sig-name descname"><span class="pre">-wl</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--workerload</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;workerload&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-wl" title="Link to this definition">¶</a></dt>
+<dd><p>Upper bound on the number of tasks answered per worker</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-fb">
+<span class="sig-name descname"><span class="pre">-fb</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--feedback</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;feedback&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-fb" title="Link to this definition">¶</a></dt>
+<dd><p>Upper bound on the number of labels per task</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-imbalance-votes">
+<span class="sig-name descname"><span class="pre">--imbalance-votes</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-simulate-imbalance-votes" title="Link to this definition">¶</a></dt>
+<dd><p>If set, the number of votes per task is randomly chosen between 1 and the possible number of votes considering the constraint on the workerload and feedback force.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-seed">
+<span class="sig-name descname"><span class="pre">--seed</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;seed&gt;</span></span><a class="headerlink" href="#cmdoption-peerannot-simulate-seed" title="Link to this definition">¶</a></dt>
+<dd><p>Randome state for reproducibility</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-peerannot-simulate-verbose">
+<span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-peerannot-simulate-verbose" title="Link to this definition">¶</a></dt>
+<dd><p>Display more information</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
 
 </article>
         <aside class="nftt-toc">
+          
+          <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link link-dark p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">CLI simulate</a><ul>
+<li><a class="reference internal" href="#simulate-independent-mistakes">Simulate independent mistakes</a></li>
+<li><a class="reference internal" href="#simulate-correlated-mistakes">Simulate correlated mistakes</a></li>
+<li><a class="reference internal" href="#simulate-mistakes-with-discrete-difficulty-levels">Simulate mistakes with discrete difficulty levels</a><ul>
+<li><a class="reference internal" href="#peerannot-simulate">peerannot simulate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
           
         </aside>
       </div>
@@ -232,10 +389,10 @@ span.prompt1:before {
             </a>
           </li>
         <li class="page-item ms-auto">
-            <a href="cli_train.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: CLI simulate">
+            <a href="cli_train.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: CLI train">
               <div class="d-flex flex-column">
                 <span class="text-small text-end text-start text-muted">Next</span>
-                <span class="underline">CLI simulate</span>
+                <span class="underline">CLI train</span>
               </div>
               <span class="next-page"><i class="bi bi-caret-right"></i></span>
             </a>
@@ -275,6 +432,9 @@ span.prompt1:before {
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>
