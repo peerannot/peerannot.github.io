@@ -17,21 +17,21 @@
       <link rel="icon" href="../_static/logo.png" />
     <link rel="stylesheet" href="../_static/bootstrap-icons.css" type="text/css" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments.css', priority=200, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8e8a900e" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/copybutton.css', priority=500, rel='stylesheet', type='text/css')" -->
           <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments_dark.css', priority=500, rel='stylesheet', type='text/css', media='(prefers-color-scheme: dark)', id='pygments_dark_css')" -->
-          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=b20cc3f5" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/sphinx-design.min.css', priority=500, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+          <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/nbsphinx-code-cells.css', priority=500, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
-          <!-- add (1) pathto "_CascadingStyleSheet('_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css', priority=500, rel='stylesheet', type='text/css')" -->
-          <link rel="stylesheet" type="text/css" href="../_static/colorsets/sphinx-nefertiti-default-0.3.2.min.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/colorsets/sphinx-nefertiti-default-0.4.2.min.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/colorsets/sphinx-nefertiti-default-0.4.2.min.css" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/nunito/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
           <link rel="stylesheet" type="text/css" href="../_static/fonts/nunito/stylesheet.css" />
           <!-- add (1) pathto "_CascadingStyleSheet('_static/fonts/red-hat-mono/stylesheet.css', priority=500, rel='stylesheet', type='text/css')" -->
           <link rel="stylesheet" type="text/css" href="../_static/fonts/red-hat-mono/stylesheet.css" />
+          <!-- add (1) pathto "_CascadingStyleSheet('_static/pygments_dark.css', priority=500, rel='stylesheet', type='text/css')" -->
+          <link rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
         <link rel="index" title="Index" href="../genindex.html" />
         <link rel="search" title="Search" href="../search.html" />
         <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
@@ -193,9 +193,6 @@
 </ul>
 </li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
-</ul>
 
   </nav>
   <template data-toggle-item-template>
@@ -340,7 +337,7 @@ Running the following configuration:
 - seed: 0
 ----------
 Running DS model
-Finished:  22%|███████▎                         | 11/50 [00:00&lt;00:00, 55.62it/s]
+Finished:  22%|███████▎                         | 11/50 [00:00&lt;00:00, 48.46it/s]
 Spam scores saved at /home/circleci/project/doc/_build/notebooks/identification/spam_score.npy
 </pre></div></div>
 </div>
@@ -436,7 +433,7 @@ Spam scores saved at /home/circleci/project/doc/_build/notebooks/identification/
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Finished:  22% 11/50 [00:00&lt;00:00, 51.23it/s]
+Finished:  22% 11/50 [00:00&lt;00:00, 42.61it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -445,7 +442,7 @@ Finished:  22% 11/50 [00:00&lt;00:00, 51.23it/s]
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-        - MV accuracy: 0.8166666666666667
+        - MV accuracy: 0.7933333333333333
         - DS accuracy: 0.91
 
 </pre></div></div>
@@ -503,7 +500,7 @@ Finished:  22% 11/50 [00:00&lt;00:00, 51.23it/s]
 <div class="highlight"><pre>
 /home/circleci/project/peerannot/models/aggregation/DS.py:83: RuntimeWarning: invalid value encountered in divide
   self.T = np.where(tdim &gt; 0, T / tdim, 0)
-Finished:   6% 3/50 [00:00&lt;00:00, 47.36it/s]
+Finished:   6% 3/50 [00:00&lt;00:01, 45.03it/s]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -512,7 +509,7 @@ Finished:   6% 3/50 [00:00&lt;00:00, 47.36it/s]
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-        - MV accuracy: 0.9933333333333333
+        - MV accuracy: 0.99
         - DS accuracy: 0.9933333333333333
 
 </pre></div></div>
@@ -530,9 +527,9 @@ Finished:   6% 3/50 [00:00&lt;00:00, 47.36it/s]
 </section>
 
 </article>
-        <aside class="nftt-toc">
+        <aside class="nftt-toc my-3">
           
-          <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+          <div class="my-sm-1 my-lg-0 ps-xl-3 text-muted">
             <button class="btn btn-link link-dark p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
             >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
             <div class="title d-none d-lg-block">
@@ -558,16 +555,16 @@ Finished:   6% 3/50 [00:00&lt;00:00, 47.36it/s]
     <footer class="nftt-footer">
       <nav id="paginator" class="py-4" aria-label="Documentation navigation">
     <div class="container">
-      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+      <ul class="pagination justify-content-between mb-0"><li class="d-flex page-item">
             <a href="run_aggregation_notebook.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: Data generation">
               <span class="prev-page"><i class="bi bi-caret-left"></i></span>
-              <div class="d-flex flex-column">
+              <div class="d-none d-sm-flex flex-column">
                 <span class="text-small text-start text-muted">Previous</span>
                 <span class="underline">Data generation</span>
               </div>
             </a>
           </li>
-        <li class="page-item ms-auto">
+        <li class="d-flex page-item ms-auto">
             <a href="../interface_api/index.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: API Reference">
               <div class="d-flex flex-column">
                 <span class="text-small text-end text-start text-muted">Next</span>
@@ -597,7 +594,7 @@ Finished:   6% 3/50 [00:00&lt;00:00, 47.36it/s]
         
         
         <div class="built-with pt-2">
-          Built with <a href="http://sphinx-doc.org">Sphinx 7.3.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.3.2</a>
+          Built with <a href="http://sphinx-doc.org">Sphinx 8.1.3</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.4.2</a>
         </div>
         
       </div>
@@ -606,7 +603,7 @@ Finished:   6% 3/50 [00:00&lt;00:00, 47.36it/s]
 </div>
     </footer>
     <script src="../_static/documentation_options.js?v=ddba79f2"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
@@ -615,8 +612,8 @@ Finished:   6% 3/50 [00:00&lt;00:00, 47.36it/s]
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <script type="text/javascript" src="../_static/sphinx-nefertiti-0.3.2.min.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap.bundle-0.3.2.min.js"></script>
+    <script type="text/javascript" src="../_static/sphinx-nefertiti-0.4.2.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap.bundle-0.4.2.min.js"></script>
     
     <script type="text/javascript" src="../_static/doc_versions.js"></script>
   </body>
