@@ -1,0 +1,10 @@
+﻿DawidSkeneClust
+===============
+
+.. currentmodule:: peerannot.models.aggregation.dawid_skene_clust
+
+.. autoclass:: DawidSkeneClust
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.dawid_skene_clust.DawidSkeneClust:

@@ -1,0 +1,10 @@
+﻿NaiveSoft
+=========
+
+.. currentmodule:: peerannot.models.aggregation.naive_soft
+
+.. autoclass:: NaiveSoft
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.naive_soft.NaiveSoft:

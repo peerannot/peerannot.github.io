@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,6 +13,9 @@
     <meta name="docsearch:release" content="0.0.1.post41" />
     <meta name="docsearch:version" content="0.0.1.post41" />
     
+      <meta name="theme-color" content="#0DCAF0" />
+    
+    
       <title>Pl@ntNet aggregation strategy &mdash; peerannot 0.0.1.post41 documentation</title>
     
     <link rel="canonical" href="tutorials/run_plantnet_strategy" />
@@ -20,13 +23,13 @@
           <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8e8a900e" /><!-- add (1) -->
           <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" /><!-- add (1) -->
           <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" /><!-- add (1) -->
-          <link rel="stylesheet" type="text/css" href="../_static/sphinx-nefertiti-default.min.css?v=5aefbef3" /><!-- add (1) -->
-          <link rel="stylesheet" type="text/css" href="../_static/fonts/nunito/stylesheet.css?v=0ed606bc" /><!-- add (1) -->
-          <link rel="stylesheet" type="text/css" href="../_static/fonts/red-hat-mono/stylesheet.css?v=4eee5046" /><!-- add (1) -->
-          <link rel="stylesheet" type="text/css" href="../_static/pygments-dark.css?v=589f9147" /><!-- add (1) -->
-          <link rel="stylesheet" type="text/css" href="../_static/pygments-light.css?v=1620426e" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/nunito/stylesheet.css?v=abf98f06" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/ubuntu-sans-mono/stylesheet.css?v=8616a587" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/pygments-dark.css?v=2de69186" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/pygments-light.css?v=970f37b1" /><!-- add (1) -->
           <link rel="stylesheet" type="text/css" href="../_static/bootstrap-icons.min.css?v=44730005" /><!-- add (1) -->
           <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/sphinx-nefertiti-default.min.css?v=88df5cc9" /><!-- add (1) -->
         <link rel="index" title="Index" href="../genindex.html" />
         <link rel="search" title="Search" href="../search.html" />
         <link rel="top" title="peerannot 0.0.1.post41 documentation" href="#" />
@@ -36,11 +39,10 @@
     <style>
       :root {
         --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
-        --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-font-monospace: "Ubuntu Sans Mono", var(--nftt-font-family-monospace) !important;
         --nftt-project-name-font: var(--nftt-body-font-family);
         --nftt-documentation-font: var(--nftt-body-font-family);
         --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);}
-      h1 *, h2 *, h3 *, h4 *, h5 *, h6 * { font-size: inherit; }
     </style>
   </head>
   <body>
@@ -50,20 +52,19 @@
     <header id="snftt-nav-bar" class="navbar navbar-expand-xl navbar-dark nftt-navbar flex-column fixed-top">
       <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
         <div class="border-bottom mb-2 pb-2 w-100">
-          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to docs navigation</a>
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to index filter</a>
           <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
         </div>
       </div>
-      <nav class="container-xxl nftt-gutter flex-wrap flex-xl-nowrap" aria-label="Main navigation">
+      <nav class="container-xxl nftt-gutter flex-nowrap" aria-label="Main navigation">
         <div class="nftt-navbar-toggler">
           <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
             <i class="bi bi-list"></i>
           </button>
         </div>
           <a href="../index.html"
-              
-              class="navbar-brand p-0 me-0 md-lg-2 pe-lg-4"
-          ><span class="brand-text">peerannot</span></a>
+             class="navbar-brand"
+          ><span class="brand-text">peerannot</span><span class="brand-short-text">peerannot</span></a>
         
         
         <div class="d-flex d-xl-none">
@@ -86,7 +87,7 @@
       <li class="nav-item col-12 col-xl-auto">
         <form id="nftt-search-form" action="../search.html" method="get">
           <div class="input-group">
-            <input type="text" name="q" class="form-control search-input" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="text" name="q" class="form-control search-input" placeholder="Search" aria-label="Search" aria-describedby="button-search">
             <input type="hidden" name="check_keywords" value="yes" />
             <input type="hidden" name="area" value="default" />
             <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
@@ -99,7 +100,7 @@
 
         <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
           <div class="offcanvas-header px-4 pb-0">
-            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-text">peerannot</span></div>
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-short-text">peerannot</span></div>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
           </div>
           <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
@@ -109,15 +110,16 @@
               
               
               
-              <!-- colorscheme_dropdown.html -->
+              
+              <!-- lightdark-dropdown.html -->
 <li class="nav-item dropdown">
-  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle light/dark">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change appearance">
     <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
-    <span id="snftt-luz-text" class="d-xl-none ms-2">Toggle light/dark</span>
+    <span id="snftt-luz-text" class="d-xl-none ms-2">Change appearance</span>
   </a>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
     <li>
-      <h6 class="dropdown-header">Light/dark</h6>
+      <h6 class="dropdown-header">Change appearance</h6>
     </li>
     <li>
       <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
@@ -142,7 +144,7 @@
         <span>
           <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
         </span>
-        <span class="ms-3">Default</span>
+        <span class="ms-3">Automatic</span>
         <i class="bi bi-check ms-auto"></i>
       </a>
     </li>
@@ -155,26 +157,26 @@
       
     </header>
 
-    <div class="container-fluid flex-grow-1">
+    <div class="container-fluid">
       <div class="nftt-gutter nftt-page">
         <aside class="nftt-sidebar ">
           <div class="nftt-sidebar-content">
             
-            <div class="title d-none d-xl-block">
+            <div class="title d-none d-xl-none">
               <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
             </div>
             <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
                 <!-- sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
   <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
-    Table of contents
+    Index
   </h5>
   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
 </div>
 
 <div class="offcanvas-body">
   <nav class="toc" aria-label="Main menu">
-    <div class="mb-3 p-1 pt-3 pb-4 border-bottom">
-      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
+    <div class="mb-3 p-1 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="index filter" aria-label="index filter">
     </div>
     <ul>
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
@@ -208,13 +210,21 @@
           </div>
         </aside>
         <article id="content" class="nftt-content" role="main">
-          <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="../index.html">Start</a></li>
-      <li class="breadcrumb-item"><a href="index.html">Tutorials</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Pl&#64;ntNet aggregation strategy</li>
-  </ol>
-</nav>
+          <div><div class="d-flex flex-row justify-content-between">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="../index.html">Start</a></li>
+        <li class="breadcrumb-item"><a href="index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Pl&#64;ntNet aggregation strategy</li>
+    </ol>
+  </nav>
+  
+    <div class="fs085">
+        <a href="../_sources/tutorials/run_plantnet_strategy.ipynb.txt"  rel="nofollow" aria-label="Show source of this document"><i class="bi bi-file-earmark-code"></i></a>
+    </div>
+  
+</div>
+            
     <section id="Pl&#64;ntNet-aggregation-strategy">
 <h1><a class="reference external" href="mailto:Pl&#37;&#52;&#48;ntNet">Pl<span>&#64;</span>ntNet</a> aggregation strategy<a class="headerlink" href="#Pl@ntNet-aggregation-strategy" title="Link to this heading">¶</a></h1>
 <p>This aggregation strategy presented in <a class="reference external" href="https://hal.science/hal-04603038">this paper</a> models the expertise of users the number of labels they correctly interact with.</p>
@@ -225,10 +235,10 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">peerannot.models</span> <span class="k">as</span> <span class="nn">pmod</span>
-<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">peerannot.models</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pmod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Crowdsourced answers (are stored typically in a .json file)</span>
 <span class="n">votes</span> <span class="o">=</span> <span class="p">{</span>
@@ -270,12 +280,16 @@
   from .autonotebook import tqdm as notebook_tqdm
 </pre></div></div>
 </div>
-<p>We will evaluate the performance of the method on two subsets: - The full dataset - The subset where the items have been voted on by more than two users We also monitor the proportion of classes retrieved after the aggregation compared to the ground truth (if a class is never predicted by the aggregation, a model can later never be trained to recognize it).</p>
+<p>We will evaluate the performance of the method on two subsets:</p>
+<ul class="simple">
+<li><p>The full dataset</p></li>
+<li><p>The subset where the items have been voted on by more than two users We also monitor the proportion of classes retrieved after the aggregation compared to the ground truth (if a class is never predicted by the aggregation, a model can later never be trained to recognize it).</p></li>
+</ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_mask_more_than_two</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">gt</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_mask_more_than_two</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">gt</span><span class="p">):</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">answers</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">answers</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">answers</span><span class="p">[</span><span class="n">tt</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">gt</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">tt</span><span class="p">)]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
@@ -286,7 +300,7 @@
 <span class="n">mask_more_than_two</span> <span class="o">=</span> <span class="n">build_mask_more_than_two</span><span class="p">(</span><span class="n">votes</span><span class="p">,</span> <span class="n">gt</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">build_mask_more_than_two</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">gt</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_mask_more_than_two</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">gt</span><span class="p">):</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">answers</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">answers</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">answers</span><span class="p">[</span><span class="n">tt</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">gt</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">tt</span><span class="p">)]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
@@ -299,7 +313,7 @@
 <span class="c1"># %% Metric to compare the strategies where the ground truth is available (proportion of classes kept and accuracy)</span>
 
 
-<span class="k">def</span> <span class="nf">vol_class_kept</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">vol_class_kept</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
     <span class="n">uni_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">truth</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
     <span class="n">n_class_test</span> <span class="o">=</span> <span class="n">uni_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">preds_uni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
@@ -311,14 +325,14 @@
     <span class="k">return</span> <span class="n">n_class_pred</span><span class="p">,</span> <span class="n">n_class_test</span><span class="p">,</span> <span class="n">vol_kept</span>
 
 
-<span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">accuracy</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">==</span> <span class="n">truth</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
 
 
 <span class="c1"># %% Metric to compare the strategies where the ground truth is available (proportion of classes kept and accuracy)</span>
 
 
-<span class="k">def</span> <span class="nf">vol_class_kept</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">vol_class_kept</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
     <span class="n">uni_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">truth</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
     <span class="n">n_class_test</span> <span class="o">=</span> <span class="n">uni_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">preds_uni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
@@ -330,7 +344,7 @@
     <span class="k">return</span> <span class="n">n_class_pred</span><span class="p">,</span> <span class="n">n_class_test</span><span class="p">,</span> <span class="n">vol_kept</span>
 
 
-<span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">accuracy</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">==</span> <span class="n">truth</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -340,8 +354,8 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-100% 20/20 [00:00&lt;00:00, 218453.33it/s]
-100% 20/20 [00:00&lt;00:00, 363143.20it/s]
+100% 20/20 [00:00&lt;00:00, 239674.51it/s]
+100% 20/20 [00:00&lt;00:00, 270600.26it/s]
 </pre></div></div>
 </div>
 <p>We now run the <a class="reference external" href="mailto:Pl&#37;&#52;&#48;ntNet">Pl<span>&#64;</span>ntNet</a> strategy against other strategies available in <code class="docutils literal notranslate"><span class="pre">peerannot</span></code>.</p>
@@ -375,9 +389,16 @@
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-100% 5/5 [00:00&lt;00:00, 3188.13it/s]
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[3], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> mv <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">pmod</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">MV</span>(answers<span style="color: rgb(98,98,98)">=</span>votes, n_classes<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">9</span>, n_workers<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">4</span>)
+<span class="ansi-green-intense-fg ansi-bold">      2</span> yhat_mv <span style="color: rgb(98,98,98)">=</span> mv<span style="color: rgb(98,98,98)">.</span>get_answers()
+<span class="ansi-green-intense-fg ansi-bold">      3</span> wawa <span style="color: rgb(98,98,98)">=</span> pmod<span style="color: rgb(98,98,98)">.</span>Wawa(answers<span style="color: rgb(98,98,98)">=</span>votes, n_classes<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">9</span>, n_workers<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">4</span>)
+
+<span class="ansi-red-fg">AttributeError</span>: module &#39;peerannot.models&#39; has no attribute &#39;MV&#39;
 </pre></div></div>
 </div>
 <p>Finally we plot the metrics considered</p>
@@ -420,24 +441,44 @@
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/tutorials_run_plantnet_strategy_8_0.png" src="../_images/tutorials_run_plantnet_strategy_8_0.png" />
-</div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_run_plantnet_strategy_8_1.png" src="../_images/tutorials_run_plantnet_strategy_8_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[4], line 10</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span> gt <span style="color: rgb(98,98,98)">=</span> np<span style="color: rgb(98,98,98)">.</span>array(gt)
+<span class="ansi-green-intense-fg ansi-bold">      8</span> strats <span style="color: rgb(98,98,98)">=</span> [<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">MV</span><span style="color: rgb(175,0,0)">&#34;</span>, <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">WAWA</span><span style="color: rgb(175,0,0)">&#34;</span>, <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">TwoThird</span><span style="color: rgb(175,0,0)">&#34;</span>, <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">PlantNet</span><span style="color: rgb(175,0,0)">&#34;</span>]
+<span class="ansi-green-fg">---&gt; 10</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> strat, res <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">zip</span>(strats, [<span class="ansi-yellow-bg">yhat_mv</span>, yhat_wawa, yhat_twothird, yhatpn]):
+<span class="ansi-green-intense-fg ansi-bold">     11</span>     res_full<span style="color: rgb(98,98,98)">.</span>append(accuracy(res, gt, np<span style="color: rgb(98,98,98)">.</span>ones(<span style="color: rgb(0,135,0)">len</span>(gt), dtype<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(0,135,0)">bool</span>)))
+<span class="ansi-green-intense-fg ansi-bold">     12</span>     vol_class_full<span style="color: rgb(98,98,98)">.</span>append(vol_class_kept(res, gt, np<span style="color: rgb(98,98,98)">.</span>ones(<span style="color: rgb(0,135,0)">len</span>(gt), dtype<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(0,135,0)">bool</span>))[<span style="color: rgb(98,98,98)">2</span>])
+
+<span class="ansi-red-fg">NameError</span>: name &#39;yhat_mv&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 
-</article>
-        <aside class="nftt-toc my-3">
+</div>
+        </article>
+        <aside class="nftt-toc">
+          
+          <div class="my-sm-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">Pl&#64;ntNet aggregation strategy</a></li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
           
         </aside>
       </div>
@@ -447,7 +488,7 @@
       <nav id="paginator" class="py-4" aria-label="Documentation navigation">
     <div class="container">
       <ul class="pagination justify-content-between mb-0"><li class="d-flex page-item">
-            <a href="run_pipeline_notebook.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: Simulate the dataset">
+            <a href="run_pipeline_notebook.html" class="d-flex pe-5 px-lg-5 align-items-end" rel="prev" aria-label="Previous page: Simulate the dataset">
               <span class="prev-page"><i class="bi bi-caret-left"></i></span>
               <div class="d-none d-sm-flex flex-column">
                 <span class="text-small text-start text-muted">Previous</span>
@@ -456,7 +497,7 @@
             </a>
           </li>
         <li class="d-flex page-item ms-auto">
-            <a href="../interface_api/index.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: API Reference">
+            <a href="../interface_api/index.html" class="d-flex ps-5 px-lg-5 align-items-end" rel="next" aria-label="Next page: API Reference">
               <div class="d-flex flex-column">
                 <span class="text-small text-end text-start text-muted">Next</span>
                 <span class="underline">API Reference</span>
@@ -475,24 +516,38 @@
 
     <div class="row">
       <div class="col-lg-12 text-center">
-        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="Nefertiti-for-Sphinx">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="peerannot">
           <span class="fs-6 fw-bold">peerannot</span>
         </a>
         
           <ul class="list-unstyled small text-muted">
-            <li>2023-2024</li>
+            <li>2023-2026</li>
           </ul>
         
-        
         <div class="built-with pt-2">
-          Built with <a href="http://sphinx-doc.org">Sphinx 8.1.3</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.7.3</a>
+          Built with <a href="http://sphinx-doc.org">Sphinx 8.1.3</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.9.8</a>
         </div>
-        
       </div>
     </div>
   </div>
 </div>
     </footer>
+
+    <div class="modal modal-xl fade" id="nftt-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-xxl-down modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nftt-modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="nftt-modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     <script src="../_static/documentation_options.js?v=ddba79f2"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -501,8 +556,8 @@
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/docs-versions.js?v=08b0cbfb"></script>
-    <script src="../_static/sphinx-nefertiti.min.js?v=dfd9d24d"></script>
-    <script src="../_static/bootstrap.bundle.min.js?v=ff4e7878"></script>
+    <script src="../_static/sphinx-nefertiti.min.js?v=f7f548f2"></script>
+    <script src="../_static/bootstrap.bundle.min.js?v=e96d90d1"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </body>

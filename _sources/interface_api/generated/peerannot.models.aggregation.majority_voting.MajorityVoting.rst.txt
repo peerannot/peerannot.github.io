@@ -1,0 +1,10 @@
+﻿MajorityVoting
+==============
+
+.. currentmodule:: peerannot.models.aggregation.majority_voting
+
+.. autoclass:: MajorityVoting
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.majority_voting.MajorityVoting:

@@ -1,0 +1,10 @@
+﻿WDS
+===
+
+.. currentmodule:: peerannot.models.aggregation.wds
+
+.. autoclass:: WDS
+   :members:
+   :undoc-members:
+
+.. _sphx_glr_backreferences_peerannot.models.aggregation.wds.WDS:
